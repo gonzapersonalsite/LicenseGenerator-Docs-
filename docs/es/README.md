@@ -1,73 +1,24 @@
+# License Generator
 
+**Español** · [English](../../README.md) · [Deutsch](../de/README.md) · [Português](../pt/README.md) · [中文](../zh/README.md)
 
-# 🗝️ License Generator
+Herramienta de escritorio para emitir y gestionar licencias sin conexión. Cada producto tiene su propio par de claves RSA; tu aplicación verifica las licencias con la clave pública.
 
-[![.NET 8.0](https://img.shields.io/badge/.NET-8.0-512BD4?logo=dotnet)](https://dotnet.microsoft.com/download)
-[![Avalonia UI](https://img.shields.io/badge/Avalonia-11.2-ff69b4?logo=avaloniaui)](https://avaloniaui.net/)
-[![License](https://img.shields.io/badge/License-Custom%20EULA-blue)](LICENSE)
-[![Docs](https://img.shields.io/badge/Docs-OPERATIONS.md-success)](OPERATIONS.md)
+[Microsoft Store](https://apps.microsoft.com/detail/9NR38VBCF8JK) · [Comunicar un problema](https://github.com/gonzapersonalsite/LicenseGenerator-Docs-/issues) · [Apoyar el desarrollo](https://ko-fi.com/gonzaloapps)
 
-🇪🇸 **Español** | [🇺🇸 English](../../README.md) | [🇩🇪 Deutsch](../de/README.md) | [🇧🇷 Português](../pt/README.md) | [🇨🇳 中文](../zh/README.md)
+- Firmas RSA-2048 con SHA-256 y PKCS#1 v1.5; claves PEM.
+- Producto, nombre del cliente, HWID opcional y fecha de vencimiento opcional.
+- **UserDefined**: texto adicional firmado para funciones, planes o metadatos.
+- Gestión de aplicaciones, historial y copias ZIP.
+- Interfaz en español, inglés, alemán, portugués brasileño y chino simplificado.
+- Distribuciones autosuficientes para Windows x64 y Linux x64. No requieren instalar .NET; Linux necesita las bibliotecas de escritorio correspondientes.
 
-**License Generator** es una potente utilidad de escritorio diseñada para que desarrolladores independientes gestionen el ciclo de vida completo de sus licencias de software de forma autónoma, segura y offline.
+Crea el producto, integra `public.pem` en tu aplicación y genera la licencia con los datos del cliente. Nunca distribuyas `private.pem`. Deja UserDefined vacío para mantener el formato anterior; el texto adicional requiere un cliente compatible con formato 2.
 
-Las licencias generadas usan estándares criptográficos abiertos (RSA + PEM + SHA256), por lo que **cualquier aplicación en cualquier lenguaje** (C#, Python, Node.js, Java, Go, Rust...) puede validarlas. Tú gestionas las llaves desde esta herramienta; tus clientes solo necesitan la clave pública.
+[Uso e integración](OPERATIONS.md) · [Arquitectura y seguridad](ARCHITECTURE.md) · [Verificador C#](../examples/LicenseVerifier.cs)
 
----
+Los datos se guardan en el perfil del usuario, separados del ejecutable. Llevar el ejecutable en un USB no traslada las claves ni el historial. Las copias ZIP contienen claves privadas sin cifrar.
 
-## 🌟 Características Destacadas
+Software propietario sujeto al [EULA](../../LICENSE). Puedes distribuir las licencias generadas y las claves públicas con tus propios productos conforme a sus términos.
 
-- **RSA Criptografía**: Firma de licencias con RSA de 2048 bits utilizando el estándar moderno **PEM (PKCS#8)**.
-- **Bloqueo por Hardware (HWID)**: Vincula licencias a un equipo específico para evitar la piratería entre PCs.
-- **Gestión Multi-Producto**: Administra las llaves de todos tus proyectos desde una única interfaz limpia.
-- **Suscripciones**: Genera licencias con fecha de expiración para modelos de negocio basados en tiempo.
-- **Privacidad Absoluta**: Todo es local. Tus llaves privadas nunca salen de tu ordenador.
-- **Historial Completo**: Registro detallado de cada licencia emitida para un control total de tu base de usuarios.
-- **Cross-Platform**: Las licencias son JSON firmado con RSA estándar — validables desde cualquier stack tecnológico.
-
----
-
-## 📂 Documentación
-
-Para una integración exitosa, consulta estos manuales detallados:
-
-1.  [**Guía de Operaciones e Integración (Guía Burros)**](OPERATIONS.md): Paso a paso para integrar las licencias en tus apps, con ejemplos completos en **C#**, **Python** y **Node.js**.
-2.  [**Arquitectura y Seguridad**](ARCHITECTURE.md): Detalle técnico sobre RSA, SHA256 y el flujo de confianza.
-
----
-
-## ⚡ Inicio Rápido
-
-1.  **Crea tu App**: Pulsa en "Gestión de Apps" y añade tu producto. Esto generará tus llaves en `AppData`.
-2.  **Incrusta la Clave**: Copia la clave pública (`public.pem`) generada en tu código cliente.
-3.  **Genera una Licencia**: Introduce el HWID del cliente y entrégale el código resultante.
-
----
-
-## 🛠️ Stack Tecnológico
-
-**Generator (esta herramienta):**
-- **Framework**: Avalonia UI (.NET 8.0).
-- **Patrón**: MVVM con CommunityToolkit.
-- **Seguridad**: System.Security.Cryptography.
-- **Persistencia**: Local JSON en `%LocalAppData%`.
-
-**Clientes (tus apps):**
-- Cualquier lenguaje que soporte RSA + PEM (todos los modernos).
-- Ver [OPERATIONS.md](OPERATIONS.md) para ejemplos en C#, Python y Node.js.
-
----
-
-## 📜 Licencia
-
-Este software se distribuye bajo un contrato de licencia de usuario final (**EULA**) personalizado. 
-- **Uso para Desarrolladores**: Eres libre de usar esta herramienta para generar licencias de tus propias aplicaciones comerciales o gratuitas.
-- **Restricciones del Generador**: Queda prohibida la venta, redistribución, modificación o ingeniería inversa de este software (License Generator).
-- Consulta el archivo [LICENSE](../../LICENSE) para ver los términos completos.
-
----
-
-*Desarrollado con ❤️ para empoderar a los creadores de software.*
-
-**Desarrollado por Gonzalo Martínez García**  
-*Full Stack Developer | Software Engineering & Innovation*
+Desarrollado por Gonzalo Martínez García · gonzalo.dev
