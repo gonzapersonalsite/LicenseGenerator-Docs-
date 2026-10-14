@@ -2,7 +2,7 @@
 
 These instructions apply to the private application repository. The public documentation repository contains the manuals and client verification example, not the application sources or build scripts.
 
-The application uses .NET 8, Avalonia and CommunityToolkit.Mvvm. `global.json` fixes the SDK; the project fixes direct package versions and committed `packages.lock.json` files fix the resolved dependency graph. `nuget.config` permits only nuget.org. Do not change dependency versions as a side effect of a build.
+The application targets .NET 10 LTS, Avalonia 11.3 and CommunityToolkit.Mvvm. `global.json` fixes the SDK; the project fixes direct package versions and committed `packages.lock.json` files fix the resolved dependency graph. `nuget.config` permits only nuget.org. Do not change dependency versions as a side effect of a build.
 
 ## Verify
 
@@ -28,10 +28,21 @@ Use one build environment per checkout at a time. If switching between native an
 
 - `src/LicenseGenerator`: desktop app; retain the existing MVVM/service boundaries.
 - `tests/LicenseGenerator.Tests`: regression executable with no additional test packages.
-- `docs/examples`: integration source compiled by the tests.
+- `docs/examples`: standalone integration source linked into the app; tests access
+  that same compiled implementation through their project reference.
 - `scripts`: verification, bounded process execution and release packaging.
 - `.github/workflows/verify.yml`: Windows/Linux verification and native release artifacts. Actions are pinned to reviewed commit IDs.
 
 Keep signing and validation deterministic. Inject storage roots and clocks where tests need isolation. Validate input before filesystem changes. Throw or return an explicit failure; do not treat corrupt data as successful empty state. Preserve existing keys and issued license compatibility.
 
 For a dependency change, review the publisher, package contents, build imports and transitive graph before executing build targets. Deliberately regenerate the locks, review the diff, and rerun the locked gate. Ordinary restores must not rewrite locks.
+
+## UI and interaction checks
+
+Verify 680, 1000 and 1440-pixel windows, light and dark themes, and the 0.8/1/1.5
+font scales. Long product names, customer names and custom data must remain
+readable through wrapping, scrolling or selected details. Check navigation,
+keyboard focus, search shortcuts, modal cancellation, empty lists, failed loads
+and stale input during generation. These checks complement the console's pure
+layout, view-model, signature and persistence tests; compiling XAML alone does not
+establish visual correctness.

@@ -2,7 +2,7 @@
 
 **Español** · [English](../../README.md) · [Deutsch](../de/README.md) · [Português](../pt/README.md) · [中文](../zh/README.md)
 
-Herramienta de escritorio para emitir y gestionar licencias sin conexión. Cada producto tiene su propio par de claves RSA; tu aplicación verifica las licencias con la clave pública.
+Herramienta de escritorio para emitir, inspeccionar y gestionar licencias sin conexión. Cada producto tiene su propio par de claves RSA; puedes inspeccionar las licencias localmente con una clave pública de confianza y verificarlas en tu aplicación.
 
 [Microsoft Store](https://apps.microsoft.com/detail/9NR38VBCF8JK) · [Comunicar un problema](https://github.com/gonzapersonalsite/LicenseGenerator-Docs-/issues) · [Apoyar el desarrollo](https://ko-fi.com/gonzaloapps)
 
@@ -10,6 +10,7 @@ Herramienta de escritorio para emitir y gestionar licencias sin conexión. Cada 
 - Producto, nombre del cliente, HWID opcional y fecha de vencimiento opcional.
 - **UserDefined**: texto adicional firmado para funciones, planes o metadatos.
 - Gestión de aplicaciones, historial y copias ZIP.
+- Inspección local con una clave pública elegida expresamente y comprobaciones separadas de firma, producto, equipo y caducidad.
 - Interfaz en español, inglés, alemán, portugués brasileño y chino simplificado.
 - Distribuciones autosuficientes para Windows x64 y Linux x64. No requieren instalar .NET; Linux necesita las bibliotecas de escritorio correspondientes.
 

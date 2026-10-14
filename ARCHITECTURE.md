@@ -4,7 +4,24 @@
 
 ## Responsibilities
 
-Avalonia views display state and invoke MVVM commands. View models coordinate application services. Services own filesystem, desktop integration, settings, localization, signing and backup operations. Models describe the license data and signing contract. The regression console verifies observable behavior, including the independent client example.
+Avalonia views display state and invoke MVVM commands. View models coordinate application services. Services own filesystem, desktop integration, settings, localization, signing and backup operations. Models describe the license data and signing contract. The regression console verifies observable behavior, including the standalone client example compiled into the app.
+
+Page construction performs no license-store I/O. Navigation displays a page before
+awaiting its cancellable load, and retains page instances so form drafts survive
+navigation. View models schedule the existing synchronous store operations on
+worker threads, then update their observable state on the UI context. Busy commands
+reject duplicate mutations. A write already started finishes honestly; changing
+the form invalidates its displayed result without losing the saved license.
+
+`WorkspaceSnapshot` reads applications and history under the same storage lock.
+Dashboard totals use that one snapshot. Skipped corrupt history is reported instead
+of silently presenting incomplete counts. Lists cache their filtered results and
+paginate those results without rereading storage.
+
+Responsive geometry belongs to the views: `AdaptiveGrid` measures visible children
+and chooses columns from available width and text scale. Owned confirmation dialogs
+provide modality, initial Cancel focus and focus restoration. View models request
+confirmation through `IDialogService`, allowing tests to approve or reject safely.
 
 The generator owns private keys; client applications receive only public keys. RSA signs the license claims. Each client verifies the signature, expected product and hardware identifier, expiration, and its own optional custom-data rules.
 
@@ -78,6 +95,16 @@ An older client cannot verify format 2. Update it first, or leave UserDefined em
 Only the calendar date is signed; time-of-day text and timezone conversion must never extend it. The expiration cutoff is **00:00:00 UTC at the start of that date**, not the end. For `2030-06-10`, the last valid instant precedes `2030-06-10T00:00:00Z`. A null date means no expiration. This retains the original beginning-of-date cutoff while making the timezone explicit.
 
 The [reference verifier](docs/examples/LicenseVerifier.cs) takes the current time as an argument. Revalidate at each access decision; a cached successful result must not bypass expiration. Reject a mismatched AppId and a nonempty HardwareId that differs from the expected value using ordinal comparison. An empty signed HardwareId explicitly permits use on any machine. Read and interpret UserDefined only from a successfully verified result.
+
+The app's inspector compiles that same source file, rather than maintaining a
+second parser. `TryVerify` keeps its boolean client contract. `Inspect` additionally
+returns a closed diagnostic result: rejected input has no authenticated claims;
+an authenticated result carries independent product, hardware and expiration
+checks. A null expected hardware ID means **not checked** for a bound license,
+and cannot yield `IsValid`. Signature mismatch cannot distinguish a wrong public
+key from changed signed data. The UI requires an explicitly selected local public
+key or a pasted trusted public key; it never selects trust from the received JSON.
+Inspection does not write history, contact a server or implement revocation.
 
 ## Persistence
 
