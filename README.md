@@ -30,9 +30,7 @@ UserDefined is signed text, not an executable rule or a built-in feature manager
 
 - [Operations and integration](OPERATIONS.md): issuance, validation, backups and compatibility.
 - [Architecture and security contract](ARCHITECTURE.md): exact signed bytes and security boundaries.
-- [Reference C# verifier](docs/examples/LicenseVerifier.cs): dependency-free example compiled by the regression suite.
-- [Development and verification](docs/DEVELOPMENT.md).
-- [Release procedure](docs/RELEASE.md).
+- [C# verifier](docs/examples/LicenseVerifier.cs) and [shared protocol](docs/examples/LicenseProtocol.cs): copy both dependency-free files into your client; both are compiled by the regression suite.
 - [Changelog](docs/CHANGELOG.md).
 - [Review checkpoint — 2026-10-14](docs/REVIEW-2026-10-14.md): verified results and remaining release checks.
 

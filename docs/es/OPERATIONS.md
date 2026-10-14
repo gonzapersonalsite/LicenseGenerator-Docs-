@@ -13,6 +13,8 @@ UserDefined es texto firmado que interpreta tu aplicación después de verificar
 
 El [verificador C# probado](../examples/LicenseVerifier.cs) recibe código, clave pública, producto esperado, HWID esperado y hora UTC. Comprueba firma, formato, producto, equipo y vencimiento. Vuelve a verificar al cargar la activación y al decidir el acceso. Para otros lenguajes implementa el mismo [contrato](../../ARCHITECTURE.md), sin convertir la fecha firmada a otra zona horaria.
 
+Para integrar el ejemplo, copia **ambos archivos**, [LicenseVerifier.cs](../examples/LicenseVerifier.cs) y [LicenseProtocol.cs](../examples/LicenseProtocol.cs), a tu proyecto. La [excepción de integración del EULA](../../LICENSE) permite usar, modificar y distribuir estos dos archivos con clientes comerciales o gratuitos conservando el aviso de copyright; no autoriza copiar el resto de la aplicación.
+
 ## Inspeccionar una licencia
 
 Abre **Inspeccionar licencia** y pega el código completo, o abre una entrada desde el historial. La inspección no modifica el registro guardado. Elige expresamente la clave pública de un producto local o pega una clave pública PEM de una fuente de confianza. El contenido de la licencia nunca elige la clave; esta pantalla no acepta claves privadas.

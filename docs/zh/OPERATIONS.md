@@ -13,6 +13,8 @@
 
 [经过测试的 C# 验证器](../examples/LicenseVerifier.cs) 接收许可证代码、公钥、预期产品、HWID 和 UTC 时间。加载激活数据和判断访问权限时都应重新验证。其他语言应遵循[相同规范](../../ARCHITECTURE.md)，不要对被签名的日期进行时区转换。
 
+集成示例时，请将 **两个文件** [LicenseVerifier.cs](../examples/LicenseVerifier.cs) 和 [LicenseProtocol.cs](../examples/LicenseProtocol.cs) 一起复制到项目中。[EULA 集成示例例外](../../LICENSE)允许在商业或免费客户端中使用、修改和分发这两个文件，但必须保留版权声明；该许可不适用于应用的其他源代码。
+
 ## 检查许可证
 
 打开**检查许可证**并粘贴完整代码，或从历史记录打开已有条目。检查不会修改保存的记录。请明确选择本地产品的公钥，或粘贴从可信来源获得的 PEM 公钥。许可证内容绝不会自动选择可信密钥。此页面不接受私钥。

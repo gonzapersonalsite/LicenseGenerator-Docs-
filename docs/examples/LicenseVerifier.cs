@@ -1,9 +1,7 @@
 using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
+using System.IO;
 using System.Security.Cryptography;
-using System.Text;
+using LicenseGenerator.Protocol;
 using System.Text.Json;
 
 namespace LicenseGenerator.IntegrationExample;
@@ -52,9 +50,8 @@ public abstract record LicenseInspectionResult
 /// <summary>Pure .NET 8 reference verifier. The caller supplies the trusted key, product, hardware ID and clock.</summary>
 public static class LicenseVerifier
 {
-    public const int MaximumEncodedLength = 131072;
-    public const int MaximumPublicKeyLength = 65536;
-    private static readonly UTF8Encoding StrictUtf8 = new(false, true);
+    public const int MaximumEncodedLength = LicenseProtocol.MaximumEncodedLength;
+    public const int MaximumPublicKeyLength = LicensePublicKey.MaximumPemLength;
 
     public static bool TryVerify(
         string encodedLicense,
@@ -88,18 +85,21 @@ public static class LicenseVerifier
         var failure = ReadEnvelope(encodedLicense, out var license, out var signedBytes, out var signatureBytes);
         if (failure != null) return Reject(failure.Value);
 
-        using var rsa = RSA.Create();
-        try { rsa.ImportFromPem(publicKeyPem); }
-        catch (Exception exception) when (exception is ArgumentException or CryptographicException)
+        RSA rsa;
+        try { rsa = LicensePublicKey.Read(publicKeyPem); }
+        catch (Exception exception) when (exception is ArgumentException or CryptographicException or InvalidDataException)
         {
             return Reject(LicenseInspectionFailure.InvalidPublicKey);
         }
-        try
+        using (rsa)
         {
-            if (!rsa.VerifyData(signedBytes, signatureBytes, HashAlgorithmName.SHA256, RSASignaturePadding.Pkcs1))
-                return Reject(LicenseInspectionFailure.SignatureMismatch);
+            try
+            {
+                if (!rsa.VerifyData(signedBytes, signatureBytes, HashAlgorithmName.SHA256, RSASignaturePadding.Pkcs1))
+                    return Reject(LicenseInspectionFailure.SignatureMismatch);
+            }
+            catch (CryptographicException) { return Reject(LicenseInspectionFailure.SignatureMismatch); }
         }
-        catch (CryptographicException) { return Reject(LicenseInspectionFailure.SignatureMismatch); }
 
         var authenticated = license!;
         var product = string.Equals(authenticated.AppId, expectedAppId, StringComparison.Ordinal)
@@ -123,70 +123,16 @@ public static class LicenseVerifier
         license = null;
         signedBytes = [];
         signatureBytes = [];
-        if (string.IsNullOrWhiteSpace(encodedLicense) || encodedLicense.Length > MaximumEncodedLength)
-            return LicenseInspectionFailure.MalformedLicense;
-
         try
         {
-            using var document = JsonDocument.Parse(Convert.FromBase64String(encodedLicense),
-                new JsonDocumentOptions { MaxDepth = 8 });
-            var root = document.RootElement;
-            if (root.ValueKind != JsonValueKind.Object) return LicenseInspectionFailure.MalformedLicense;
-            var names = new HashSet<string>(StringComparer.Ordinal);
-            foreach (var property in root.EnumerateObject())
-                if (!names.Add(property.Name)) return LicenseInspectionFailure.MalformedLicense;
-
-            if (!ReadRequiredString(root, "AppId", out var appId) ||
-                !ReadRequiredString(root, "RegistrationName", out var registrationName) ||
-                !ReadRequiredString(root, "HardwareId", out var hardwareId, allowBlank: true) ||
-                !ReadRequiredString(root, "Signature", out var signature) ||
-                !ReadOptionalString(root, "UserDefined", out var userDefined))
-                return LicenseInspectionFailure.MalformedLicense;
-            if (appId.Length > 128 || StrictUtf8.GetByteCount(appId) > 255 ||
-                registrationName.Length > 1024 || hardwareId.Length > 1024 ||
-                userDefined?.Length > 8192) return LicenseInspectionFailure.MalformedLicense;
-
-            int? formatVersion = null;
-            if (root.TryGetProperty("FormatVersion", out var version) && version.ValueKind != JsonValueKind.Null)
-            {
-                if (!version.TryGetInt32(out var number)) return LicenseInspectionFailure.MalformedLicense;
-                if (number is not (1 or 2)) return LicenseInspectionFailure.UnsupportedFormat;
-                formatVersion = number;
-            }
-
-            DateTime? expirationDate = null;
-            if (root.TryGetProperty("ExpirationDate", out var expiration) && expiration.ValueKind != JsonValueKind.Null)
-            {
-                if (expiration.ValueKind != JsonValueKind.String || !expiration.TryGetDateTime(out _))
-                    return LicenseInspectionFailure.MalformedLicense;
-                var text = expiration.GetString()!;
-                // The signed contract contains a calendar date, never a timezone conversion or time of day.
-                if (text.Length < 10 || !DateTime.TryParseExact(text[..10], "yyyy-MM-dd", CultureInfo.InvariantCulture,
-                        DateTimeStyles.None, out var date)) return LicenseInspectionFailure.MalformedLicense;
-                expirationDate = DateTime.SpecifyKind(date, DateTimeKind.Utc);
-            }
-
-            var dateText = expirationDate?.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture) ?? "NEVER";
-            string signedText;
-            if (formatVersion is null or 1)
-            {
-                if (!string.IsNullOrEmpty(userDefined) || appId.Contains('|') ||
-                    registrationName.Contains('|') || hardwareId.Contains('|')) return LicenseInspectionFailure.MalformedLicense;
-                signedText = string.Join('|', appId, registrationName, hardwareId, dateText);
-            }
-            else
-            {
-                if (string.IsNullOrEmpty(userDefined)) return LicenseInspectionFailure.MalformedLicense;
-                var fields = new[] { appId, registrationName, hardwareId, dateText, userDefined };
-                signedText = "LG2|" + string.Join('|', fields.Select(field => Convert.ToBase64String(StrictUtf8.GetBytes(field))));
-            }
-
-            signatureBytes = Convert.FromBase64String(signature);
-            signedBytes = StrictUtf8.GetBytes(signedText);
-            license = new VerifiedLicense(appId, registrationName, hardwareId, expirationDate,
-                string.IsNullOrEmpty(userDefined) ? null : userDefined, formatVersion);
+            var envelope = LicenseProtocol.ReadEncoded(encodedLicense);
+            signedBytes = LicenseProtocol.GetSignedBytes(envelope);
+            signatureBytes = Convert.FromBase64String(envelope.Signature);
+            license = new VerifiedLicense(envelope.AppId, envelope.RegistrationName, envelope.HardwareId,
+                envelope.ExpirationDate, envelope.UserDefined, envelope.FormatVersion);
             return null;
         }
+        catch (NotSupportedException) { return LicenseInspectionFailure.UnsupportedFormat; }
         catch (Exception exception) when (exception is FormatException or JsonException or CryptographicException or
                                           ArgumentException or InvalidOperationException)
         {
@@ -195,21 +141,4 @@ public static class LicenseVerifier
     }
 
     private static LicenseInspectionResult.Rejected Reject(LicenseInspectionFailure reason) => new(reason);
-
-    private static bool ReadRequiredString(JsonElement root, string name, out string value, bool allowBlank = false)
-    {
-        value = string.Empty;
-        if (!root.TryGetProperty(name, out var property) || property.ValueKind != JsonValueKind.String) return false;
-        value = property.GetString()!;
-        return allowBlank || !string.IsNullOrWhiteSpace(value);
-    }
-
-    private static bool ReadOptionalString(JsonElement root, string name, out string? value)
-    {
-        value = null;
-        if (!root.TryGetProperty(name, out var property) || property.ValueKind == JsonValueKind.Null) return true;
-        if (property.ValueKind != JsonValueKind.String) return false;
-        value = property.GetString();
-        return true;
-    }
 }
