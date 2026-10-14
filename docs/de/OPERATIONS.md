@@ -13,6 +13,18 @@ Ihre Anwendung interpretiert UserDefined erst nach erfolgreicher Signaturprüfun
 
 Das [getestete C#-Beispiel](../examples/LicenseVerifier.cs) erhält Lizenzcode, öffentlichen Schlüssel, erwartetes Produkt, HWID und UTC-Zeit. Prüfen Sie beim Laden und bei Zugriffsentscheidungen erneut. Implementierungen in anderen Sprachen müssen den [gleichen Vertrag](../../ARCHITECTURE.md) erfüllen und das signierte Datum ohne Zeitzonenverschiebung verwenden.
 
+## Lizenz prüfen
+
+Öffnen Sie **Lizenz prüfen** und fügen Sie den vollständigen Code ein, oder öffnen Sie einen Verlaufseintrag. Die Prüfung verändert den gespeicherten Eintrag nicht. Wählen Sie ausdrücklich den öffentlichen Schlüssel eines lokalen Produkts oder fügen Sie einen öffentlichen PEM-Schlüssel aus einer vertrauenswürdigen Quelle ein. Der Lizenzinhalt wählt niemals den Schlüssel. Private Schlüssel werden in dieser Ansicht nicht akzeptiert.
+
+Geben Sie das erwartete Produkt und optional die exakte Hardware-ID an. Eine leere erwartete HWID bedeutet bei einer gebundenen Lizenz **nicht geprüft**, nicht für dieses Gerät bestätigt. Eine ungebundene Lizenz benötigt keine Hardwareprüfung.
+
+Felder erscheinen erst nach erfolgreicher Signaturprüfung. Produkt, Hardware und Ablaufdatum werden getrennt bewertet; eine authentische Lizenz kann abgelaufen sein. Eine unpassende Signatur kann einen falschen Schlüssel oder veränderte Daten bedeuten; die Ursache lässt sich nicht unterscheiden. Das Ergebnis zeigt den UTC-Prüfzeitpunkt. Änderungen der Eingaben löschen es; für einen späteren Zeitpunkt erneut prüfen. Es wird nichts hochgeladen oder gespeichert.
+
+`TryVerify` behält seinen bisherigen Vertrag. `LicenseVerifier.Inspect` liefert `Rejected` ohne Felder oder `Authenticated` mit signierten Feldern und getrennten Prüfergebnissen. Eine erwartete HWID von `null` überspringt die Hardwareprüfung: Bei Hardwarebindung sind das Ergebnis `NotChecked` und `IsValid = false`. `CheckFormat` prüft vor dem Schlüsselzugriff nur Format und Grenzen, niemals die Authentizität. Alle drei APIs verwenden denselben Parser wie die Oberfläche.
+
+## Sicherung und Migration
+
 Exportieren Sie vor Migration oder Schlüssellöschung eine ZIP-Sicherung. Sie enthält **unverschlüsselte private Schlüssel**. Import erhält bestehende Produkte und Verlaufsdaten, ergänzt fehlende Einträge und lehnt widersprüchliche Schlüssel oder Verlaufsdateien ab. Gültige importierte Einstellungen ersetzen die aktuellen.
 
 Daten gehören zum Benutzerprofil; das Verschieben der Programmdatei überträgt sie nicht. Das Löschen eines Produkts oder Verlaufseintrags widerruft keine ausgelieferte Lizenz. Offline-Lizenzierung stellt keine vertrauenswürdige Uhr bereit.

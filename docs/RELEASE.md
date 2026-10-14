@@ -35,6 +35,15 @@ The package script owns these manifest values. Review them against Partner Cente
 
 ## Publication checklist
 
+Use matching `LicenseGenerator-X.Y.Z.0` tag names in the two repositories, with
+different targets: verified application source in the private repository and the
+reviewed documentation snapshot in the public one. Never push private tags or
+mirror the private repository into the public remote. Run the public repository's
+`scripts/verify-public.ps1` before its signed documentation PR. Public version tags
+are protected against updates and deletion; create a new tag for a new release.
+GitHub's automatic source archives contain the repository at that tag, so explain
+that public ZIP/TAR source downloads are documentation, not app installers.
+
 1. Review staged, unstaged and untracked files. Exclude private keys, profile data and build caches; examine every changed file and scan for secrets/residue.
 2. Run the gate on the exact release content. Run the published Windows app, issue legacy and custom-data licenses, verify them with the public example, and check history, locale changes and backup/import. Check Linux desktop behavior on Linux separately.
 3. Inspect the package manifest and contents. Confirm its version exceeds the Store version and its identity matches the existing product. Preserve the checksum and validation results.

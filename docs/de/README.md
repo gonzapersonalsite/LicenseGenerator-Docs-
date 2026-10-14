@@ -2,7 +2,7 @@
 
 [Español](../es/README.md) · [English](../../README.md) · **Deutsch** · [Português](../pt/README.md) · [中文](../zh/README.md)
 
-Eine Desktop-Anwendung zum Erstellen und Verwalten von Offline-Softwarelizenzen. Jedes Produkt besitzt ein eigenes RSA-Schlüsselpaar; Ihre Anwendung prüft Lizenzen mit dem öffentlichen Schlüssel.
+Eine Desktop-Anwendung zum Erstellen, Prüfen und Verwalten von Offline-Softwarelizenzen. Jedes Produkt besitzt ein eigenes RSA-Schlüsselpaar; Sie können Lizenzen lokal mit einem vertrauenswürdigen öffentlichen Schlüssel untersuchen und in Ihrer Anwendung validieren.
 
 [Microsoft Store](https://apps.microsoft.com/detail/9NR38VBCF8JK) · [Problem melden](https://github.com/gonzapersonalsite/LicenseGenerator-Docs-/issues) · [Entwicklung unterstützen](https://ko-fi.com/gonzaloapps)
 
@@ -10,6 +10,7 @@ Eine Desktop-Anwendung zum Erstellen und Verwalten von Offline-Softwarelizenzen.
 - Produkt, Kundenname, optionale Hardwarebindung und optionales Ablaufdatum.
 - Signierter **UserDefined**-Text für Funktionen, Tarife oder eigene Metadaten.
 - Produktverwaltung, Verlauf und ZIP-Sicherung.
+- Lokale Lizenzprüfung mit ausdrücklich gewähltem öffentlichem Schlüssel und getrennten Ergebnissen für Signatur, Produkt, Hardware und Ablaufdatum.
 - Oberfläche auf Deutsch, Englisch, Spanisch, brasilianischem Portugiesisch und vereinfachtem Chinesisch.
 - Eigenständige Windows-x64- und Linux-x64-Versionen ohne separate .NET-Installation. Linux benötigt passende Desktop-Systembibliotheken.
 

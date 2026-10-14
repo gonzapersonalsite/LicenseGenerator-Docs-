@@ -26,6 +26,14 @@ The exact text is included in the signature. The generator assigns no meaning to
 
 Any nonempty custom text uses format 2 and requires updated client verification. Do not append it to the old signing string or use an unchecked JSON field. The [canonical contract](ARCHITECTURE.md) defines every signed byte and all compatibility rules.
 
+## Inspect a license
+
+Open **Inspect license** and paste a complete license code, or open a saved entry from History. Inspection does not modify the saved record. Explicitly select a local product's public key or paste a public PEM key obtained from a trusted source. The license payload never selects a trusted key. Private PEM keys are rejected by this screen.
+
+Provide the expected product ID and, optionally, the exact hardware ID from the client. An empty expected HWID means **not checked** for a hardware-bound license; it does not confirm that the license is usable on this device. An unbound license needs no hardware check.
+
+The screen authenticates the RSA signature before showing any license fields, then reports product, hardware and expiration checks separately. Authentic expired licenses can be inspected, but remain expired. A signature mismatch can mean a wrong key or changed license data; it cannot distinguish those causes. The result shows the UTC time of the check. Editing inputs clears the result; verify again for a later time. Nothing is uploaded or saved by inspection.
+
 ## Client integration
 
 Use the [dependency-free C# verifier](docs/examples/LicenseVerifier.cs) as the executable reference. It is compiled into the regression suite. Its boundary has no disk, network, global clock or hardware lookup: your application supplies those values explicitly.
@@ -50,6 +58,8 @@ if (valid)
 ```
 
 The snippet assumes your application supplies its code, public key and hardware ID. Failed verification returns false and a null result. Verify before persisting an activation, then verify again when loading it and when checking time-limited access. Store the original license code. Do not cache a boolean indefinitely.
+
+`TryVerify` keeps its existing acceptance contract. For diagnostics, `LicenseVerifier.Inspect` returns either `Rejected` with a reason and no claims, or `Authenticated` with signed fields and separate policy results. Pass `null` as the expected HWID only when deliberately skipping that check; a bound license then has `Hardware = NotChecked` and `IsValid = false`. `CheckFormat` only checks envelope syntax and limits before key access; success is not authentication. These APIs share one parser with the desktop inspector.
 
 For Python, JavaScript or another language, implement the same [transport and signing contract](ARCHITECTURE.md) using a maintained RSA library. Keep the signed date as the literal Gregorian calendar date; JavaScript's `new Date(...).toISOString()` can shift that date and is unsuitable for reconstructing it. Validate both legacy and format-2 fixtures, tampering, Unicode, separators, wrong products, wrong hardware IDs and the exact UTC expiration boundary before release.
 

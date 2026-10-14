@@ -2,7 +2,7 @@
 
 [Español](docs/es/README.md) · **English** · [Deutsch](docs/de/README.md) · [Português](docs/pt/README.md) · [中文](docs/zh/README.md)
 
-A desktop tool for issuing and managing offline software licenses. Create a separate RSA key pair for each product, sign licenses, and validate them in your own application using its public key.
+A desktop tool for issuing, inspecting and managing offline software licenses. Create a separate RSA key pair for each product, sign licenses, inspect them locally with a trusted public key, and validate them in your own application.
 
 [Microsoft Store](https://apps.microsoft.com/detail/9NR38VBCF8JK) · [Downloads](https://github.com/gonzapersonalsite/LicenseGenerator-Docs-/releases) · [Report an issue](https://github.com/gonzapersonalsite/LicenseGenerator-Docs-/issues) · [Support development](https://ko-fi.com/gonzaloapps)
 
@@ -12,6 +12,7 @@ A desktop tool for issuing and managing offline software licenses. Create a sepa
 - Product, customer name, hardware ID and optional expiration date in every signed license.
 - Optional signed **UserDefined** text for features, plans or application-specific metadata.
 - Local application management, searchable history and ZIP backup/import.
+- Local license inspection with an explicitly trusted public key and separate signature, product, hardware and expiration results.
 - English, Spanish, German, Brazilian Portuguese and Simplified Chinese interfaces.
 - Self-contained Windows x64 and Linux x64 builds; end users do not need to install .NET. Linux still needs the desktop system libraries required by Avalonia.
 

@@ -2,7 +2,7 @@
 
 [Español](../es/README.md) · [English](../../README.md) · [Deutsch](../de/README.md) · **Português** · [中文](../zh/README.md)
 
-Aplicativo de desktop para emitir e gerenciar licenças de software offline. Cada produto tem seu próprio par de chaves RSA; seu aplicativo valida as licenças com a chave pública.
+Aplicativo de desktop para emitir, inspecionar e gerenciar licenças de software offline. Cada produto tem seu próprio par de chaves RSA; você pode inspecionar as licenças localmente com uma chave pública confiável e validá-las no seu aplicativo.
 
 [Microsoft Store](https://apps.microsoft.com/detail/9NR38VBCF8JK) · [Relatar problema](https://github.com/gonzapersonalsite/LicenseGenerator-Docs-/issues) · [Apoiar o desenvolvimento](https://ko-fi.com/gonzaloapps)
 
@@ -10,6 +10,7 @@ Aplicativo de desktop para emitir e gerenciar licenças de software offline. Cad
 - Produto, nome do cliente, vínculo opcional ao hardware e validade opcional.
 - Texto **UserDefined** assinado para recursos, planos ou metadados.
 - Gerenciamento de produtos, histórico e backup ZIP.
+- Inspeção local com chave pública escolhida explicitamente e verificações separadas de assinatura, produto, hardware e validade.
 - Interface em português brasileiro, inglês, espanhol, alemão e chinês simplificado.
 - Versões autossuficientes para Windows x64 e Linux x64, sem instalar .NET separadamente. Linux precisa das bibliotecas de desktop do sistema.
 

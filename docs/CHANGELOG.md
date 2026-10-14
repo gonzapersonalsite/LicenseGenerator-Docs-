@@ -1,5 +1,28 @@
 # Changelog
 
+## 1.2.0 — 2026-10-14
+
+- Migrated to .NET 10 LTS with SDK 10.0.402, Avalonia 11.3.22 and DataGrid 11.3.13;
+  pinned the official SDK container by digest and refreshed the dependency locks.
+  Package archives, signatures and build imports were reviewed before compilation.
+- Added a local license inspector with an explicitly trusted public key, authenticated
+  fields and separate product, hardware and expiration results. The desktop app and
+  standalone client example share one verifier; existing `TryVerify` callers remain compatible.
+- Redesigned navigation, forms, dashboard, history and settings around adaptive
+  layouts, theme-aware surfaces, accessible actions and actionable empty states.
+- Moved license-store loads, key generation and license issuance off the UI thread;
+  prevented duplicate operations and stale results while retaining drafts between pages.
+- Consolidated workspace reads, surfaced unreadable history entries and avoided
+  repeated filtering during pagination.
+- Added field-level input feedback, owned confirmation dialogs, persistent error
+  notifications and localized date presentation across all five interface languages.
+- Removed the artificial two-second startup delay. Existing keys, stored licenses
+  and signed formats remain compatible.
+- Kept initial required fields quiet until edited, localized date placeholders and
+  corrected accessible application and settings labels.
+- Wait for startup and preference writes before closing, with bounded shutdown
+  handling that retains the profile lease while work is still active.
+
 ## 1.1.0 — 2026-10-14
 
 - Added optional signed `UserDefined` text for application-defined claims. Nonempty text uses format 2; empty text preserves the legacy JSON and signature format. Update client verification before enabling custom claims.
