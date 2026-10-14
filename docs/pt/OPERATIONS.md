@@ -13,6 +13,8 @@ Seu aplicativo interpreta UserDefined somente após verificar a assinatura. Base
 
 O [verificador C# testado](../examples/LicenseVerifier.cs) recebe código, chave pública, produto esperado, HWID e hora UTC. Verifique novamente ao carregar a ativação e ao decidir o acesso. Outras linguagens devem implementar o [mesmo contrato](../../ARCHITECTURE.md), sem converter a data assinada para outro fuso.
 
+Para integrar o exemplo, copie **os dois arquivos**, [LicenseVerifier.cs](../examples/LicenseVerifier.cs) e [LicenseProtocol.cs](../examples/LicenseProtocol.cs), para o seu projeto. A [exceção de integração do EULA](../../LICENSE) permite usar, modificar e distribuir esses dois arquivos em clientes comerciais ou gratuitos, mantendo o aviso de copyright; ela não autoriza copiar o restante do aplicativo.
+
 ## Inspecionar uma licença
 
 Abra **Inspecionar licença** e cole o código completo ou abra um registro do histórico. A inspeção não modifica o registro salvo. Escolha explicitamente a chave pública de um produto local ou cole uma chave pública PEM de uma fonte confiável. O conteúdo da licença nunca escolhe a chave. Chaves privadas não são aceitas nessa tela.

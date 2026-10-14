@@ -13,6 +13,8 @@ Ihre Anwendung interpretiert UserDefined erst nach erfolgreicher Signaturprüfun
 
 Das [getestete C#-Beispiel](../examples/LicenseVerifier.cs) erhält Lizenzcode, öffentlichen Schlüssel, erwartetes Produkt, HWID und UTC-Zeit. Prüfen Sie beim Laden und bei Zugriffsentscheidungen erneut. Implementierungen in anderen Sprachen müssen den [gleichen Vertrag](../../ARCHITECTURE.md) erfüllen und das signierte Datum ohne Zeitzonenverschiebung verwenden.
 
+Kopieren Sie für die Integration **beide Dateien**, [LicenseVerifier.cs](../examples/LicenseVerifier.cs) und [LicenseProtocol.cs](../examples/LicenseProtocol.cs), in Ihr Projekt. Die [Integrationsausnahme im EULA](../../LICENSE) erlaubt Nutzung, Änderung und Weitergabe dieser beiden Dateien in kommerziellen oder kostenlosen Clients unter Beibehaltung des Copyright-Hinweises; sie gilt nicht für den übrigen Anwendungscode.
+
 ## Lizenz prüfen
 
 Öffnen Sie **Lizenz prüfen** und fügen Sie den vollständigen Code ein, oder öffnen Sie einen Verlaufseintrag. Die Prüfung verändert den gespeicherten Eintrag nicht. Wählen Sie ausdrücklich den öffentlichen Schlüssel eines lokalen Produkts oder fügen Sie einen öffentlichen PEM-Schlüssel aus einer vertrauenswürdigen Quelle ein. Der Lizenzinhalt wählt niemals den Schlüssel. Private Schlüssel werden in dieser Ansicht nicht akzeptiert.

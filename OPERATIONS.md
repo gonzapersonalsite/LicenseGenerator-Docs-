@@ -36,9 +36,9 @@ The screen authenticates the RSA signature before showing any license fields, th
 
 ## Client integration
 
-Use the [dependency-free C# verifier](docs/examples/LicenseVerifier.cs) as the executable reference. It is compiled into the regression suite. Its boundary has no disk, network, global clock or hardware lookup: your application supplies those values explicitly.
+Copy both [LicenseVerifier.cs](docs/examples/LicenseVerifier.cs) and [LicenseProtocol.cs](docs/examples/LicenseProtocol.cs) into your client project. Together they form the dependency-free executable reference compiled into the regression suite. Its boundary has no disk, network, global clock or hardware lookup: your application supplies those values explicitly.
 
-The [EULA's integration example exception](LICENSE) permits using, copying, modifying and distributing this verifier in source or compiled form as part of commercial or free license-verifying clients, with the copyright notice retained. This permission does not extend to the License Generator application source.
+The [EULA's integration example exception](LICENSE) permits using, copying, modifying and distributing these two source files in source or compiled form as part of commercial or free license-verifying clients, with the copyright notice retained. This permission does not extend to the License Generator application source.
 
 ```csharp
 using LicenseGenerator.IntegrationExample;

@@ -13,8 +13,9 @@ worker threads, then update their observable state on the UI context. Busy comma
 reject duplicate mutations. A write already started finishes honestly; changing
 the form invalidates its displayed result without losing the saved license.
 
-`WorkspaceSnapshot` reads applications and history under the same storage lock.
-Dashboard totals use that one snapshot. Skipped corrupt history is reported instead
+The workspace reader collects applications and history under the same storage
+lock and returns a `WorkspaceSnapshot`. Dashboard totals use that one snapshot.
+Skipped corrupt history is reported instead
 of silently presenting incomplete counts. Lists cache their filtered results and
 paginate those results without rereading storage.
 
@@ -92,12 +93,15 @@ An older client cannot verify format 2. Update it first, or leave UserDefined em
 
 ## Expiration and verification
 
-Only the calendar date is signed; time-of-day text and timezone conversion must never extend it. The expiration cutoff is **00:00:00 UTC at the start of that date**, not the end. For `2030-06-10`, the last valid instant precedes `2030-06-10T00:00:00Z`. A null date means no expiration. This retains the original beginning-of-date cutoff while making the timezone explicit.
+Only the calendar date is signed; time-of-day text and timezone conversion must never extend it. The expiration cutoff is **00:00:00 UTC at the start of that date**, not the end. For an expiration date D, the last valid instant precedes midnight UTC at the start of D. A null date means no expiration. This retains the original beginning-of-date cutoff while making the timezone explicit.
 
 The [reference verifier](docs/examples/LicenseVerifier.cs) takes the current time as an argument. Revalidate at each access decision; a cached successful result must not bypass expiration. Reject a mismatched AppId and a nonempty HardwareId that differs from the expected value using ordinal comparison. An empty signed HardwareId explicitly permits use on any machine. Read and interpret UserDefined only from a successfully verified result.
 
-The app's inspector compiles that same source file, rather than maintaining a
-second parser. `TryVerify` keeps its boolean client contract. `Inspect` additionally
+The app's inspector and license services share
+[LicenseProtocol.cs](docs/examples/LicenseProtocol.cs); clients copy it together
+with [LicenseVerifier.cs](docs/examples/LicenseVerifier.cs). Signing, stored data
+and inspection therefore use one wire parser. `TryVerify` keeps its boolean
+client contract. `Inspect` additionally
 returns a closed diagnostic result: rejected input has no authenticated claims;
 an authenticated result carries independent product, hardware and expiration
 checks. A null expected hardware ID means **not checked** for a bound license,

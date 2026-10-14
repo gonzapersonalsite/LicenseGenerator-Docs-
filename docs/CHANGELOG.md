@@ -1,5 +1,27 @@
 # Changelog
 
+## 1.2.1 — 2026-10-14
+
+- Hardened public-key handling: malformed backups cannot substitute private key
+  material for a public key. Completed backups are validated before replacing an
+  existing export.
+- Preserve signed expiration dates when copying history and restoring licenses
+  containing timezone offsets.
+- Prevent delayed navigation and inspection operations from overwriting newer
+  input or releasing application resources before work finishes.
+- Improve recovery from failed language, appearance and settings changes; refresh
+  existing notification colors when the theme changes.
+- Use a stable application identity for shortcuts created by the packaged Windows
+  app, and reduce repeated directory scans during backup validation.
+- Separate the pure Core from desktop/storage adapters, consolidate protocol
+  parsing and enforce architecture, test-harness and documentation boundaries.
+- Adopt the shared contribution scaffold and one local/CI verification workflow;
+  harden process/container cleanup and package the verified version/icon snapshot.
+
+Existing license formats and signing keys remain compatible. Update both
+`LicenseVerifier.cs` and `LicenseProtocol.cs` when replacing the C# integration
+example; the existing `TryVerify` API remains available.
+
 ## 1.2.0 — 2026-10-14
 
 - Migrated to .NET 10 LTS with SDK 10.0.402, Avalonia 11.3.22 and DataGrid 11.3.13;
