@@ -1,0 +1,31 @@
+name: Bug report
+description: Report a reproducible problem with the app or its documentation.
+body:
+  - type: markdown
+    attributes:
+      value: Use invented data. Do not attach private keys, customer licenses or backups. Report security vulnerabilities through the private link below instead.
+  - type: input
+    id: version
+    attributes:
+      label: App version and installation source
+      placeholder: For example, 1.1.0.0 from Microsoft Store or GitHub
+    validations:
+      required: true
+  - type: input
+    id: platform
+    attributes:
+      label: Operating system and version
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: Include what you expected and what happened instead.
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Optional screenshots or error text with personal information removed.
