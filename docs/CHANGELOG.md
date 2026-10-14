@@ -5,6 +5,8 @@
 - Hardened public-key handling: malformed backups cannot substitute private key
   material for a public key. Completed backups are validated before replacing an
   existing export.
+- Fix the unresponsive Windows window after backup import by waiting for the
+  confirmation dialog's owner cleanup before opening the file picker.
 - Preserve signed expiration dates when copying history and restoring licenses
   containing timezone offsets.
 - Prevent delayed navigation and inspection operations from overwriting newer
