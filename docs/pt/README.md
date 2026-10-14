@@ -1,73 +1,24 @@
+# License Generator
 
+[Español](../es/README.md) · [English](../../README.md) · [Deutsch](../de/README.md) · **Português** · [中文](../zh/README.md)
 
-# 🗝️ License Generator
+Aplicativo de desktop para emitir e gerenciar licenças de software offline. Cada produto tem seu próprio par de chaves RSA; seu aplicativo valida as licenças com a chave pública.
 
-[![.NET 8.0](https://img.shields.io/badge/.NET-8.0-512BD4?logo=dotnet)](https://dotnet.microsoft.com/download)
-[![Avalonia UI](https://img.shields.io/badge/Avalonia-11.2-ff69b4?logo=avaloniaui)](https://avaloniaui.net/)
-[![License](https://img.shields.io/badge/License-Custom%20EULA-blue)](../../LICENSE)
-[![Docs](https://img.shields.io/badge/Docs-OPERATIONS.md-success)](OPERATIONS.md)
+[Microsoft Store](https://apps.microsoft.com/detail/9NR38VBCF8JK) · [Relatar problema](https://github.com/gonzapersonalsite/LicenseGenerator-Docs-/issues) · [Apoiar o desenvolvimento](https://ko-fi.com/gonzaloapps)
 
-[🇪🇸 Español](../es/README.md) | [🇺🇸 English](../../README.md) | [🇩🇪 Deutsch](../de/README.md) | 🇧🇷 **Português** | [🇨🇳 中文](../zh/README.md)
+- Assinaturas RSA-2048, SHA-256 e PKCS#1 v1.5; chaves PEM.
+- Produto, nome do cliente, vínculo opcional ao hardware e validade opcional.
+- Texto **UserDefined** assinado para recursos, planos ou metadados.
+- Gerenciamento de produtos, histórico e backup ZIP.
+- Interface em português brasileiro, inglês, espanhol, alemão e chinês simplificado.
+- Versões autossuficientes para Windows x64 e Linux x64, sem instalar .NET separadamente. Linux precisa das bibliotecas de desktop do sistema.
 
-**License Generator** é um poderoso utilitário de desktop projetado para que desenvolvedores independentes gerenciem o ciclo de vida completo de suas licenças de software de forma autônoma, segura e offline.
+Crie um produto e integre `public.pem` ao seu aplicativo. Nunca distribua `private.pem`. UserDefined vazio mantém o formato anterior; texto adicional exige um cliente compatível com o formato 2.
 
-As licenças geradas usam padrões criptográficos abertos (RSA + PEM + SHA256), então **qualquer aplicativo em qualquer linguagem** (C#, Python, Node.js, Java, Go, Rust...) pode validá-las. Você gerencia as chaves desta ferramenta; seus clientes só precisam da chave pública.
+[Uso e integração](OPERATIONS.md) · [Arquitetura e segurança](ARCHITECTURE.md) · [Verificador C#](../examples/LicenseVerifier.cs)
 
----
+Os dados ficam no perfil do usuário, separados do executável. Copiar o programa para um USB não transfere chaves ou histórico. Backups ZIP contêm chaves privadas sem criptografia.
 
-## 🌟 Principais Recursos
+Software proprietário sujeito ao [EULA](../../LICENSE). Licenças geradas e chaves públicas podem ser distribuídas com seus produtos conforme esses termos.
 
-- **Criptografia RSA**: Assinatura de licenças com RSA de 2048 bits usando o padrão moderno **PEM (PKCS#8)**.
-- **Vínculo de Hardware (HWID)**: Vincula licenças a um computador específico para evitar pirataria entre PCs.
-- **Gerenciamento Multi-Produto**: Gerencie as chaves de todos os seus projetos a partir de uma única interface limpa.
-- **Assinaturas**: Gere licenças com data de expiração para modelos de negócios baseados em tempo.
-- **Privacidade Absoluta**: Tudo é local. Suas chaves privadas nunca saem do seu computador.
-- **Histórico Completo**: Registro detalhado de cada licença emitida para controle total da sua base de usuários.
-- **Cross-Platform**: As licenças são JSON assinado com RSA padrão — validáveis de qualquer stack tecnológica.
-
----
-
-## 📂 Documentação
-
-Para uma integração bem-sucedida, consulte estes manuais detalhados:
-
-1.  [**Guia de Operações e Integração**](OPERATIONS.md): Passo a passo para integrar licenças em seus apps, com exemplos completos em **C#**, **Python** e **Node.js**.
-2.  [**Arquitetura e Segurança**](ARCHITECTURE.md): Detalhes técnicos sobre RSA, SHA256 e o fluxo de confiança.
-
----
-
-## ⚡ Início Rápido
-
-1.  **Crie seu App**: Clique em "Gerenciamento de Apps" e adicione seu produto. Isso gerará suas chaves em `AppData`.
-2.  **Incorpore a Chave**: Copie a chave pública gerada (`public.pem`) para o seu código cliente.
-3.  **Gere uma Licença**: Insira o HWID do cliente e entregue a ele o código resultante.
-
----
-
-## 🛠️ Stack Tecnológico
-
-**Gerador (esta ferramenta):**
-- **Framework**: Avalonia UI (.NET 8.0).
-- **Padrão**: MVVM com CommunityToolkit.
-- **Segurança**: System.Security.Cryptography.
-- **Persistência**: JSON local em `%LocalAppData%`.
-
-**Clientes (seus apps):**
-- Qualquer linguagem que suporte RSA + PEM (todas as modernas).
-- Veja [OPERATIONS.md](OPERATIONS.md) para exemplos em C#, Python e Node.js.
-
----
-
-## 📜 Licença
-
-Este software é distribuído sob um contrato de licença de usuário final (**EULA**) personalizado.
-- **Uso para Desenvolvedores**: Você é livre para usar esta ferramenta para gerar licenças para seus próprios aplicativos comerciais ou gratuitos.
-- **Restrições do Gerador**: A venda, redistribuição, modificação ou engenharia reversa deste software (License Generator) é estritamente proibida.
-- Consulte o arquivo [LICENSE](../../LICENSE) para ver os termos completos.
-
----
-
-*Desenvolvido com ❤️ para empoderar criadores de software.*
-
-**Desenvolvido por Gonzalo Martínez García**  
-*Full Stack Developer | Software Engineering & Innovation*
+Desenvolvido por Gonzalo Martínez García · gonzalo.dev

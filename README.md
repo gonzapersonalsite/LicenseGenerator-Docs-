@@ -1,73 +1,46 @@
+# License Generator
 
+[Español](docs/es/README.md) · **English** · [Deutsch](docs/de/README.md) · [Português](docs/pt/README.md) · [中文](docs/zh/README.md)
 
-# 🗝️ License Generator
+A desktop tool for issuing and managing offline software licenses. Create a separate RSA key pair for each product, sign licenses, and validate them in your own application using its public key.
 
-[![.NET 8.0](https://img.shields.io/badge/.NET-8.0-512BD4?logo=dotnet)](https://dotnet.microsoft.com/download)
-[![Avalonia UI](https://img.shields.io/badge/Avalonia-11.2-ff69b4?logo=avaloniaui)](https://avaloniaui.net/)
-[![License](https://img.shields.io/badge/License-Custom%20EULA-blue)](../../LICENSE)
-[![Docs](https://img.shields.io/badge/Docs-OPERATIONS.md-success)](OPERATIONS.md)
+[Microsoft Store](https://apps.microsoft.com/detail/9NR38VBCF8JK) · [Downloads](https://github.com/gonzapersonalsite/LicenseGenerator-Docs-/releases) · [Report an issue](https://github.com/gonzapersonalsite/LicenseGenerator-Docs-/issues) · [Support development](https://ko-fi.com/gonzaloapps)
 
-[🇪🇸 Español](docs/es/README.md) | 🇺🇸 **English** | [🇩🇪 Deutsch](docs/de/README.md) | [🇧🇷 Português](docs/pt/README.md) | [🇨🇳 中文](docs/zh/README.md)
+## Features
 
-**License Generator** is a powerful desktop utility designed for independent developers to manage the full lifecycle of their software licenses autonomously, securely, and offline.
+- RSA-2048 signatures with SHA-256 and PKCS#1 v1.5; standard PEM keys.
+- Product, customer name, hardware ID and optional expiration date in every signed license.
+- Optional signed **UserDefined** text for features, plans or application-specific metadata.
+- Local application management, searchable history and ZIP backup/import.
+- English, Spanish, German, Brazilian Portuguese and Simplified Chinese interfaces.
+- Self-contained Windows x64 and Linux x64 builds; end users do not need to install .NET. Linux still needs the desktop system libraries required by Avalonia.
 
-Generated licenses use open cryptographic standards (RSA + PEM + SHA256), so **any application in any language** (C#, Python, Node.js, Java, Go, Rust...) can validate them. You manage the keys from this tool; your clients only need the public key.
+## Start using it
 
----
+1. Create a product under App Management.
+2. Retrieve its `public.pem` and integrate verification in your client application.
+3. Enter the customer name, the hardware ID supplied by your client and an optional expiration date.
+4. Leave UserDefined empty for the existing license format, or enter custom text after updating your client to support format 2.
+5. Generate and deliver the license code. Keep the private key and backups private.
 
-## 🌟 Key Features
+UserDefined is signed text, not an executable rule or a built-in feature manager. Your application decides what its contents mean **after** verifying the signature.
 
-- **RSA Cryptography**: License signing with 2048-bit RSA using the modern **PEM (PKCS#8)** standard.
-- **Hardware Binding (HWID)**: Binds licenses to a specific machine to prevent piracy between PCs.
-- **Multi-Product Management**: Manage keys for all your projects from a single clean interface.
-- **Subscriptions**: Generate licenses with expiration dates for time-based business models.
-- **Absolute Privacy**: Everything is local. Your private keys never leave your computer.
-- **Complete History**: Detailed log of every issued license for total control over your user base.
-- **Cross-Platform**: Licenses are standard RSA-signed JSON — validatable from any tech stack.
+## Documentation
 
----
+- [Operations and integration](OPERATIONS.md): issuance, validation, backups and compatibility.
+- [Architecture and security contract](ARCHITECTURE.md): exact signed bytes and security boundaries.
+- [Reference C# verifier](docs/examples/LicenseVerifier.cs): dependency-free example compiled by the regression suite.
+- [Development and verification](docs/DEVELOPMENT.md).
+- [Release procedure](docs/RELEASE.md).
+- [Changelog](docs/CHANGELOG.md).
+- [Review checkpoint — 2026-10-14](docs/REVIEW-2026-10-14.md): verified results and remaining release checks.
 
-## 📂 Documentation
+Licenses are Base64-encoded JSON, not encrypted secrets. Hardware binding and expiration depend on the checks implemented by your client; offline licensing cannot prevent client modification or a manipulated system clock.
 
-For successful integration, consult these detailed manuals:
+## Data and licensing
 
-1.  [**Operations and Integration Guide**](OPERATIONS.md): Step-by-step guide to integrating licenses into your apps, with complete examples in **C#**, **Python**, and **Node.js**.
-2.  [**Architecture and Security**](ARCHITECTURE.md): Technical details on RSA, SHA256, and the trust flow.
+Data lives in the current user's local application-data directory under `LicenseGenerator`, independently of the executable. Moving the executable to a USB drive does not make the data portable. Export a backup before moving computers or modifying keys.
 
----
+License Generator is proprietary software under the [EULA](LICENSE). Generated licenses and public keys can be distributed with your own commercial or free applications under those terms.
 
-## ⚡ Quick Start
-
-1.  **Create your App**: Click on "App Management" and add your product. This will generate your keys in `AppData`.
-2.  **Embed the Key**: Copy the generated public key (`public.pem`) into your client code.
-3.  **Generate a License**: Enter the client's HWID and give them the resulting code.
-
----
-
-## 🛠️ Tech Stack
-
-**Generator (this tool):**
-- **Framework**: Avalonia UI (.NET 8.0).
-- **Pattern**: MVVM with CommunityToolkit.
-- **Security**: System.Security.Cryptography.
-- **Persistence**: Local JSON in `%LocalAppData%`.
-
-**Clients (your apps):**
-- Any language supporting RSA + PEM (all modern ones).
-- See [OPERATIONS.md](OPERATIONS.md) for examples in C#, Python, and Node.js.
-
----
-
-## 📜 License
-
-This software is distributed under a custom End User License Agreement (**EULA**).
-- **Developer Use**: You are free to use this tool to generate licenses for your own commercial or free applications.
-- **Generator Restrictions**: Selling, redistributing, modifying, or reverse-engineering this software (License Generator) is strictly prohibited.
-- See the [LICENSE](../../LICENSE) file for full terms.
-
----
-
-*Developed with ❤️ to empower software creators.*
-
-**Developed by Gonzalo Martínez García**  
-*Full Stack Developer | Software Engineering & Innovation*
+Developed by Gonzalo Martínez García · gonzalo.dev
