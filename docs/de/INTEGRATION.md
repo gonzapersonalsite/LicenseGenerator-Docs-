@@ -32,7 +32,7 @@ Der Generator signiert jede Lizenz mit dem privaten Schlüssel des Produkts, der
 Ihren Computer nie verlässt. Ihre Anwendung enthält nur den öffentlichen
 Schlüssel, der eine Signatur prüfen, aber nie erzeugen kann. Die Prüfung braucht
 keinen Server: Sie läuft auf dem Gerät des Benutzers mit dem öffentlichen
-Schlüssel, der Produkt-ID, der Hardwarekennung und der aktuellen Uhrzeit, die
+Schlüssel, der Produkt-ID, der Hardwarekennung und der aktuellen Zeit, die
 Ihre Anwendung übergibt.
 
 ## Einen Verifizierer wählen
@@ -41,7 +41,7 @@ Drei Referenz-Verifizierer setzen den [Vertrag](ARCHITECTURE.md) um. Jeder liefe
 für jeden veröffentlichten [Testvektor](#die-integration-testen) dieselben
 Ergebnisse.
 
-| Technik | In Ihre Anwendung kopieren | Voraussetzungen | Tests |
+| Technologie | In Ihre Anwendung kopieren | Voraussetzungen | Tests |
 | --- | --- | --- | --- |
 | C# | [LicenseVerifier.cs](../examples/LicenseVerifier.cs) und [LicenseProtocol.cs](../examples/LicenseProtocol.cs) | .NET 8 oder neuer; keine Pakete | Von den eigenen, nicht öffentlichen Regressionstests der Anwendung gegen die Vektoren geprüft |
 | Python | [license_verifier.py](../examples/python/license_verifier.py) | Python 3.11 oder neuer und das Paket [cryptography](https://pypi.org/project/cryptography/) | [test_license_verifier.py](../examples/python/test_license_verifier.py) |
@@ -51,16 +51,16 @@ Die Verifizierer führen keine Ein- oder Ausgabe aus: Sie lesen weder Dateien no
 Uhr noch Netzwerk und ermitteln nie eine Hardwarekennung. Ihre Anwendung übergibt
 diese Werte, sodass jede Entscheidung sichtbar und testbar bleibt.
 
-Eine andere Technik kann Lizenzen mit ihrer eigenen RSA-Bibliothek prüfen. Diese
-Standard-APIs bieten RSA-Signaturen nach PKCS#1 v1.5 mit SHA-256 über einem
-öffentlichen Schlüssel im Format SubjectPublicKeyInfo; sie sind Hinweise, keine
-getesteten Beispiele. Setzen Sie daher jede Regel des Vertrags um und bestehen
-Sie vor der Veröffentlichung jeden Testvektor.
+Eine andere Technologie kann Lizenzen mit ihrer eigenen RSA-Bibliothek prüfen.
+Diese Standard-APIs prüfen RSA-Signaturen nach PKCS#1 v1.5 mit SHA-256 anhand
+eines öffentlichen Schlüssels im Format SubjectPublicKeyInfo; sie sind Hinweise,
+keine getesteten Beispiele. Setzen Sie daher jede Regel des Vertrags um und
+bestehen Sie vor der Veröffentlichung jeden Testvektor.
 
-| Technik | API |
+| Technologie | API |
 | --- | --- |
 | Java, Kotlin, Android | `java.security.Signature` mit `SHA256withRSA`, Schlüssel aus `X509EncodedKeySpec` |
-| Go | `crypto/x509.ParsePKIXPublicKey` und `crypto/rsa.VerifyPKCS1v15` mit `crypto.SHA256`, das den SHA-256-Hash erwartet, nicht die Nachricht |
+| Go | `crypto/x509.ParsePKIXPublicKey` und `crypto/rsa.VerifyPKCS1v15` mit `crypto.SHA256`; `VerifyPKCS1v15` erwartet den SHA-256-Hash, nicht die Nachricht |
 | Swift | `SecKeyCreateWithData` mit dem Schlüssel im PKCS#1-Format und `SecKeyVerifySignature` mit `.rsaSignatureMessagePKCS1v15SHA256` |
 | C, C++ | `EVP_DigestVerify` von OpenSSL mit `EVP_sha256()` oder `BCryptVerifySignature` von Windows CNG mit `BCRYPT_PAD_PKCS1` |
 | PHP | `openssl_verify` mit `OPENSSL_ALGO_SHA256` |
@@ -79,15 +79,15 @@ Standardeinstellungen beibehalten:
 
 | Wo | Was passiert | Was zu tun ist |
 | --- | --- | --- |
-| Die meisten JSON-Parser | Sie behalten den letzten von zwei gleichen Eigenschaftsnamen. | Lehnen Sie ein Wurzelobjekt mit einem wiederholten Namen ab, bevor Sie Angaben lesen. |
-| `encoding/json` in Go | Es vergleicht Namen ohne Groß- und Kleinschreibung und ersetzt ungültiges UTF-8 und ungepaarte Surrogate durch U+FFFD. | Lesen Sie das Wurzelobjekt mit `json.Decoder.Token` und vergleichen Sie Namen exakt. |
+| Die meisten JSON-Parser | Bei zwei gleichen Eigenschaftsnamen behalten sie den letzten. | Lehnen Sie ein Wurzelobjekt mit einem wiederholten Namen ab, bevor Sie Angaben lesen. |
+| `encoding/json` in Go | Es vergleicht Namen ohne Unterscheidung von Groß- und Kleinschreibung und ersetzt ungültiges UTF-8 und ungepaarte Surrogate durch U+FFFD. | Lesen Sie das Wurzelobjekt mit `json.Decoder.Token` und vergleichen Sie Namen exakt. |
 | `java.util.Base64` in Java | `getDecoder()` lehnt Leerraum ab, und `getMimeDecoder()` ignoriert jedes Zeichen außerhalb des Alphabets. | Entfernen Sie Leerzeichen, Tabulatoren und Zeilenumbrüche und dekodieren Sie dann mit `getDecoder()`. |
 | `KeyFactory` in Java und Kotlin | `X509EncodedKeySpec` liest nur SubjectPublicKeyInfo. | Betten Sie `public.pem` so ein, wie der Generator sie schreibt, oder wandeln Sie einen PKCS#1-Schlüssel vorher um. |
 | `SecKeyCreateWithData` in Swift | Es erwartet einen öffentlichen RSA-Schlüssel im PKCS#1-Format. | Entfernen Sie zuerst den SubjectPublicKeyInfo-Kopf oder betten Sie den Schlüssel im PKCS#1-Format ein. |
 | Textlängen | Python zählt Codepunkte, Go und Rust zählen Bytes. | Zählen Sie für die Grenzen des Vertrags UTF-16-Codeeinheiten. |
-| Python `cryptography` | `load_pem_public_key` liest auch einen SubjectPublicKeyInfo-Inhalt unter der Bezeichnung `RSA PUBLIC KEY`, und `load_der_public_key` liest beide Formen. | Prüfen Sie, dass der Inhalt die Form hat, die seine Bezeichnung nennt. |
+| Python `cryptography` | `load_pem_public_key` liest auch einen SubjectPublicKeyInfo-Inhalt unter der Bezeichnung `RSA PUBLIC KEY`, und `load_der_public_key` liest beide Formen. | Prüfen Sie, ob der Inhalt die Form hat, die seine Bezeichnung nennt. |
 | Reguläre Ausdrücke | In Python, Java und .NET passt `$` auch vor einem abschließenden Zeilenumbruch, und in Python und .NET erkennt `\d` Ziffern jeder Schrift. | Verlangen Sie, dass der ganze Text passt (`re.fullmatch`, `Matcher.matches`, `\z` in .NET), und schreiben Sie `[0-9]`. |
-| Trimmfunktionen | `strip()` in Python, `trim()` in JavaScript und `Trim()` in .NET entfernen unterschiedliche Zeichen. | Entfernen Sie genau die Zeichen, die der Vertrag oder diese Anleitung nennt. |
+| Trimmfunktionen | `strip()` in Python, `trim()` in JavaScript und `Trim()` in .NET entfernen unterschiedliche Zeichen. | Entfernen Sie genau die Zeichen, die der Vertrag oder dieser Leitfaden nennt. |
 
 ## Den Verifizierer zur Anwendung hinzufügen
 
@@ -183,8 +183,8 @@ Hardwarekennung sehen, einen Lizenzcode einfügen und ihn aktivieren kann:
 
 Zeigen Sie die vollständige Hardwarekennung mit einer Schaltfläche zum Kopieren:
 Die Lizenz wird für genau diesen Text ausgestellt. Wenn der Benutzer aktiviert,
-prüfen Sie den Code, speichern ihn, wenn er gültig ist, und erklären andernfalls,
-was nicht stimmt. Diese Funktionen setzen voraus, dass Ihre Anwendung
+prüfen Sie den Code, speichern Sie ihn, wenn er gültig ist, und erklären Sie
+andernfalls, was nicht stimmt. Diese Funktionen setzen voraus, dass Ihre Anwendung
 `PUBLIC_KEY`, `PRODUCT_ID`, `hardware_id()` und `save_license_code()` bereitstellt
 (oder deren Entsprechungen in C# und JavaScript). Die Meldungen sind wie im
 getesteten Beispiel englisch; übersetzen Sie sie in Ihrer Anwendung.
@@ -297,7 +297,7 @@ Was jedes Ergebnis für den Benutzer bedeutet:
 | `malformed` | Der Text ist kein vollständiger Lizenzcode: gekürzt, verändert oder überhaupt keine Lizenz. | Den vollständigen Code einfügen. |
 | `unsupported-format` | Die Lizenz verwendet ein neueres Format als dieser Verifizierer. | Die Anwendung aktualisieren. |
 | `signature-mismatch` | Die Lizenz wurde mit dem Schlüssel eines anderen Produkts ausgestellt oder ihr Text wurde verändert. | Die Lizenz gilt nicht für diese Anwendung. |
-| `invalid-public-key`, `invalid-expected-product` | Ihre Anwendung hat einen unbrauchbaren Schlüssel oder eine leere Produkt-ID übergeben. | Nichts, was er beheben kann: protokollieren Sie es und korrigieren Sie den Build. |
+| `invalid-public-key`, `invalid-expected-product` | Ihre Anwendung hat einen unbrauchbaren Schlüssel oder eine inhaltsleere Produkt-ID übergeben. | Nichts, was er beheben kann: Protokollieren Sie es und korrigieren Sie den Build. |
 | Produkt `mismatch` | Echt, aber für ein anderes Ihrer Produkte ausgestellt. | Die Lizenz gilt für ein anderes Produkt. |
 | Hardware `mismatch` | Echt, aber für eine andere Hardwarekennung ausgestellt. | Die Lizenz gilt für einen anderen Computer; zeigen Sie die Kennung dieses Computers. |
 | Ablauf `expired` | Echt, aber ihr Ablaufdatum hat begonnen. | Die Lizenz ist an ihrem Datum abgelaufen. |
@@ -308,8 +308,8 @@ Speichern Sie den Lizenzcode selbst, kein „lizenziert“-Kennzeichen und kein
 Prüfergebnis. Bewahren Sie ihn im benutzerspezifischen Datenordner Ihrer
 Anwendung auf: zum Beispiel `%LOCALAPPDATA%\YourApp` unter Windows,
 `~/Library/Application Support/YourApp` unter macOS, `$XDG_DATA_HOME/YourApp`
-(meist `~/.local/share/YourApp`) unter Linux, den internen Speicher der App
-(`Context.getFilesDir()`) unter Android oder den Ordner Application Support im
+(meist `~/.local/share/YourApp`) unter Linux, dem internen Speicher der App
+(`Context.getFilesDir()`) unter Android oder dem Ordner Application Support im
 Container der App unter iOS. Eine Sicherung kann den Code auf einem anderen Gerät
 wiederherstellen; dort schlägt die Hardwareprüfung fehl, und der Benutzer
 aktiviert erneut. Der Code ist signiert, nicht verschlüsselt: Wer ihn liest, sieht den Namen des Kunden, die Hardwarekennung und
@@ -317,7 +317,7 @@ die benutzerdefinierten Daten, kann sie aber nicht ändern, ohne die Signatur zu
 zerstören.
 
 Prüfen Sie den gespeicherten Code bei jedem Start und vor jeder lizenzierten
-Aktion erneut mit der aktuellen Uhrzeit. Ein zwischengespeichertes `true` ließe
+Aktion erneut mit der aktuellen Zeit. Ein zwischengespeichertes `true` ließe
 eine abgelaufene Lizenz weiter funktionieren. Wenn die Prüfung fehlschlägt,
 zeigen Sie wieder den Aktivierungsbildschirm. Diese Funktionen setzen voraus,
 dass Ihre Anwendung `load_license_code()` bereitstellt, das den gespeicherten
@@ -355,7 +355,7 @@ export function currentLicense() {
 ## Eine Hardwarekennung wählen
 
 Eine hardwaregebundene Lizenz nennt eine Hardwarekennung, und Ihre Anwendung
-entscheidet, wie sie berechnet wird. Der Generator signiert den Text, den Sie
+entscheidet, wie sie berechnet wird. Der Generator signiert jeden Text, den Sie
 eingeben. Eine gute Kennung ist:
 
 - **Deterministisch.** Derselbe Computer liefert bei jedem Start und nach jedem
@@ -393,8 +393,8 @@ und Zeilenvorschübe an ihrem Anfang und Ende, etwa den Zeilenumbruch am Ende vo
 `/etc/machine-id`, und schreiben Sie sie als 64 Hexadezimalzeichen in
 Großschreibung. Entfernen Sie nur diese vier Zeichen und behalten Sie alle
 anderen: Die Trimmfunktionen der einzelnen Sprachen entfernen unterschiedliche
-Mengen. Jede Technik berechnet dann für denselben Computer und dasselbe Produkt
-dieselbe Kennung; die `hardwareIdExamples` der
+Zeichen. Jede Technologie berechnet dann für denselben Computer und dasselbe
+Produkt dieselbe Kennung; die `hardwareIdExamples` der
 [Testvektoren](../examples/test-vectors.json) veröffentlichen zwei zum Vergleich. Diese Funktionen brauchen
 `System.Security.Cryptography` und `System.Text` in C#, `hashlib` und `hmac` in
 Python sowie `createHmac` aus `node:crypto` in JavaScript.
@@ -448,7 +448,7 @@ Lizenzen annehmen soll, bevor Sie sie ausstellen.
 Das Ablaufdatum wird als Kalenderdatum signiert, und eine Lizenz läuft um
 **00:00 UTC zu Beginn dieses Datums** ab. Um die Nutzung bis zum Ende des 10. Juni
 zu erlauben, stellen Sie die Lizenz mit dem 11. Juni aus. Übergeben Sie die
-aktuelle Uhrzeit in UTC; die Verifizierer vergleichen sie unabhängig von der
+aktuelle Zeit in UTC; die Verifizierer vergleichen sie unabhängig von der
 Zeitzone des Benutzers mit diesem Zeitpunkt.
 
 Ihre Anwendung liest die Uhr eines Geräts, das der Benutzer kontrolliert. Ein
@@ -466,14 +466,15 @@ Anwendung tun können:
   Lizenzkennungen aus und lehnen Sie eine geprüfte Lizenz ab, deren Kennung auf
   der Liste steht. Jeder Verifizierer gibt sie mit der Lizenz zurück
   (`revocationId`, in C# `RevocationId`, in Python `revocation_id`); prüfen Sie
-  einen Lizenzcode mit einem davon, um sie zu lesen. Listen Sie nie
-  `Signature`-Texte: Dieselbe Lizenz lässt sich auf mehr als eine Weise schreiben,
-  und jede Schreibweise hat dieselbe Kennung.
+  einen Lizenzcode mit einem davon, um sie zu lesen. Nehmen Sie nie
+  `Signature`-Texte in die Liste auf: Dieselbe Lizenz lässt sich auf mehr als
+  eine Weise schreiben, und jede Schreibweise hat dieselbe Kennung.
 - **Schlüssel für eine neue Hauptversion wechseln.** Erstellen Sie im Generator
   ein neues Produkt, zum Beispiel `MyApp-2`, und betten Sie dessen öffentlichen
-  Schlüssel und Produkt-ID ein: Für das alte Produkt ausgestellte Lizenzen lassen
-  sich dann nicht mehr prüfen. Um sie eine Zeit lang weiter anzunehmen, prüfen Sie
-  mit dem neuen Schlüssel und der neuen Produkt-ID und danach mit den alten.
+  Schlüssel und Produkt-ID ein: Für das alte Produkt ausgestellte Lizenzen
+  bestehen die Prüfung dann nicht mehr. Um sie eine Zeit lang weiter
+  anzunehmen, prüfen Sie mit dem neuen Schlüssel und der neuen Produkt-ID und
+  danach mit den alten.
 - **Einen offengelegten oder verlorenen Schlüssel ersetzen.** Wird ein privater
   Schlüssel offengelegt, kann jeder Lizenzen ausstellen, die Ihre Anwendung
   annimmt; geht er verloren, können Sie keine neuen ausstellen. In beiden Fällen
@@ -501,7 +502,8 @@ ausgestellte Lizenzen mit dem Ergebnis, das jede liefern muss:
   auslassen.
 - `expirationTexts` führt Texte für das Ablaufdatum auf, die ein Verifizierer als
   das signierte Datum lesen oder ablehnen muss, sowie die Zeitpunkte beiderseits
-  der Grenze, zu denen jeder angenommene Text gültig und danach abgelaufen ist.
+  der Grenze, zu denen jeder angenommene Text noch nicht und danach bereits
+  abgelaufen ist.
 - `hardwareIdExamples` gibt Computerkennungen mit einer Produkt-ID und der
   Hardwarekennung an, die die obige Ableitung aus jeder berechnet; die zweite
   behält an ihren Enden Zeichen, die manche Trimmfunktionen entfernen.
@@ -534,10 +536,10 @@ Tests und vergleichen Sie `LicenseVerifier.Inspect` mit jedem erwarteten Ergebni
 
 ## Lizenz der Beispiele
 
-Abschnitt 2 der [EULA](../../LICENSE) erlaubt Ihnen, die Dateien unter
-`docs/examples` als Teil Ihrer kommerziellen oder kostenlosen Anwendungen, die
-Lizenzen prüfen, zu verwenden, zu kopieren, zu ändern und weiterzugeben, sofern
-ihr Urheberrechtshinweis erhalten bleibt. Sie gewährt keine Rechte an der
-Anwendung License Generator selbst.
+Abschnitt 2 der [EULA](../../LICENSE) (auf Englisch) erlaubt Ihnen, die
+Dateien unter `docs/examples` als Teil Ihrer kommerziellen oder kostenlosen
+Anwendungen, die Lizenzen prüfen, zu verwenden, zu kopieren, zu ändern und
+weiterzugeben, sofern ihr Urheberrechtshinweis erhalten bleibt. Sie gewährt
+keine Rechte an der Anwendung License Generator selbst.
 
 [Problem melden](https://github.com/gonzapersonalsite/LicenseGenerator-Docs-/issues) · [Entwicklung unterstützen](https://ko-fi.com/gonzaloapps)

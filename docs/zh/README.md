@@ -9,8 +9,8 @@
 ## 功能
 
 - 使用 SHA-256 和 PKCS#1 v1.5 的 RSA-2048 签名；标准 PEM 密钥。
-- 每个签名许可证都包含产品、客户名称、硬件 ID 和可选的到期日期。
-- 可选的签名 **UserDefined** 文本，用于功能、套餐或应用专属的元数据。
+- 每个已签名的许可证都包含产品、客户名称、硬件 ID 和可选的到期日期。
+- 可选的已签名 **UserDefined** 文本，用于功能、套餐或应用专属的元数据。
 - 本地应用程序管理、可搜索的历史记录，以及 ZIP 备份和导入。
 - 使用明确信任的公钥在本地检查许可证，并分别给出签名、产品、硬件和到期结果。
 - 提供英语、西班牙语、德语、巴西葡萄牙语和简体中文界面。
@@ -24,13 +24,13 @@
 4. 如需使用现有的许可证格式，请将 UserDefined 留空；在客户端更新为支持格式 2 之后，可以输入自定义文本。
 5. 生成并交付许可证代码。请妥善保管私钥和备份。
 
-UserDefined 是签名文本，不是可执行的规则，也不是内置的功能管理器。其内容的含义由您的应用在验证签名**之后**决定。
+UserDefined 是已签名的文本，不是可执行的规则，也不是内置的功能管理器。其内容的含义由您的应用在验证签名**之后**决定。
 
 ## 文档
 
 - [使用指南](OPERATIONS.md)：产品、签发、检查、备份和您的数据。
 - [集成指南](INTEGRATION.md)：在您的应用中验证许可证，从激活界面到硬件标识符，附有 C#、Python 和 Node.js 示例。
-- [许可证格式与安全契约](ARCHITECTURE.md)：确切的签名字节、验证规则和安全边界。
+- [许可证格式与安全契约](ARCHITECTURE.md)：已签名的确切字节、验证规则和安全边界。
 - 参考验证器：[C#](../examples/LicenseVerifier.cs) 及其[共享协议](../examples/LicenseProtocol.cs)、[Python](../examples/python/license_verifier.py) 和 [Node.js](../examples/node/license-verifier.mjs)，全部使用相同的[测试向量](../examples/test-vectors.json)检查。
 - [更新日志](../CHANGELOG.md)（英文）。
 
@@ -40,6 +40,6 @@ UserDefined 是签名文本，不是可执行的规则，也不是内置的功�
 
 密钥、历史记录、设置和诊断日志位于您的操作系统用户的数据文件夹中，与可执行文件分开；[隐私政策](https://gonzaloapps.es/apps/license-generator/legal/privacy-policy/)（英文）说明了每个版本中该文件夹的位置及其内容。移动可执行文件不会移动数据。更换计算机、卸载或修改密钥之前，请先导出备份。
 
-License Generator 是依据 [EULA](../../LICENSE) 授权的专有软件。在这些条款下，生成的许可证和公钥可以随您自己的商业或免费应用分发，`docs/examples` 下的集成示例也可以复制到这些应用中。
+License Generator 是依据 [EULA](../../LICENSE)（英文）授权的专有软件。在这些条款下，生成的许可证和公钥可以随您自己的商业或免费应用分发，`docs/examples` 下的集成示例也可以复制到这些应用中。
 
 由 Gonzalo Martínez García 开发 · gonzalo.dev

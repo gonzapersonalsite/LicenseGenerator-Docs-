@@ -50,7 +50,7 @@ buscam um ID de hardware. Seu aplicativo passa esses valores, o que mantém cada
 decisão visível e testável.
 
 Outra tecnologia pode verificar licenças com a própria biblioteca RSA. Estas APIs
-padrão oferecem assinaturas RSA PKCS#1 v1.5 com SHA-256 sobre uma chave pública
+padrão verificam assinaturas RSA PKCS#1 v1.5 com SHA-256 usando uma chave pública
 SubjectPublicKeyInfo; são indicações, não exemplos testados, então implemente
 todas as regras do contrato e passe em todos os vetores de teste antes de
 publicar.
@@ -70,7 +70,7 @@ Um aplicativo Electron executa o verificador Node.js no processo principal, não
 em um processo de renderização que exibe conteúdo da web. O React Native não
 oferece `node:crypto`, então o verificador Node.js não funciona nele sem
 alterações. Uma página da web que o usuário controla não consegue impor uma
-licença; verifique onde o seu aplicativo decide o acesso.
+licença; verifique-a onde o seu aplicativo decide o acesso.
 
 As bibliotecas diferem em detalhes que quebram o contrato se você mantiver os
 padrões delas:
@@ -78,14 +78,14 @@ padrões delas:
 | Onde | O que acontece | O que fazer |
 | --- | --- | --- |
 | A maioria dos analisadores JSON | Ficam com o último de dois nomes de propriedade iguais. | Rejeite um objeto raiz que repita um nome antes de ler qualquer dado. |
-| `encoding/json` do Go | Compara nomes sem diferenciar maiúsculas e substitui UTF-8 inválido e substitutos sem par por U+FFFD. | Leia o objeto raiz com `json.Decoder.Token` e compare os nomes exatamente. |
+| `encoding/json` do Go | Compara nomes sem diferenciar maiúsculas de minúsculas e substitui UTF-8 inválido e substitutos sem par por U+FFFD. | Leia o objeto raiz com `json.Decoder.Token` e compare os nomes exatamente. |
 | `java.util.Base64` do Java | `getDecoder()` rejeita espaços em branco, e `getMimeDecoder()` ignora qualquer caractere fora do alfabeto. | Remova espaços, tabulações e quebras de linha e decodifique com `getDecoder()`. |
 | `KeyFactory` do Java e do Kotlin | `X509EncodedKeySpec` só lê SubjectPublicKeyInfo. | Incorpore `public.pem` como o gerador o escreve, ou converta antes uma chave PKCS#1. |
 | `SecKeyCreateWithData` do Swift | Espera uma chave pública RSA no formato PKCS#1. | Remova antes o cabeçalho SubjectPublicKeyInfo, ou incorpore a chave no formato PKCS#1. |
 | Comprimentos de texto | Python conta pontos de código, e Go e Rust contam bytes. | Conte unidades de código UTF-16 para os limites do contrato. |
 | `cryptography` do Python | `load_pem_public_key` também lê um corpo SubjectPublicKeyInfo sob um rótulo `RSA PUBLIC KEY`, e `load_der_public_key` lê qualquer uma das duas formas. | Verifique se o corpo tem a forma que seu rótulo indica. |
 | Expressões regulares | Em Python, Java e .NET, `$` também corresponde antes de uma quebra de linha final, e em Python e .NET `\d` aceita dígitos de qualquer escrita. | Exija que o texto inteiro corresponda (`re.fullmatch`, `Matcher.matches`, `\z` em .NET) e escreva `[0-9]`. |
-| Funções de corte | `strip()` do Python, `trim()` do JavaScript e `Trim()` do .NET removem caracteres diferentes. | Remova exatamente os caracteres que o contrato ou este guia indicam. |
+| Funções de trim | `strip()` do Python, `trim()` do JavaScript e `Trim()` do .NET removem caracteres diferentes. | Remova exatamente os caracteres que o contrato ou este guia indicam. |
 
 ## Adicionar o verificador ao seu aplicativo
 
@@ -149,9 +149,10 @@ os valores que os vetores de teste usam (`malformed`, `not-bound`, `never`).
 Uma licença emitida com ID de hardware vazio não é vinculada: ela passa na
 verificação de hardware seja qual for o ID que seu aplicativo espera. Para pular
 a verificação de hardware de propósito, passe `null` (`None` em Python) para
-`inspect`; uma licença vinculada é então informada como não verificada e nunca é
-válida. O verificador Node.js recusa um ID de hardware omitido (`undefined`),
-para que um argumento esquecido não possa pular a verificação por acidente.
+`inspect`; o hardware de uma licença vinculada é então informado como não
+verificado, e ela nunca é válida. O verificador Node.js recusa um ID de hardware
+omitido (`undefined`), para que um argumento esquecido não possa pular a
+verificação por acidente.
 
 ## Criar uma tela de ativação
 
@@ -289,7 +290,7 @@ O que cada resultado significa para o usuário:
 | `malformed` | O texto não é um código de licença completo: está cortado, alterado ou nem é uma licença. | Que cole o código completo. |
 | `unsupported-format` | A licença usa um formato mais novo que este verificador. | Que atualize o aplicativo. |
 | `signature-mismatch` | A licença foi emitida com a chave de outro produto, ou o texto dela foi alterado. | Que a licença não é para este aplicativo. |
-| `invalid-public-key`, `invalid-expected-product` | Seu aplicativo passou uma chave inutilizável ou um ID de produto em branco. | Nada que ele possa corrigir: registre o erro e corrija a compilação. |
+| `invalid-public-key`, `invalid-expected-product` | Seu aplicativo passou uma chave inutilizável ou um ID de produto em branco. | Nada que o usuário possa corrigir: registre o erro e corrija a compilação. |
 | produto `mismatch` | Autêntica, mas emitida para outro dos seus produtos. | Que a licença é para outro produto. |
 | hardware `mismatch` | Autêntica, mas emitida para outro ID de hardware. | Que a licença é para outro computador; mostre o ID deste computador. |
 | expiração `expired` | Autêntica, mas a data de expiração já começou. | Que a licença expirou na data dela. |
@@ -345,7 +346,7 @@ export function currentLicense() {
 ## Escolher um identificador de hardware
 
 Uma licença vinculada ao hardware indica um ID de hardware, e seu aplicativo
-decide como calculá-lo. O gerador assina o texto que você digitar. Um bom
+decide como calculá-lo. O gerador assina qualquer texto que você digitar. Um bom
 identificador é:
 
 - **Determinístico.** O mesmo computador gera o mesmo texto a cada inicialização
@@ -378,10 +379,10 @@ Não mostre o identificador bruto: o manual `machine-id(5)` pede aos aplicativos
 que não exponham `/etc/machine-id` e que o passem por um hash com uma chave
 própria do aplicativo. Derive seu próprio ID com HMAC-SHA-256, usando como chave
 os bytes UTF-8 do ID do seu produto, sobre os bytes UTF-8 do identificador do
-sistema sem os espaços, tabulações, retornos de carro e quebras de linha do seu
+sistema sem os espaços, tabulações, retornos de carro e avanços de linha do seu
 início e fim, como a quebra de linha no fim de `/etc/machine-id`, e escreva-o
 como 64 caracteres hexadecimais em maiúsculas. Remova apenas esses quatro
-caracteres e mantenha todos os outros: as funções de corte de cada linguagem
+caracteres e mantenha todos os outros: as funções de trim de cada linguagem
 removem conjuntos diferentes. Assim todas as tecnologias calculam o mesmo ID para
 o mesmo computador e produto; os `hardwareIdExamples` dos
 [vetores de teste](../examples/test-vectors.json) publicam dois para conferir. Estas
@@ -434,7 +435,7 @@ de emiti-las.
 ## Expiração e relógio
 
 A data de expiração é assinada como data de calendário, e uma licença expira às
-**00:00 UTC do início dessa data**. Para permitir o uso até o fim de 10 de junho,
+**00:00 UTC no início dessa data**. Para permitir o uso até o fim de 10 de junho,
 emita a licença com 11 de junho. Passe a hora atual em UTC; os verificadores a
 comparam com esse instante seja qual for o fuso horário do usuário.
 
@@ -457,9 +458,9 @@ atualização do seu aplicativo:
   identificador.
 - **Trocar de chave em uma nova versão principal.** Crie um novo produto no
   gerador, por exemplo `MyApp-2`, e incorpore a chave pública e o ID de produto
-  dele: as licenças emitidas para o produto anterior deixam de ser verificadas.
-  Para continuar aceitando-as por um tempo, verifique com a chave e o ID novos e
-  depois com os anteriores.
+  dele: as licenças emitidas para o produto anterior deixam de passar na
+  verificação. Para continuar aceitando-as por um tempo, verifique com a chave e
+  o ID novos e depois com os anteriores.
 - **Substituir uma chave vazada ou perdida.** Se uma chave privada vazar,
   qualquer pessoa pode emitir licenças que seu aplicativo aceita; se ela se
   perder, você não pode emitir novas. Nos dois casos, distribua uma nova chave
@@ -487,7 +488,7 @@ cada uma deve dar:
   que cada texto aceito está vigente e depois expirado.
 - `hardwareIdExamples` traz identificadores de máquina com um ID de produto e o ID
   de hardware que a derivação acima calcula a partir de cada um; o segundo mantém
-  nos seus extremos caracteres que algumas funções de corte removem.
+  nos seus extremos caracteres que algumas funções de trim removem.
 
 Use a hora de verificação publicada, não a atual, ao comparar resultados. As
 baterias de referência executam todos os casos; a de Python precisa do
@@ -512,15 +513,15 @@ Em um cliente C#, leia o mesmo arquivo nos seus próprios testes e compare
 | `malformed` para um código que o gerador inspeciona corretamente | O código foi cortado ou alterado ao ser copiado; quebras de linha dentro dele são aceitas, outros caracteres não. |
 | `unsupported-format` | Seu verificador é anterior ao formato da licença; atualize-o. |
 | `mismatch` de hardware no computador certo | Seu aplicativo calcula o mesmo ID que mostrou; contam maiúsculas e espaços. Contêineres e máquinas virtuais podem ver outro identificador de máquina. |
-| Expirou um dia antes | O limite é 00:00 UTC do início da data de expiração; emita a licença com o dia seguinte. |
-| Funciona em desenvolvimento e falha em produção | A produção incorpora outra chave pública ou outro ID de produto, ou calcula outro ID de hardware. |
+| Expirou um dia antes | O limite é 00:00 UTC no início da data de expiração; emita a licença com o dia seguinte. |
+| Funciona em desenvolvimento e falha em produção | A versão de produção incorpora outra chave pública ou outro ID de produto, ou calcula outro ID de hardware. |
 
 ## Licença dos exemplos
 
-A seção 2 do [EULA](../../LICENSE) permite que você use, copie, modifique e
-distribua os arquivos de `docs/examples` como parte dos seus aplicativos
-comerciais ou gratuitos que verificam licenças, mantendo o aviso de direitos
-autorais deles. Ela não concede nenhum direito sobre o próprio aplicativo License
-Generator.
+A seção 2 do [EULA](../../LICENSE) (em inglês) permite que você use, copie,
+modifique e distribua os arquivos de `docs/examples` como parte dos seus
+aplicativos comerciais ou gratuitos que verificam licenças, mantendo o aviso de
+direitos autorais deles. Ela não concede nenhum direito sobre o próprio
+aplicativo License Generator.
 
 [Relatar um problema](https://github.com/gonzapersonalsite/LicenseGenerator-Docs-/issues) · [Apoiar o desenvolvimento](https://ko-fi.com/gonzaloapps)
