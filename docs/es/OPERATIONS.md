@@ -11,7 +11,7 @@ formato exacto de la licencia, el [contrato de formato y seguridad](ARCHITECTURE
 
 Crea un producto en **Aplicaciones**. El generador guarda un par de claves RSA propio para él en su carpeta de datos. Tu aplicación cliente necesita el `public.pem` del producto; no distribuyas nunca `private.pem`.
 
-Para vincular la licencia a un equipo, tu cliente calcula un identificador de hardware, muestra ese valor exacto a su usuario, y tú lo introduces en el campo **Código de Solicitud (Machine ID - Opcional)** del generador. El generador no elige el método de identificación del hardware; la [guía de integración](INTEGRATION.md#elegir-un-identificador-de-hardware) describe lo que necesita uno bueno. Un HWID vacío a propósito produce una licencia sin vinculación al hardware.
+Para vincular la licencia a un equipo, tu cliente calcula un identificador de hardware, muestra ese valor exacto a su usuario, y tú lo introduces en el campo **ID de Hardware (Opcional)** del generador. El generador no elige el método de identificación del hardware; la [guía de integración](INTEGRATION.md#elegir-un-identificador-de-hardware) describe lo que necesita uno bueno. Un HWID vacío a propósito produce una licencia sin vinculación al hardware.
 
 Selecciona el producto, introduce el nombre de registro y el HWID opcional, y elige si quieres una fecha de caducidad. La licencia caduca a las **00:00 UTC del inicio de la fecha elegida**. Para permitir todo el 10 de junio, elige el 11 de junio. Deja la fecha vacía para una licencia perpetua.
 
@@ -35,9 +35,9 @@ Cualquier texto personalizado no vacío usa el formato 2, que un cliente escrito
 
 Abre **Inspeccionar licencia** y pega un código de licencia completo, o abre una entrada guardada desde el **Historial**. La inspección no modifica el registro guardado. Elige expresamente la clave pública de un producto local o pega una clave pública PEM obtenida de una fuente de confianza. El contenido de la licencia nunca elige la clave de confianza. Esta pantalla rechaza las claves privadas PEM.
 
-Rellena **Identificador de producto esperado** y, si quieres, **Identificador de equipo esperado (opcional)** con el ID de hardware exacto del cliente. Un HWID esperado vacío significa **sin comprobar** para una licencia vinculada; no confirma que la licencia pueda usarse en ese dispositivo. Una licencia no vinculada no necesita comprobación de hardware.
+Rellena **ID de producto esperado** y, si quieres, **ID de hardware esperado (opcional)** con el ID de hardware exacto del cliente. Un HWID esperado vacío significa **sin comprobar** para una licencia vinculada; no confirma que la licencia pueda usarse en ese dispositivo. Una licencia no vinculada no necesita comprobación de hardware.
 
-La pantalla autentica la firma RSA antes de mostrar ningún campo de la licencia y después informa por separado de las comprobaciones de producto, equipo y caducidad. Las licencias auténticas caducadas pueden inspeccionarse, pero siguen caducadas. Una firma no coincidente puede deberse a una clave equivocada o a datos alterados de la licencia; no permite distinguir entre ambas causas. El resultado muestra la hora UTC de la comprobación. Cambiar cualquier valor introducido borra el resultado; vuelve a verificar para un instante posterior. La inspección no sube ni guarda nada.
+La pantalla autentica la firma RSA antes de mostrar ningún campo de la licencia y después informa por separado de las comprobaciones de producto, hardware y caducidad. Las licencias auténticas caducadas pueden inspeccionarse, pero siguen caducadas. Una firma no coincidente puede deberse a una clave equivocada o a datos alterados de la licencia; no permite distinguir entre ambas causas. El resultado muestra la hora UTC de la comprobación. Cambiar cualquier valor introducido borra el resultado; vuelve a verificar para un instante posterior. La inspección no sube ni guarda nada.
 
 ## Tus datos
 

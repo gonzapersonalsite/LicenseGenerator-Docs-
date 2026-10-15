@@ -12,7 +12,7 @@ Sie Lizenzen in Ihrer eigenen Anwendung prüfen, erklärt der
 
 Legen Sie unter **Anwendungen** ein Produkt an. Der Generator verwahrt dafür ein eigenes RSA-Schlüsselpaar in seinem Datenordner. Ihre Client-Anwendung braucht die `public.pem` des Produkts; geben Sie `private.pem` niemals weiter.
 
-Für eine Hardwarebindung berechnet Ihr Client eine Hardwarekennung, zeigt seinem Benutzer genau diesen Wert an, und Sie geben ihn im Feld **Anforderungscode (Machine ID - Optional)** des Generators ein. Der Generator wählt das Verfahren zur Ermittlung der Hardwarekennung nicht aus; der [Integrationsleitfaden](INTEGRATION.md#eine-hardwarekennung-wählen) beschreibt, was ein gutes Verfahren braucht. Eine bewusst leere HWID erzeugt eine Lizenz ohne Hardwarebindung.
+Für eine Hardwarebindung berechnet Ihr Client eine Hardwarekennung, zeigt seinem Benutzer genau diesen Wert an, und Sie geben ihn im Feld **Hardwarekennung (optional)** des Generators ein. Der Generator wählt das Verfahren zur Ermittlung der Hardwarekennung nicht aus; der [Integrationsleitfaden](INTEGRATION.md#eine-hardwarekennung-wählen) beschreibt, was ein gutes Verfahren braucht. Eine bewusst leere HWID erzeugt eine Lizenz ohne Hardwarebindung.
 
 Wählen Sie das Produkt, geben Sie den Registrierungsnamen und optional die HWID ein und wählen Sie bei Bedarf ein Ablaufdatum. Die Lizenz läuft um **00:00 UTC zu Beginn des gewählten Datums** ab. Soll die Lizenz den ganzen 10. Juni gelten, wählen Sie den 11. Juni. Lassen Sie das Datum leer, um eine unbefristete Lizenz zu erzeugen.
 
@@ -36,7 +36,7 @@ Jeder nicht leere benutzerdefinierte Text verwendet Format 2, das ein für das b
 
 Öffnen Sie **Lizenz prüfen** und fügen Sie einen vollständigen Lizenzcode ein oder öffnen Sie einen gespeicherten Eintrag aus dem **Verlauf**. Die Prüfung ändert den gespeicherten Eintrag nicht. Wählen Sie ausdrücklich den öffentlichen Schlüssel eines lokalen Produkts oder fügen Sie einen öffentlichen PEM-Schlüssel aus einer vertrauenswürdigen Quelle ein. Der Inhalt der Lizenz wählt nie den vertrauenswürdigen Schlüssel aus. Private PEM-Schlüssel lehnt dieser Bildschirm ab.
 
-Geben Sie die erwartete Produkt-ID und optional die genaue Hardware-ID des Clients an. Eine leere erwartete HWID bedeutet bei einer hardwaregebundenen Lizenz **nicht geprüft**; sie bestätigt nicht, dass die Lizenz auf diesem Gerät verwendbar ist. Eine ungebundene Lizenz braucht keine Hardwareprüfung.
+Geben Sie die erwartete Produkt-ID und optional die genaue Hardwarekennung des Clients an. Eine leere erwartete HWID bedeutet bei einer hardwaregebundenen Lizenz **nicht geprüft**; sie bestätigt nicht, dass die Lizenz auf diesem Gerät verwendbar ist. Eine ungebundene Lizenz braucht keine Hardwareprüfung.
 
 Der Bildschirm authentifiziert die RSA-Signatur, bevor er Felder der Lizenz anzeigt, und meldet danach die Prüfungen von Produkt, Hardware und Ablauf getrennt. Echte abgelaufene Lizenzen lassen sich prüfen, bleiben aber abgelaufen. Eine nicht übereinstimmende Signatur kann auf einen falschen Schlüssel oder veränderte Lizenzdaten hindeuten; diese Ursachen lassen sich nicht unterscheiden. Das Ergebnis zeigt die UTC-Zeit der Prüfung. Eine Änderung der Eingaben löscht das Ergebnis; prüfen Sie für einen späteren Zeitpunkt erneut. Bei der Prüfung wird nichts hochgeladen oder gespeichert.
 

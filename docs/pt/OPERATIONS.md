@@ -11,7 +11,7 @@ exato da licença, do [contrato de formato e segurança](ARCHITECTURE.md).
 
 Crie um produto em **Aplicativos**. O gerador guarda um par de chaves RSA próprio para ele na sua pasta de dados. Seu aplicativo cliente precisa do `public.pem` do produto; nunca distribua `private.pem`.
 
-Para vincular a licença ao hardware, seu cliente calcula um identificador de hardware, mostra esse valor exato ao usuário, e você o digita no campo **Código de Solicitação (ID da Máquina - Opcional)** do gerador. O gerador não escolhe o método de identificação do hardware; o [guia de integração](INTEGRATION.md#escolher-um-identificador-de-hardware) descreve o que um bom método exige. Um HWID vazio de propósito gera uma licença sem vínculo ao hardware.
+Para vincular a licença ao hardware, seu cliente calcula um identificador de hardware, mostra esse valor exato ao usuário, e você o digita no campo **ID de Hardware (Opcional)** do gerador. O gerador não escolhe o método de identificação do hardware; o [guia de integração](INTEGRATION.md#escolher-um-identificador-de-hardware) descreve o que um bom método exige. Um HWID vazio de propósito gera uma licença sem vínculo ao hardware.
 
 Selecione o produto, digite o nome de registro e o HWID opcional e, se quiser, escolha uma data de expiração. A licença expira às **00:00 UTC no início da data escolhida**. Para permitir todo o dia 10 de junho, escolha 11 de junho. Deixe a data vazia para uma licença perpétua.
 

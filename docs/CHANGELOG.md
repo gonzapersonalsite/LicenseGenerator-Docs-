@@ -1,5 +1,26 @@
 # Changelog
 
+## 1.2.4 — 2026-10-15
+
+- Name every concept in the interface with the term the manuals use, in all five
+  languages. The generator's field for the customer's identifier is now
+  **Hardware ID (Optional)**, and the inspection results speak of the hardware ID
+  rather than a device ID. Spanish now says *caducidad* and Portuguese
+  *expiração* for expiration, German *Hardwarekennung* for the hardware ID, and
+  Chinese 到期 and 吊销 for expiration and revocation.
+- Screen readers announce the date picker, the history table's rows and cells and
+  the application and notification lists by name, read notifications aloud when
+  they appear, and no longer count the navigation's section headings as pages.
+- Generating a license from a product's card selects that product on the first
+  visit to the generator too.
+- On Linux, the application starts when the user's `~/.local/share` folder does
+  not exist yet, and confirmation dialogs take the keyboard focus, so Escape
+  closes them.
+- The backup file filter is named in the interface language.
+
+Nothing else changes: keys, licenses, history, settings, license formats and the
+integration examples are the same as in 1.2.3.
+
 ## Integration examples — 2026-10-15
 
 - Added the [integration guide](../INTEGRATION.md): an activation screen, a check
