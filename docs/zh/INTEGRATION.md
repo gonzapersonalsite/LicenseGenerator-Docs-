@@ -368,4 +368,4 @@ node --test license-verifier.test.mjs
 
 [EULA](../../LICENSE)（英文）第 2 节允许您在验证许可证的商业或免费应用中使用、复制、修改和分发 `docs/examples` 下的文件，但须保留其版权声明。它不授予对 License Generator 应用本身的任何权利。
 
-[报告问题](https://github.com/gonzapersonalsite/LicenseGenerator-Docs-/issues) · [支持开发](https://ko-fi.com/gonzaloapps)
+[报告问题](https://github.com/gonzapersonalsite/license-generator-docs/issues) · [支持开发](https://ko-fi.com/gonzaloapps)

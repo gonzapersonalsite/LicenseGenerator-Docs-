@@ -4,7 +4,7 @@
 
 用于签发、检查和管理离线软件许可证的桌面工具。为每个产品创建独立的 RSA 密钥对，签名许可证，使用可信公钥在本地检查许可证，并在您自己的应用中验证许可证。
 
-[Microsoft Store](https://apps.microsoft.com/detail/9NR38VBCF8JK) · [下载](https://github.com/gonzapersonalsite/LicenseGenerator-Docs-/releases) · [报告问题](https://github.com/gonzapersonalsite/LicenseGenerator-Docs-/issues) · [支持开发](https://ko-fi.com/gonzaloapps)
+[Microsoft Store](https://apps.microsoft.com/detail/9NR38VBCF8JK) · [下载](https://github.com/gonzapersonalsite/license-generator-docs/releases) · [报告问题](https://github.com/gonzapersonalsite/license-generator-docs/issues) · [支持开发](https://ko-fi.com/gonzaloapps)
 
 ## 功能
 

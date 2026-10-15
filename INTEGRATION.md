@@ -503,4 +503,4 @@ distribute the files under `docs/examples` as part of your commercial or free
 applications that verify licenses, keeping their copyright notice. It grants no
 right to the License Generator application itself.
 
-[Report a problem](https://github.com/gonzapersonalsite/LicenseGenerator-Docs-/issues) · [Support development](https://ko-fi.com/gonzaloapps)
+[Report a problem](https://github.com/gonzapersonalsite/license-generator-docs/issues) · [Support development](https://ko-fi.com/gonzaloapps)

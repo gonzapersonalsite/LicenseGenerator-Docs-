@@ -64,4 +64,4 @@ Copiar solo el ejecutable a otro equipo no traslada las claves ni el historial: 
 
 La emisión sin conexión no ofrece revocación remota, un reloj de confianza ni protección frente a un cliente modificado. Consulta los [límites de seguridad](ARCHITECTURE.md#límites-de-seguridad) antes de elegir una política de integración.
 
-[Comunicar un problema](https://github.com/gonzapersonalsite/LicenseGenerator-Docs-/issues) · [Apoyar el desarrollo](https://ko-fi.com/gonzaloapps)
+[Comunicar un problema](https://github.com/gonzapersonalsite/license-generator-docs/issues) · [Apoyar el desarrollo](https://ko-fi.com/gonzaloapps)

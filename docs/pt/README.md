@@ -4,7 +4,7 @@
 
 Uma ferramenta de desktop para emitir, inspecionar e gerenciar licenças de software offline. Crie um par de chaves RSA próprio para cada produto, assine licenças, inspecione-as localmente com uma chave pública confiável e valide-as no seu próprio aplicativo.
 
-[Microsoft Store](https://apps.microsoft.com/detail/9NR38VBCF8JK) · [Downloads](https://github.com/gonzapersonalsite/LicenseGenerator-Docs-/releases) · [Relatar um problema](https://github.com/gonzapersonalsite/LicenseGenerator-Docs-/issues) · [Apoiar o desenvolvimento](https://ko-fi.com/gonzaloapps)
+[Microsoft Store](https://apps.microsoft.com/detail/9NR38VBCF8JK) · [Downloads](https://github.com/gonzapersonalsite/license-generator-docs/releases) · [Relatar um problema](https://github.com/gonzapersonalsite/license-generator-docs/issues) · [Apoiar o desenvolvimento](https://ko-fi.com/gonzaloapps)
 
 ## Recursos
 

@@ -65,4 +65,4 @@ Das Kopieren nur der ausführbaren Datei auf einen anderen Computer verschiebt w
 
 Die Offline-Ausstellung bietet keinen Fernwiderruf, keine vertrauenswürdige Uhr und keinen Schutz vor verändertem Client-Code. Lesen Sie die [Sicherheitsgrenzen](ARCHITECTURE.md#sicherheitsgrenzen), bevor Sie eine Integrationsstrategie wählen.
 
-[Problem melden](https://github.com/gonzapersonalsite/LicenseGenerator-Docs-/issues) · [Entwicklung unterstützen](https://ko-fi.com/gonzaloapps)
+[Problem melden](https://github.com/gonzapersonalsite/license-generator-docs/issues) · [Entwicklung unterstützen](https://ko-fi.com/gonzaloapps)

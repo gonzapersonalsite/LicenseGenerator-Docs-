@@ -61,4 +61,4 @@ features=export,reports;plan=professional
 
 离线签发不提供远程吊销、可信时钟，也无法防止客户端代码被修改。选择集成策略之前，请阅读[安全边界](ARCHITECTURE.md#安全边界)。
 
-[报告问题](https://github.com/gonzapersonalsite/LicenseGenerator-Docs-/issues) · [支持开发](https://ko-fi.com/gonzaloapps)
+[报告问题](https://github.com/gonzapersonalsite/license-generator-docs/issues) · [支持开发](https://ko-fi.com/gonzaloapps)
