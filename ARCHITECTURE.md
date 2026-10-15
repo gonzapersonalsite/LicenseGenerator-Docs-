@@ -133,4 +133,4 @@ Import validates the archive and key pairs before making changes. It merges miss
 - Client code and clocks can be modified by a user controlling that machine. Add an online trust mechanism if your requirements include stronger revocation or trusted time.
 - Keep private keys out of client applications, source control, support tickets and public releases. A leaked private key requires a key-rotation and client-update plan.
 
-The product's legal terms remain in [LICENSE](LICENSE).
+The product's legal terms are in the [EULA](LICENSE).
