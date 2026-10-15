@@ -1,5 +1,20 @@
 # Changelog
 
+## 1.2.3 — 2026-10-15
+
+- Show the third-party notices in Settings and ship them beside the Windows and
+  Linux executables and inside the Store package. They list every component the
+  application distributes with its license, including the .NET runtime, Avalonia,
+  SkiaSharp, HarfBuzz, the Inter typeface and the interface icons.
+- Link the license agreement and privacy policy from Settings.
+- Reorganize Settings into appearance, your data, help and tools, support and
+  about sections, and rewrite the support section to thank users and explain
+  that contributions are optional.
+- Show the full copyright holder's name.
+
+Nothing else changes: keys, licenses, history, settings, license formats and the
+C# integration example are the same as in 1.2.2.
+
 ## 1.2.2 — 2026-10-15
 
 - Fix the Microsoft Store app's taskbar icon, which Windows showed on a square in
