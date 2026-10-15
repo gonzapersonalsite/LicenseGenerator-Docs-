@@ -1,34 +1,68 @@
-# Bedienung und Integration
+# Bedienungsanleitung
 
-[Start](README.md) · [Vollständige englische Anleitung](../../OPERATIONS.md) · [Kanonischer Vertrag](../../ARCHITECTURE.md)
+[Español](../es/OPERATIONS.md) · [English](../../OPERATIONS.md) · **Deutsch** · [Português](../pt/OPERATIONS.md) · [中文](../zh/OPERATIONS.md)
 
-1. Erstellen Sie ein Produkt in der Anwendungsverwaltung.
-2. Integrieren Sie `public.pem` und die Lizenzprüfung in Ihren Client. Behalten Sie den privaten Schlüssel.
-3. Geben Sie den Kundennamen und bei Hardwarebindung die exakte HWID des Clients ein. Leer bedeutet keine Hardwarebindung.
-4. Ein optionales Ablaufdatum gilt als Grenze um **00:00 UTC am Anfang dieses Tages**. Für den gesamten 10. Juni wählen Sie den 11. Juni.
-5. Lassen Sie UserDefined für ältere Clients leer. Für Format-2-Clients ist beispielsweise `features=export,reports` möglich.
-6. Generieren und übermitteln Sie den Code; der Verlauf speichert die Lizenz.
+Diese Anleitung behandelt die Bedienung der Anwendung License Generator: Produkte
+anlegen, Lizenzen ausstellen und prüfen sowie Ihre Daten sicher aufbewahren. Wie
+Sie Lizenzen in Ihrer eigenen Anwendung prüfen, erklärt der
+[Leitfaden zur Client-Integration](INTEGRATION.md), das genaue Lizenzformat der
+[Format- und Sicherheitsvertrag](ARCHITECTURE.md).
 
-Ihre Anwendung interpretiert UserDefined erst nach erfolgreicher Signaturprüfung. Base64 verschlüsselt nichts; verwenden Sie das Feld nicht für Geheimnisse und erweitern Sie nicht eigenmächtig die alte Signaturzeichenfolge.
+## Ein Produkt anlegen und eine Lizenz ausstellen
 
-Das [getestete C#-Beispiel](../examples/LicenseVerifier.cs) erhält Lizenzcode, öffentlichen Schlüssel, erwartetes Produkt, HWID und UTC-Zeit. Prüfen Sie beim Laden und bei Zugriffsentscheidungen erneut. Implementierungen in anderen Sprachen müssen den [gleichen Vertrag](../../ARCHITECTURE.md) erfüllen und das signierte Datum ohne Zeitzonenverschiebung verwenden.
+Legen Sie unter **Anwendungen** ein Produkt an. Der Generator verwahrt dafür ein eigenes RSA-Schlüsselpaar in seinem Datenordner. Ihre Client-Anwendung braucht die `public.pem` des Produkts; geben Sie `private.pem` niemals weiter.
 
-Kopieren Sie für die Integration **beide Dateien**, [LicenseVerifier.cs](../examples/LicenseVerifier.cs) und [LicenseProtocol.cs](../examples/LicenseProtocol.cs), in Ihr Projekt. Die [Integrationsausnahme im EULA](../../LICENSE) erlaubt Nutzung, Änderung und Weitergabe dieser beiden Dateien in kommerziellen oder kostenlosen Clients unter Beibehaltung des Copyright-Hinweises; sie gilt nicht für den übrigen Anwendungscode.
+Für eine Hardwarebindung berechnet Ihr Client eine Hardwarekennung, zeigt seinem Benutzer genau diesen Wert an, und Sie geben ihn im HWID-Feld des Generators ein. Der Generator wählt das Verfahren zur Hardwareerkennung nicht aus; der [Integrationsleitfaden](INTEGRATION.md#eine-hardwarekennung-wählen) beschreibt, was ein gutes Verfahren braucht. Eine bewusst leere HWID erzeugt eine Lizenz ohne Hardwarebindung.
 
-## Lizenz prüfen
+Wählen Sie das Produkt, geben Sie den Registrierungsnamen und optional die HWID ein und wählen Sie bei Bedarf ein Ablaufdatum. Die Lizenz läuft um **00:00 UTC zu Beginn des gewählten Datums** ab. Um den ganzen 10. Juni zu erlauben, wählen Sie den 11. Juni. Lassen Sie das Datum leer, um eine unbefristete Lizenz zu erzeugen.
 
-Öffnen Sie **Lizenz prüfen** und fügen Sie den vollständigen Code ein, oder öffnen Sie einen Verlaufseintrag. Die Prüfung verändert den gespeicherten Eintrag nicht. Wählen Sie ausdrücklich den öffentlichen Schlüssel eines lokalen Produkts oder fügen Sie einen öffentlichen PEM-Schlüssel aus einer vertrauenswürdigen Quelle ein. Der Lizenzinhalt wählt niemals den Schlüssel. Private Schlüssel werden in dieser Ansicht nicht akzeptiert.
+Generieren Sie die Lizenz und kopieren Sie den Code für den Kunden. Der **Verlauf** verzeichnet ausgestellte Lizenzen. Das Löschen eines Verlaufseintrags entfernt nur den lokalen Eintrag; das Löschen eines Produkts entfernt seine Schlüssel und verhindert, dass weitere Lizenzen damit ausgestellt werden. Keiner der beiden Vorgänge widerruft bereits ausgelieferte Lizenzen. Sichern Sie die Schlüssel vor dem Löschen.
 
-Geben Sie das erwartete Produkt und optional die exakte Hardware-ID an. Eine leere erwartete HWID bedeutet bei einer gebundenen Lizenz **nicht geprüft**, nicht für dieses Gerät bestätigt. Eine ungebundene Lizenz benötigt keine Hardwareprüfung.
+## Signierte benutzerdefinierte Daten: UserDefined
 
-Felder erscheinen erst nach erfolgreicher Signaturprüfung. Produkt, Hardware und Ablaufdatum werden getrennt bewertet; eine authentische Lizenz kann abgelaufen sein. Eine unpassende Signatur kann einen falschen Schlüssel oder veränderte Daten bedeuten; die Ursache lässt sich nicht unterscheiden. Das Ergebnis zeigt den UTC-Prüfzeitpunkt. Änderungen der Eingaben löschen es; für einen späteren Zeitpunkt erneut prüfen. Es wird nichts hochgeladen oder gespeichert.
+Lassen Sie UserDefined leer, um das bisherige Format zu erzeugen. In diesem Fall werden keine neuen JSON-Eigenschaften ausgegeben.
 
-`TryVerify` behält seinen bisherigen Vertrag. `LicenseVerifier.Inspect` liefert `Rejected` ohne Felder oder `Authenticated` mit signierten Feldern und getrennten Prüfergebnissen. Eine erwartete HWID von `null` überspringt die Hardwareprüfung: Bei Hardwarebindung sind das Ergebnis `NotChecked` und `IsValid = false`. `CheckFormat` prüft vor dem Schlüsselzugriff nur Format und Grenzen, niemals die Authentizität. Alle drei APIs verwenden denselben Parser wie die Oberfläche.
+Für einen Client, der Format 2 umsetzt, geben Sie einfachen Text ein, etwa:
 
-## Sicherung und Migration
+```text
+features=export,reports;plan=professional
+```
 
-Exportieren Sie vor Migration oder Schlüssellöschung eine ZIP-Sicherung. Sie enthält **unverschlüsselte private Schlüssel**. Import erhält bestehende Produkte und Verlaufsdaten, ergänzt fehlende Einträge und lehnt widersprüchliche Schlüssel oder Verlaufsdateien ab. Gültige importierte Einstellungen ersetzen die aktuellen.
+Der genaue Text fließt in die Signatur ein. Der Generator gibt ihm keine Bedeutung; Ihr Client entscheidet **nach der kryptografischen Prüfung**, was er bedeutet ([Integrationsleitfaden](INTEGRATION.md#userdefined-verwenden)). Legen Sie in diesem Feld keine Geheimnisse ab: Base64 ist eine Kodierung, keine Verschlüsselung.
 
-Daten gehören zum Benutzerprofil; das Verschieben der Programmdatei überträgt sie nicht. Das Löschen eines Produkts oder Verlaufseintrags widerruft keine ausgelieferte Lizenz. Offline-Lizenzierung stellt keine vertrauenswürdige Uhr bereit.
+Jeder nicht leere benutzerdefinierte Text verwendet Format 2, das ein für das bisherige Format geschriebener Client ablehnt. Aktualisieren Sie zuerst jeden Client, der die Lizenz annehmen soll.
+
+## Eine Lizenz prüfen
+
+Öffnen Sie **Lizenz prüfen** und fügen Sie einen vollständigen Lizenzcode ein oder öffnen Sie einen gespeicherten Eintrag aus dem **Verlauf**. Die Prüfung ändert den gespeicherten Eintrag nicht. Wählen Sie ausdrücklich den öffentlichen Schlüssel eines lokalen Produkts oder fügen Sie einen öffentlichen PEM-Schlüssel aus einer vertrauenswürdigen Quelle ein. Der Inhalt der Lizenz wählt nie den vertrauenswürdigen Schlüssel aus. Private PEM-Schlüssel lehnt dieser Bildschirm ab.
+
+Geben Sie die erwartete Produkt-ID und optional die genaue Hardwarekennung des Clients an. Eine leere erwartete HWID bedeutet bei einer hardwaregebundenen Lizenz **nicht geprüft**; sie bestätigt nicht, dass die Lizenz auf diesem Gerät verwendbar ist. Eine ungebundene Lizenz braucht keine Hardwareprüfung.
+
+Der Bildschirm authentifiziert die RSA-Signatur, bevor er Felder der Lizenz anzeigt, und meldet danach die Prüfungen von Produkt, Hardware und Ablauf getrennt. Echte abgelaufene Lizenzen lassen sich prüfen, bleiben aber abgelaufen. Eine nicht übereinstimmende Signatur kann auf einen falschen Schlüssel oder veränderte Lizenzdaten hindeuten; diese Ursachen lassen sich nicht unterscheiden. Das Ergebnis zeigt die UTC-Zeit der Prüfung. Eine Änderung der Eingaben löscht das Ergebnis; prüfen Sie für einen späteren Zeitpunkt erneut. Bei der Prüfung wird nichts hochgeladen oder gespeichert.
+
+## Ihre Daten
+
+Die Anwendung bewahrt Signaturschlüssel, Lizenzverlauf, Einstellungen und ein Diagnoseprotokoll in einem Datenordner auf, der zu Ihrem Benutzer des Betriebssystems gehört und von der ausführbaren Datei getrennt ist. Die [Datenschutzerklärung](https://gonzaloapps.es/apps/license-generator/legal/privacy-policy/) (auf Englisch) führt auf, was jede Datei enthält und wo sich der Ordner bei der Microsoft-Store-, der portablen Windows- und der Linux-Version befindet. Exportieren Sie eine Sicherung, bevor Sie die Microsoft-Store-Version deinstallieren: Windows entfernt ihren Datenordner mit ihr.
+
+Private Schlüssel und Sicherungen sind **nicht verschlüsselt**. Wer einen privaten Schlüssel erhält, kann Lizenzen ausstellen, die Ihre Anwendungen annehmen.
+
+## Sichern oder umziehen
+
+Exportieren Sie unter **Einstellungen** eine ZIP-Sicherung. Sie enthält private Schlüssel, Verlauf und Einstellungen unverschlüsselt. Bewahren Sie sie in einem Speicher auf, den Sie kontrollieren; verschlüsseln Sie sie mit einer Sicherungslösung Ihrer Wahl, bevor Sie sie weitergeben oder hochladen.
+
+Der Import führt Produkte und Verlauf zusammen. Vorhandene Schlüssel und Verlaufsdaten bleiben erhalten. Hat ein importiertes Produkt andere Schlüssel oder eine Verlaufsdatei einen anderen Inhalt, schlägt der Import fehl, statt etwas zu überschreiben. Gültige importierte Einstellungen ersetzen die aktuellen. Aufbau, Größe und RSA-Schlüsselpaare des Archivs werden vor dem Import geprüft. Exportieren Sie vorher eine Sicherung des aktuellen Profils, wenn Sie dessen Einstellungen später wiederherstellen möchten. Ein Import widerruft oder ersetzt keine bereits an Kunden ausgelieferten Lizenzen.
+
+Das Kopieren nur der ausführbaren Datei auf einen anderen Computer verschiebt weder Schlüssel noch Verlauf, und ein Wechsel zwischen der Store-Version und einer portablen Version beginnt mit einem anderen Ordner: Exportieren Sie eine Sicherung und importieren Sie sie in der neuen Installation.
+
+## Fehlerbehebung
+
+| Symptom | Prüfen |
+| --- | --- |
+| Ein Client lehnt eine Lizenz ab | Folgen Sie den Client-Prüfungen im [Integrationsleitfaden](INTEGRATION.md#fehlerbehebung); prüfen Sie die Lizenz hier mit demselben öffentlichen Schlüssel, Produkt und derselben HWID. |
+| Unerwartet abgelaufen | Das gewählte Datum ist die ausschließende Grenze um 00:00 UTC; es ist nicht der letzte erlaubte Tag. |
+| Der Import meldet einen Konflikt | Behalten Sie die aktuellen Daten und prüfen Sie die Sicherung; ersetzen Sie nicht versehentlich den privaten Schlüssel eines Produkts. |
+| Daten fehlen nach dem Verschieben der ausführbaren Datei oder einer Neuinstallation | Die Daten liegen im Ordner des aktuellen Benutzers für diese Version; importieren Sie die Sicherung in der neuen Installation. |
+
+Die Offline-Ausstellung bietet keinen Fernwiderruf, keine vertrauenswürdige Uhr und keinen Schutz vor verändertem Client-Code. Lesen Sie die [Sicherheitsgrenzen](ARCHITECTURE.md#sicherheitsgrenzen), bevor Sie eine Integrationsstrategie wählen.
 
 [Problem melden](https://github.com/gonzapersonalsite/LicenseGenerator-Docs-/issues) · [Entwicklung unterstützen](https://ko-fi.com/gonzaloapps)

@@ -1,3 +1,7 @@
+// Copyright (c) 2026 Gonzalo Martínez García.
+// License Generator integration example: you may use, copy, modify and distribute this file
+// under section 2 of the License Generator EULA, keeping this notice.
+
 using System;
 using System.IO;
 using System.Security.Cryptography;
@@ -6,13 +10,18 @@ using System.Text.Json;
 
 namespace LicenseGenerator.IntegrationExample;
 
+/// <summary>
+/// The signed claims of a license. RevocationId is the lowercase hexadecimal SHA-256 of the decoded
+/// signature: every encoding of one license has the same identifier, so compare it with a revocation list.
+/// </summary>
 public sealed record VerifiedLicense(
     string AppId,
     string RegistrationName,
     string HardwareId,
     DateTime? ExpirationDate,
     string? UserDefined,
-    int? FormatVersion);
+    int? FormatVersion,
+    string RevocationId);
 
 public enum LicenseInspectionFailure
 {
@@ -129,7 +138,8 @@ public static class LicenseVerifier
             signedBytes = LicenseProtocol.GetSignedBytes(envelope);
             signatureBytes = Convert.FromBase64String(envelope.Signature);
             license = new VerifiedLicense(envelope.AppId, envelope.RegistrationName, envelope.HardwareId,
-                envelope.ExpirationDate, envelope.UserDefined, envelope.FormatVersion);
+                envelope.ExpirationDate, envelope.UserDefined, envelope.FormatVersion,
+                Convert.ToHexString(SHA256.HashData(signatureBytes)).ToLowerInvariant());
             return null;
         }
         catch (NotSupportedException) { return LicenseInspectionFailure.UnsupportedFormat; }

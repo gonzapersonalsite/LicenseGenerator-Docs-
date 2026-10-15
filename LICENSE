@@ -35,14 +35,14 @@ grants no entitlement to support, updates or any other service.
 
 ## 2. Integration examples
 
-The files `docs/examples/LicenseVerifier.cs` and `docs/examples/LicenseProtocol.cs`
-published with the application's documentation may be used, copied, modified
-and distributed, in source or compiled form, as part of your commercial or free
-applications that verify licenses, provided the copyright notice at the top of
-this agreement is kept with copies of them. This permission covers only those
-two files. It grants no right to copy,
-modify or distribute the application itself or any other source code, and it
-prevails over section 3 for those two files.
+The files under `docs/examples` published with the application's
+documentation, which are the C#, Python and Node.js license verifiers, their
+tests and the test vectors, may be used, copied, modified and distributed, in
+source or compiled form, as part of your commercial or free applications that
+verify licenses, provided the copyright notice that a file carries is kept with
+copies of it. This permission covers only those files. It grants no right to
+copy, modify or distribute the application itself or any other source code, and
+it prevails over section 3 for those files.
 
 ## 3. Restrictions
 

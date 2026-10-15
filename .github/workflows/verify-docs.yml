@@ -15,3 +15,19 @@ jobs:
       - name: Check public content and links
         shell: pwsh
         run: ./scripts/verify-public.ps1
+  examples:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - name: Run the Python verifier against the test vectors
+        working-directory: docs/examples/python
+        run: |
+          python3 -m venv "$RUNNER_TEMP/python-example"
+          "$RUNNER_TEMP/python-example/bin/python" -I -m pip install --isolated --no-input --disable-pip-version-check --require-hashes --only-binary :all: -r requirements.txt
+          "$RUNNER_TEMP/python-example/bin/python" -I -m unittest -v
+      - name: Run the Node.js verifier against the test vectors
+        working-directory: docs/examples/node
+        run: node --test license-verifier.test.mjs

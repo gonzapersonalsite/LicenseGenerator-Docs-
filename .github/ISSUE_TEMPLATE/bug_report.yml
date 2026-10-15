@@ -8,7 +8,7 @@ body:
     id: version
     attributes:
       label: App version and installation source
-      placeholder: For example, 1.1.0.0 from Microsoft Store or GitHub
+      placeholder: For example, 1.2.3.0 from Microsoft Store or GitHub
     validations:
       required: true
   - type: input
@@ -17,6 +17,11 @@ body:
       label: Operating system and version
     validations:
       required: true
+  - type: input
+    id: integration
+    attributes:
+      label: Verifier and stack, for a problem in your own application
+      placeholder: For example, the Python verifier in a Windows desktop app
   - type: textarea
     id: reproduction
     attributes:

@@ -1,0 +1,1035 @@
+{
+  "schemaVersion": 1,
+  "notice": "Copyright (c) 2026 Gonzalo Martínez García. Test vectors for License Generator clients, issued with a test key that no real product trusts.",
+  "publicKey": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoEcsx4YOhgvbwkuKQ7w3\nKPOsSdBMDeD8aoLRX5nKuYalhPqLjAVMzhi6iG+ENVUfMLRY2NhfTWqCUg9u6aeM\np6io9/kvRNytD9/qQZHURUzjrFl46N+oYZaPPejRGiz999fgJclQyxIROF0AVHQk\nVk9gjlqCX4PmZ3ITeLq4Z+bZUzcQHqlejxGGumIxIAw64VS5s25CWRtlVxSzv5Kd\nnfKlohiNI6VRHzWBUrICQTF85k3nadxaWdGOHdXstWhFukV9hmLxctRjL7AtSxZ1\npfZh0zQWePWi2juWA5YL5Lu3FsDTSoZ1U4xSltUxrpBJw27B1xBl4Eas0hLozfTM\n0QIDAQAB\n-----END PUBLIC KEY-----\n",
+  "expectedAppId": "Northstar-Studio",
+  "expectedHardwareId": "DEMO-WORKSTATION-001",
+  "checkedAtUtc": "2027-03-15T12:00:00Z",
+  "cases": [
+    {
+      "name": "legacy-bound-perpetual",
+      "description": "Legacy format bound to the expected machine, without expiration.",
+      "issue": {
+        "appId": "Northstar-Studio",
+        "registrationName": "Alex Morgan",
+        "hardwareId": "DEMO-WORKSTATION-001",
+        "expirationDate": null,
+        "userDefined": null
+      },
+      "license": "ewogICJBcHBJZCI6ICJOb3J0aHN0YXItU3R1ZGlvIiwKICAiUmVnaXN0cmF0aW9uTmFtZSI6ICJBbGV4IE1vcmdhbiIsCiAgIkhhcmR3YXJlSWQiOiAiREVNTy1XT1JLU1RBVElPTi0wMDEiLAogICJFeHBpcmF0aW9uRGF0ZSI6IG51bGwsCiAgIlNpZ25hdHVyZSI6ICJtM1kwUEdycTc2dFBIcEpcdTAwMkJrUmhQeW1tb3VOZTRmVWZsa2M1cHhJTk1vdHRkSmhuT29JUjM4dFY3THVvQ2dLSlRKMzk2SzkwUEVOcFQ4TG1cdTAwMkJBTDdhRDRIOG43L28yRGI4cTk0SG56UW5TTWt1bGJPSGluZ280cGE4TzRwZHJvOTVBaWRhSHJra2F2NlBkVlFpRDhPMVI4amVZZ29HbEF1MEtHL0lGRElDS3Z1MnlyM3F2M0U5RFdxMk1CVUNQN1pURkZNdGxsUW5LZE5MV2pBVENwTjBFUXlwbjNuQ1BzbTZSd1ZFYklRek5IMkRxOGZRU014d2lMd1ZEUlFlenRGOTV2bWhWSW1wbktzN0M1dHBwVElscE82aUFzRG5hZ0JRbEtBNlZwMndkRm44ZDduVmVISWFKWmZsdnNVdDRsM25nMjhIa3VjVUZWSG4vNG8yRTlBUzB3PT0iCn0=",
+      "expected": {
+        "result": "authenticated",
+        "valid": true,
+        "product": "match",
+        "hardware": "match",
+        "expiration": "never",
+        "formatVersion": 1,
+        "appId": "Northstar-Studio",
+        "registrationName": "Alex Morgan",
+        "hardwareId": "DEMO-WORKSTATION-001",
+        "expirationDate": null,
+        "userDefined": null,
+        "revocationId": "ab5962e8edab036c980ddff74426e4e194e8e4210b2bd8430fa1996f5d2f8076"
+      }
+    },
+    {
+      "name": "legacy-unbound-dated",
+      "description": "Empty hardware ID: valid on any machine until 00:00 UTC on 2027-06-11.",
+      "issue": {
+        "appId": "Northstar-Studio",
+        "registrationName": "Jordan Lee",
+        "hardwareId": "",
+        "expirationDate": "2027-06-11",
+        "userDefined": null
+      },
+      "license": "ewogICJBcHBJZCI6ICJOb3J0aHN0YXItU3R1ZGlvIiwKICAiUmVnaXN0cmF0aW9uTmFtZSI6ICJKb3JkYW4gTGVlIiwKICAiSGFyZHdhcmVJZCI6ICIiLAogICJFeHBpcmF0aW9uRGF0ZSI6ICIyMDI3LTA2LTExVDAwOjAwOjAwIiwKICAiU2lnbmF0dXJlIjogImpGNjZiNmJyR1JTNkpPUDBkcGd1UFNOWWlDRFR0b2l6b3oxUVhraVx1MDAyQlFXTVx1MDAyQmFieHpmc3ZIQmFVcmF6ZEJueWFhZFVyTE9NQk5QM0d1TGVtd3NMR3MxNWtvY1Jlc3RXamdyTzNPM0EzYWVReU1IU1pvTmtOWS96TjRTTUVsbzk0T2tXRWVEcUswUzdGNVlaQm1UWkQzbXpFWjk3Q0FYSmovRTZBWmp6M1x1MDAyQnlvYUMvaVl1R3dEeWNOaHBhZXNjTEd6SU5lWlx1MDAyQlZPVlB5djdDcmVJTDlaM2FKLzJET0pKeE1SL1B2WG4ya1RUUE9FU2FYUkhwNS9yaDh0N09sOXRCeEd4bUw5WHZaSzlIMTQ5ODZBaVlOSnI0RkhrdmFRXHUwMDJCNFJYVlVtTmNQc0pTWVJsUVRYbFRJNzZLb1NvUjZLTnhnTmRlUlx1MDAyQmdrTmpuMHd3VWRvbnlxNi9xY3JtQT09Igp9",
+      "expected": {
+        "result": "authenticated",
+        "valid": true,
+        "product": "match",
+        "hardware": "not-bound",
+        "expiration": "current",
+        "formatVersion": 1,
+        "appId": "Northstar-Studio",
+        "registrationName": "Jordan Lee",
+        "hardwareId": "",
+        "expirationDate": "2027-06-11",
+        "userDefined": null,
+        "revocationId": "8da3349c434a9df9060b98f42a11c2d221b407d6825c503a0d1a12be8c71d886"
+      }
+    },
+    {
+      "name": "legacy-expires-at-check-date",
+      "description": "Expires at 00:00 UTC on the check date, so it is already expired at 12:00 UTC that day.",
+      "issue": {
+        "appId": "Northstar-Studio",
+        "registrationName": "Alex Morgan",
+        "hardwareId": "DEMO-WORKSTATION-001",
+        "expirationDate": "2027-03-15",
+        "userDefined": null
+      },
+      "license": "ewogICJBcHBJZCI6ICJOb3J0aHN0YXItU3R1ZGlvIiwKICAiUmVnaXN0cmF0aW9uTmFtZSI6ICJBbGV4IE1vcmdhbiIsCiAgIkhhcmR3YXJlSWQiOiAiREVNTy1XT1JLU1RBVElPTi0wMDEiLAogICJFeHBpcmF0aW9uRGF0ZSI6ICIyMDI3LTAzLTE1VDAwOjAwOjAwIiwKICAiU2lnbmF0dXJlIjogIkdkVVI5OE1kNFNkVy9UTWlQRkxTYXFWYjU0WlVIaVFPbENTb0J5a2gzdEVaY2hOd0pOaUpGZTNRYnVHRjkzUzl2Q0haOWk3QjRUcVR1Vm9tL1k5ZlpGcDhnbWdiUEdGQTNTV21yQ0RvdFBWM3c1b1UwMlZuV3pER2w2RUZPV2JiNzV2UlJscnV6T0dPSm9NSmRHUlJ3eXZhUTZNeE1xTE1acDZRQk1RcWxZcThLQ3lrL09EMGNcdTAwMkJzeE1zYzB6eWtobmtZaDlnek8vdnA5UlpSXHUwMDJCTVhnRnVTYUR1VlNaamx4RXU4N3hOL2RMc2JDWXJMalVVQ29RUk9zQXFmQnhvU004RVpXbzNjaTRlbU52b29aM0V6VlBhd2tINU5WblpEME9oQmlEbGk1azlKS0llaGNDRmNXamRxZEd0UkljakY2WWhEQk1PUnVPOTEwSDgwdi9QM25iZnc9PSIKfQ==",
+      "expected": {
+        "result": "authenticated",
+        "valid": false,
+        "product": "match",
+        "hardware": "match",
+        "expiration": "expired",
+        "formatVersion": 1,
+        "appId": "Northstar-Studio",
+        "registrationName": "Alex Morgan",
+        "hardwareId": "DEMO-WORKSTATION-001",
+        "expirationDate": "2027-03-15",
+        "userDefined": null,
+        "revocationId": "54e5649adf1f7e900a9663a2251d329ff74aa70dab1e053198a3ced40bd0c542"
+      }
+    },
+    {
+      "name": "legacy-expires-next-day",
+      "description": "Expires at 00:00 UTC on the day after the check date, so it is still current.",
+      "issue": {
+        "appId": "Northstar-Studio",
+        "registrationName": "Alex Morgan",
+        "hardwareId": "DEMO-WORKSTATION-001",
+        "expirationDate": "2027-03-16",
+        "userDefined": null
+      },
+      "license": "ewogICJBcHBJZCI6ICJOb3J0aHN0YXItU3R1ZGlvIiwKICAiUmVnaXN0cmF0aW9uTmFtZSI6ICJBbGV4IE1vcmdhbiIsCiAgIkhhcmR3YXJlSWQiOiAiREVNTy1XT1JLU1RBVElPTi0wMDEiLAogICJFeHBpcmF0aW9uRGF0ZSI6ICIyMDI3LTAzLTE2VDAwOjAwOjAwIiwKICAiU2lnbmF0dXJlIjogIlc0TXNKcUJIanZ1THY1VzFZbERiRTdBdlRFSnQ0L3cvbGttTDZcdTAwMkJMVTh4SkJ4MFBkVkthXHUwMDJCbVx1MDAyQnhkOUswcW56bE9VV0hvRHI4WWJDdmpMWlpDUDVqbkY3dlViVWZob1RXS284YjFxTDVaa0FVV2ZOazNWMGk5RFNRVUg4Zmc5ZUNlNnhLM1IwM09xa1dLeTQ1eTJKS0JKSzBMS0s2a3JIRkVpaDlRN3lSYTR2MHlOV2kzbmVVd1MxMFo4YlVlWlx1MDAyQlZHVkxoOVlLU0dBY3d6VzBKUFR0Y09vcWpJcGdxWDZTa0NtY3B6V256MkhtM3RGaDcyaXFyNGNCaTZvTFhYd3VFdWtSREtxS25CeTlrM0d3RFRiWHVMcjJnVEdxa2VoXHUwMDJCSUY1c3lma2hkRG1WU0xZME85ZWduN01OVC9CVk9aM3gyV281d1dQS01ZaUhwWWt4dERIWVR6c0E9PSIKfQ==",
+      "expected": {
+        "result": "authenticated",
+        "valid": true,
+        "product": "match",
+        "hardware": "match",
+        "expiration": "current",
+        "formatVersion": 1,
+        "appId": "Northstar-Studio",
+        "registrationName": "Alex Morgan",
+        "hardwareId": "DEMO-WORKSTATION-001",
+        "expirationDate": "2027-03-16",
+        "userDefined": null,
+        "revocationId": "877502c47644a55436a2f2e2089a82d4abc2ce8a6559d772bab29031f028ca5a"
+      }
+    },
+    {
+      "name": "format2-user-defined",
+      "description": "Format 2 with signed UserDefined text.",
+      "issue": {
+        "appId": "Northstar-Studio",
+        "registrationName": "Alex Morgan",
+        "hardwareId": "DEMO-WORKSTATION-001",
+        "expirationDate": null,
+        "userDefined": "features=reports,export;plan=professional"
+      },
+      "license": "ewogICJBcHBJZCI6ICJOb3J0aHN0YXItU3R1ZGlvIiwKICAiUmVnaXN0cmF0aW9uTmFtZSI6ICJBbGV4IE1vcmdhbiIsCiAgIkhhcmR3YXJlSWQiOiAiREVNTy1XT1JLU1RBVElPTi0wMDEiLAogICJFeHBpcmF0aW9uRGF0ZSI6IG51bGwsCiAgIlNpZ25hdHVyZSI6ICJrVTFxU2owYVBVbEw2ZkQybHJ4Rnh5cjlESlVcdTAwMkJWWEZjTmRheEd3UkpEU044WXJMeGxiaHYvSGdEU2RtU1VINXRvaFl1eTFWcU12SjVKNU1HUXl2Y25PdWxETEtuTm9PRjlxam5abWdBXHUwMDJCaTNId1R4NUF0U1F3S2s5ODVRU0JLSWtKbXlGUmRqQWYzYzNMRjRqUVcyMlBjRTZWSDdcdTAwMkJuZHBHM2o2UjBGQS9SY3gyNnBjUVlkTmVxMzMzSXg3aWFvMnJObG1acjhqcjE1eldWMDBUdmZrZjh6S3RqbGR3THpCRWRaaXUwdjdsaklCekZUcklcdTAwMkIwS05VZHk5eG0wdG9aa2ZpRW5CMEZwb3Y1VzNQeG4zZThSNWw3XHUwMDJCMTlyeGp4ZTlPV0dSaUoyZzlMTXpwU2Z6ZDBYWUM1WEdzb0ZcdTAwMkJCZjBjTWxLNGpHTlx1MDAyQmpiRmRrdDlmaTRYZVpMdz09IiwKICAiRm9ybWF0VmVyc2lvbiI6IDIsCiAgIlVzZXJEZWZpbmVkIjogImZlYXR1cmVzPXJlcG9ydHMsZXhwb3J0O3BsYW49cHJvZmVzc2lvbmFsIgp9",
+      "expected": {
+        "result": "authenticated",
+        "valid": true,
+        "product": "match",
+        "hardware": "match",
+        "expiration": "never",
+        "formatVersion": 2,
+        "appId": "Northstar-Studio",
+        "registrationName": "Alex Morgan",
+        "hardwareId": "DEMO-WORKSTATION-001",
+        "expirationDate": null,
+        "userDefined": "features=reports,export;plan=professional",
+        "revocationId": "875542c6970dc3b23962209fbe01a56287522ebaf969af2452b9e696fff12ecf"
+      }
+    },
+    {
+      "name": "format2-separator-and-unicode",
+      "description": "Format 2 allows the legacy separator and any Unicode text in its fields.",
+      "issue": {
+        "appId": "Northstar-Studio",
+        "registrationName": "Zoë | Müller 李",
+        "hardwareId": "DEMO-WORKSTATION-001",
+        "expirationDate": "2027-12-31",
+        "userDefined": "seats=5|region=EU"
+      },
+      "license": "ewogICJBcHBJZCI6ICJOb3J0aHN0YXItU3R1ZGlvIiwKICAiUmVnaXN0cmF0aW9uTmFtZSI6ICJab1x1MDBFQiB8IE1cdTAwRkNsbGVyIFx1Njc0RSIsCiAgIkhhcmR3YXJlSWQiOiAiREVNTy1XT1JLU1RBVElPTi0wMDEiLAogICJFeHBpcmF0aW9uRGF0ZSI6ICIyMDI3LTEyLTMxVDAwOjAwOjAwIiwKICAiU2lnbmF0dXJlIjogIkxrZlQvT0tzRGQyblRPQlZtRzNRQTdnMTlYRWRhNERxdkxkdUhBT1NTb2ZqanVOT3d0RVZPODlOQldqQWlwZFczaG9HQ0RUU2hBSkFBb0pPS25DSlJlU1FOeU9ycFFncFJVZ2EzSFdBSUlTOW5wcWJcdTAwMkJhS1h5OEVqUlx1MDAyQnJnRndKOEFpdFpqZDVKZVpLbm1ET1pUZ1RHeEpJOHNGcml3UTZXOWpRMy8wUWhmWkoxUldTdFhoRHhQT0hzVFc5aDZMUVRzdW9nbFdwcTRuMXhhT3NxMUZ0azlFcWN6bGVIWWk0anFBQ0hSUVd5ZVlFL0xkWlVrVXQyb3Z4MHBmeFUzTnNVNnNVcGZDMk1rUGE2WFp4dTFSOFlWYmJrV1BvOHdHbkVxNWtCM1c3Q1RUYU04UWU2YkU3eGFZWXRtOTEvZHd6TVZyYTlDdTRYY3AwMVNveUticS9qTmc9PSIsCiAgIkZvcm1hdFZlcnNpb24iOiAyLAogICJVc2VyRGVmaW5lZCI6ICJzZWF0cz01fHJlZ2lvbj1FVSIKfQ==",
+      "expected": {
+        "result": "authenticated",
+        "valid": true,
+        "product": "match",
+        "hardware": "match",
+        "expiration": "current",
+        "formatVersion": 2,
+        "appId": "Northstar-Studio",
+        "registrationName": "Zoë | Müller 李",
+        "hardwareId": "DEMO-WORKSTATION-001",
+        "expirationDate": "2027-12-31",
+        "userDefined": "seats=5|region=EU",
+        "revocationId": "14142ab76f73d8769bb9edff62da912d0199f90070b13c74bdaa41725effa989"
+      }
+    },
+    {
+      "name": "bound-to-another-machine",
+      "description": "Authentic, but bound to a different hardware ID.",
+      "issue": {
+        "appId": "Northstar-Studio",
+        "registrationName": "Alex Morgan",
+        "hardwareId": "OTHER-WORKSTATION-002",
+        "expirationDate": null,
+        "userDefined": null
+      },
+      "license": "ewogICJBcHBJZCI6ICJOb3J0aHN0YXItU3R1ZGlvIiwKICAiUmVnaXN0cmF0aW9uTmFtZSI6ICJBbGV4IE1vcmdhbiIsCiAgIkhhcmR3YXJlSWQiOiAiT1RIRVItV09SS1NUQVRJT04tMDAyIiwKICAiRXhwaXJhdGlvbkRhdGUiOiBudWxsLAogICJTaWduYXR1cmUiOiAiYXdYNUNUSjc1bnVCbTdXZkNRYjVzblRZWVZKVGhJQWw0VE9mUU9qdUpUVUd3V1pZbEh0NDhPV1ZOc0xQNjdNOG5FMHY2UU5DUW9xcWFCdHJTY3NPUG1mSERXekVLUjhER0VHOTM2bGgxdWdBYmdtbmR6Q3BSVkpuVFRUeU5OS0xQYlZhQnhMMzNFaWFDU1NQLzE4SWRsTldya2UwWFU2MWRrUFx1MDAyQmJvNXZnUGgybGY2MFhDSWpYQ3BEb0QvQnoxQW1vY2s1UUduZXFLbjhFWFQyQndwcmFOVUY4N2RZY0gxNmtSaldhWVx1MDAyQlZVSXdQblR5YkVsL0lGU243d0VZSzVDaG94clV1dG5UNmpYdk16VkZDMkY4Q3Z3eFJUUWlsWDhBOW9RUmlLWWJYS25MekQzekhxSFdQU1p1Z2FVMTQ3d20xUmpmMnI1WE1veHFmR3dlWjdZUmJNdz09Igp9",
+      "expected": {
+        "result": "authenticated",
+        "valid": false,
+        "product": "match",
+        "hardware": "mismatch",
+        "expiration": "never",
+        "formatVersion": 1,
+        "appId": "Northstar-Studio",
+        "registrationName": "Alex Morgan",
+        "hardwareId": "OTHER-WORKSTATION-002",
+        "expirationDate": null,
+        "userDefined": null,
+        "revocationId": "b0dc642a6fc34da4fa6ebc274526742aa9ce2e668dcdd42d3e10920db9e7a4f1"
+      }
+    },
+    {
+      "name": "issued-for-another-product",
+      "description": "Authentic, but issued for another product with the same key.",
+      "issue": {
+        "appId": "Other-Product",
+        "registrationName": "Alex Morgan",
+        "hardwareId": "DEMO-WORKSTATION-001",
+        "expirationDate": null,
+        "userDefined": null
+      },
+      "license": "ewogICJBcHBJZCI6ICJPdGhlci1Qcm9kdWN0IiwKICAiUmVnaXN0cmF0aW9uTmFtZSI6ICJBbGV4IE1vcmdhbiIsCiAgIkhhcmR3YXJlSWQiOiAiREVNTy1XT1JLU1RBVElPTi0wMDEiLAogICJFeHBpcmF0aW9uRGF0ZSI6IG51bGwsCiAgIlNpZ25hdHVyZSI6ICJpeWlycENMMU02T3N6a05RRUc4eGlQcThDd3NjcXNcdTAwMkJGNEZQY0FHejczZlV6Wk9ScVVET1JmSUcvT2k5djhXdTFidy95c0tScWZQaVU3UVFFMENHRkNHVWVWTmxcdTAwMkJGU1dKeC9peXJxc3Rzcm9wc0o3a3JaeFhHcTBWQ1VkRzBvWTJxcW9kby9BdjV0Y1lCSmRrXHUwMDJCT2ZIZmNHYW9iRzZQMC9WSkNSRHJpXHUwMDJCcG1jMWxONGNpOHREbzdWVXlhV0lOUUJUaDN1NDZlWlEzWnV6WTJqZVZyM3Z0L2ZRRGtsSlhmU1lGYThmMy95b0xSOC9LMzhrMndBM2l0U0VWcXRtN0NuVldPWjNUOWVROVJSVlhZZ1lHSFx1MDAyQkswWTdlcXpXUkczeXQxUUxrUDluVU53eWdtVEZNR3NDRFdrMlIyS1VJRUVPVVlkakFXT29jZjJZYzJCUWRsWnNBYWd3PT0iCn0=",
+      "expected": {
+        "result": "authenticated",
+        "valid": false,
+        "product": "mismatch",
+        "hardware": "match",
+        "expiration": "never",
+        "formatVersion": 1,
+        "appId": "Other-Product",
+        "registrationName": "Alex Morgan",
+        "hardwareId": "DEMO-WORKSTATION-001",
+        "expirationDate": null,
+        "userDefined": null,
+        "revocationId": "c32cdb21695abd35c4edea9dd24d6759d88e7db7730031647ac09d270181d579"
+      }
+    },
+    {
+      "name": "tampered-registration-name",
+      "description": "The customer name was changed after signing.",
+      "derive": {
+        "from": "legacy-bound-perpetual",
+        "replace": "\"Alex Morgan\"",
+        "with": "\"Mallory\""
+      },
+      "license": "ewogICJBcHBJZCI6ICJOb3J0aHN0YXItU3R1ZGlvIiwKICAiUmVnaXN0cmF0aW9uTmFtZSI6ICJNYWxsb3J5IiwKICAiSGFyZHdhcmVJZCI6ICJERU1PLVdPUktTVEFUSU9OLTAwMSIsCiAgIkV4cGlyYXRpb25EYXRlIjogbnVsbCwKICAiU2lnbmF0dXJlIjogIm0zWTBQR3JxNzZ0UEhwSlx1MDAyQmtSaFB5bW1vdU5lNGZVZmxrYzVweElOTW90dGRKaG5Pb0lSMzh0VjdMdW9DZ0tKVEozOTZLOTBQRU5wVDhMbVx1MDAyQkFMN2FENEg4bjcvbzJEYjhxOTRIbnpRblNNa3VsYk9IaW5nbzRwYThPNHBkcm85NUFpZGFIcmtrYXY2UGRWUWlEOE8xUjhqZVlnb0dsQXUwS0cvSUZESUNLdnUyeXIzcXYzRTlEV3EyTUJVQ1A3WlRGRk10bGxRbktkTkxXakFUQ3BOMEVReXBuM25DUHNtNlJ3VkViSVF6TkgyRHE4ZlFTTXh3aUx3VkRSUWV6dEY5NXZtaFZJbXBuS3M3QzV0cHBUSWxwTzZpQXNEbmFnQlFsS0E2VnAyd2RGbjhkN25WZUhJYUpaZmx2c1V0NGwzbmcyOEhrdWNVRlZIbi80bzJFOUFTMHc9PSIKfQ==",
+      "expected": {
+        "result": "rejected",
+        "reason": "signature-mismatch"
+      }
+    },
+    {
+      "name": "tampered-expiration",
+      "description": "An expired license whose date was moved forward after signing.",
+      "derive": {
+        "from": "legacy-expires-at-check-date",
+        "replace": "2027-03-15",
+        "with": "2099-03-15"
+      },
+      "license": "ewogICJBcHBJZCI6ICJOb3J0aHN0YXItU3R1ZGlvIiwKICAiUmVnaXN0cmF0aW9uTmFtZSI6ICJBbGV4IE1vcmdhbiIsCiAgIkhhcmR3YXJlSWQiOiAiREVNTy1XT1JLU1RBVElPTi0wMDEiLAogICJFeHBpcmF0aW9uRGF0ZSI6ICIyMDk5LTAzLTE1VDAwOjAwOjAwIiwKICAiU2lnbmF0dXJlIjogIkdkVVI5OE1kNFNkVy9UTWlQRkxTYXFWYjU0WlVIaVFPbENTb0J5a2gzdEVaY2hOd0pOaUpGZTNRYnVHRjkzUzl2Q0haOWk3QjRUcVR1Vm9tL1k5ZlpGcDhnbWdiUEdGQTNTV21yQ0RvdFBWM3c1b1UwMlZuV3pER2w2RUZPV2JiNzV2UlJscnV6T0dPSm9NSmRHUlJ3eXZhUTZNeE1xTE1acDZRQk1RcWxZcThLQ3lrL09EMGNcdTAwMkJzeE1zYzB6eWtobmtZaDlnek8vdnA5UlpSXHUwMDJCTVhnRnVTYUR1VlNaamx4RXU4N3hOL2RMc2JDWXJMalVVQ29RUk9zQXFmQnhvU004RVpXbzNjaTRlbU52b29aM0V6VlBhd2tINU5WblpEME9oQmlEbGk1azlKS0llaGNDRmNXamRxZEd0UkljakY2WWhEQk1PUnVPOTEwSDgwdi9QM25iZnc9PSIKfQ==",
+      "expected": {
+        "result": "rejected",
+        "reason": "signature-mismatch"
+      }
+    },
+    {
+      "name": "legacy-separator-in-field",
+      "description": "A legacy-format field containing the separator; rejected before the signature is checked.",
+      "derive": {
+        "from": "legacy-bound-perpetual",
+        "replace": "\"Alex Morgan\"",
+        "with": "\"Alex|Morgan\""
+      },
+      "license": "ewogICJBcHBJZCI6ICJOb3J0aHN0YXItU3R1ZGlvIiwKICAiUmVnaXN0cmF0aW9uTmFtZSI6ICJBbGV4fE1vcmdhbiIsCiAgIkhhcmR3YXJlSWQiOiAiREVNTy1XT1JLU1RBVElPTi0wMDEiLAogICJFeHBpcmF0aW9uRGF0ZSI6IG51bGwsCiAgIlNpZ25hdHVyZSI6ICJtM1kwUEdycTc2dFBIcEpcdTAwMkJrUmhQeW1tb3VOZTRmVWZsa2M1cHhJTk1vdHRkSmhuT29JUjM4dFY3THVvQ2dLSlRKMzk2SzkwUEVOcFQ4TG1cdTAwMkJBTDdhRDRIOG43L28yRGI4cTk0SG56UW5TTWt1bGJPSGluZ280cGE4TzRwZHJvOTVBaWRhSHJra2F2NlBkVlFpRDhPMVI4amVZZ29HbEF1MEtHL0lGRElDS3Z1MnlyM3F2M0U5RFdxMk1CVUNQN1pURkZNdGxsUW5LZE5MV2pBVENwTjBFUXlwbjNuQ1BzbTZSd1ZFYklRek5IMkRxOGZRU014d2lMd1ZEUlFlenRGOTV2bWhWSW1wbktzN0M1dHBwVElscE82aUFzRG5hZ0JRbEtBNlZwMndkRm44ZDduVmVISWFKWmZsdnNVdDRsM25nMjhIa3VjVUZWSG4vNG8yRTlBUzB3PT0iCn0=",
+      "expected": {
+        "result": "rejected",
+        "reason": "malformed"
+      }
+    },
+    {
+      "name": "unsupported-format-version",
+      "description": "A format version this verifier does not know.",
+      "derive": {
+        "from": "format2-user-defined",
+        "replace": "\"FormatVersion\": 2",
+        "with": "\"FormatVersion\": 3"
+      },
+      "license": "ewogICJBcHBJZCI6ICJOb3J0aHN0YXItU3R1ZGlvIiwKICAiUmVnaXN0cmF0aW9uTmFtZSI6ICJBbGV4IE1vcmdhbiIsCiAgIkhhcmR3YXJlSWQiOiAiREVNTy1XT1JLU1RBVElPTi0wMDEiLAogICJFeHBpcmF0aW9uRGF0ZSI6IG51bGwsCiAgIlNpZ25hdHVyZSI6ICJrVTFxU2owYVBVbEw2ZkQybHJ4Rnh5cjlESlVcdTAwMkJWWEZjTmRheEd3UkpEU044WXJMeGxiaHYvSGdEU2RtU1VINXRvaFl1eTFWcU12SjVKNU1HUXl2Y25PdWxETEtuTm9PRjlxam5abWdBXHUwMDJCaTNId1R4NUF0U1F3S2s5ODVRU0JLSWtKbXlGUmRqQWYzYzNMRjRqUVcyMlBjRTZWSDdcdTAwMkJuZHBHM2o2UjBGQS9SY3gyNnBjUVlkTmVxMzMzSXg3aWFvMnJObG1acjhqcjE1eldWMDBUdmZrZjh6S3RqbGR3THpCRWRaaXUwdjdsaklCekZUcklcdTAwMkIwS05VZHk5eG0wdG9aa2ZpRW5CMEZwb3Y1VzNQeG4zZThSNWw3XHUwMDJCMTlyeGp4ZTlPV0dSaUoyZzlMTXpwU2Z6ZDBYWUM1WEdzb0ZcdTAwMkJCZjBjTWxLNGpHTlx1MDAyQmpiRmRrdDlmaTRYZVpMdz09IiwKICAiRm9ybWF0VmVyc2lvbiI6IDMsCiAgIlVzZXJEZWZpbmVkIjogImZlYXR1cmVzPXJlcG9ydHMsZXhwb3J0O3BsYW49cHJvZmVzc2lvbmFsIgp9",
+      "expected": {
+        "result": "rejected",
+        "reason": "unsupported-format"
+      }
+    },
+    {
+      "name": "unsigned-property-at-nesting-limit",
+      "description": "An unsigned property that nests the JSON to its 8-level limit; verifiers ignore it.",
+      "derive": {
+        "from": "legacy-bound-perpetual",
+        "replace": "{\n  \"AppId\"",
+        "with": "{\n  \"Notes\": [[[[[[[\"unsigned\"]]]]]]],\n  \"AppId\""
+      },
+      "license": "ewogICJOb3RlcyI6IFtbW1tbW1sidW5zaWduZWQiXV1dXV1dXSwKICAiQXBwSWQiOiAiTm9ydGhzdGFyLVN0dWRpbyIsCiAgIlJlZ2lzdHJhdGlvbk5hbWUiOiAiQWxleCBNb3JnYW4iLAogICJIYXJkd2FyZUlkIjogIkRFTU8tV09SS1NUQVRJT04tMDAxIiwKICAiRXhwaXJhdGlvbkRhdGUiOiBudWxsLAogICJTaWduYXR1cmUiOiAibTNZMFBHcnE3NnRQSHBKXHUwMDJCa1JoUHltbW91TmU0ZlVmbGtjNXB4SU5Nb3R0ZEpobk9vSVIzOHRWN0x1b0NnS0pUSjM5Nks5MFBFTnBUOExtXHUwMDJCQUw3YUQ0SDhuNy9vMkRiOHE5NEhuelFuU01rdWxiT0hpbmdvNHBhOE80cGRybzk1QWlkYUhya2thdjZQZFZRaUQ4TzFSOGplWWdvR2xBdTBLRy9JRkRJQ0t2dTJ5cjNxdjNFOURXcTJNQlVDUDdaVEZGTXRsbFFuS2ROTFdqQVRDcE4wRVF5cG4zbkNQc202UndWRWJJUXpOSDJEcThmUVNNeHdpTHdWRFJRZXp0Rjk1dm1oVkltcG5LczdDNXRwcFRJbHBPNmlBc0RuYWdCUWxLQTZWcDJ3ZEZuOGQ3blZlSElhSlpmbHZzVXQ0bDNuZzI4SGt1Y1VGVkhuLzRvMkU5QVMwdz09Igp9",
+      "expected": {
+        "result": "authenticated",
+        "valid": true,
+        "product": "match",
+        "hardware": "match",
+        "expiration": "never",
+        "formatVersion": 1,
+        "appId": "Northstar-Studio",
+        "registrationName": "Alex Morgan",
+        "hardwareId": "DEMO-WORKSTATION-001",
+        "expirationDate": null,
+        "userDefined": null,
+        "revocationId": "ab5962e8edab036c980ddff74426e4e194e8e4210b2bd8430fa1996f5d2f8076"
+      }
+    },
+    {
+      "name": "nesting-beyond-limit",
+      "description": "The same unsigned property nested one level beyond the 8-level limit.",
+      "derive": {
+        "from": "legacy-bound-perpetual",
+        "replace": "{\n  \"AppId\"",
+        "with": "{\n  \"Notes\": [[[[[[[[\"unsigned\"]]]]]]]],\n  \"AppId\""
+      },
+      "license": "ewogICJOb3RlcyI6IFtbW1tbW1tbInVuc2lnbmVkIl1dXV1dXV1dLAogICJBcHBJZCI6ICJOb3J0aHN0YXItU3R1ZGlvIiwKICAiUmVnaXN0cmF0aW9uTmFtZSI6ICJBbGV4IE1vcmdhbiIsCiAgIkhhcmR3YXJlSWQiOiAiREVNTy1XT1JLU1RBVElPTi0wMDEiLAogICJFeHBpcmF0aW9uRGF0ZSI6IG51bGwsCiAgIlNpZ25hdHVyZSI6ICJtM1kwUEdycTc2dFBIcEpcdTAwMkJrUmhQeW1tb3VOZTRmVWZsa2M1cHhJTk1vdHRkSmhuT29JUjM4dFY3THVvQ2dLSlRKMzk2SzkwUEVOcFQ4TG1cdTAwMkJBTDdhRDRIOG43L28yRGI4cTk0SG56UW5TTWt1bGJPSGluZ280cGE4TzRwZHJvOTVBaWRhSHJra2F2NlBkVlFpRDhPMVI4amVZZ29HbEF1MEtHL0lGRElDS3Z1MnlyM3F2M0U5RFdxMk1CVUNQN1pURkZNdGxsUW5LZE5MV2pBVENwTjBFUXlwbjNuQ1BzbTZSd1ZFYklRek5IMkRxOGZRU014d2lMd1ZEUlFlenRGOTV2bWhWSW1wbktzN0M1dHBwVElscE82aUFzRG5hZ0JRbEtBNlZwMndkRm44ZDduVmVISWFKWmZsdnNVdDRsM25nMjhIa3VjVUZWSG4vNG8yRTlBUzB3PT0iCn0=",
+      "expected": {
+        "result": "rejected",
+        "reason": "malformed"
+      }
+    },
+    {
+      "name": "byte-order-mark",
+      "description": "The license JSON starts with a UTF-8 byte order mark, which JSON does not allow.",
+      "derive": {
+        "from": "legacy-bound-perpetual",
+        "replace": "{\n  \"AppId\"",
+        "with": "\ufeff{\n  \"AppId\""
+      },
+      "license": "77u/ewogICJBcHBJZCI6ICJOb3J0aHN0YXItU3R1ZGlvIiwKICAiUmVnaXN0cmF0aW9uTmFtZSI6ICJBbGV4IE1vcmdhbiIsCiAgIkhhcmR3YXJlSWQiOiAiREVNTy1XT1JLU1RBVElPTi0wMDEiLAogICJFeHBpcmF0aW9uRGF0ZSI6IG51bGwsCiAgIlNpZ25hdHVyZSI6ICJtM1kwUEdycTc2dFBIcEpcdTAwMkJrUmhQeW1tb3VOZTRmVWZsa2M1cHhJTk1vdHRkSmhuT29JUjM4dFY3THVvQ2dLSlRKMzk2SzkwUEVOcFQ4TG1cdTAwMkJBTDdhRDRIOG43L28yRGI4cTk0SG56UW5TTWt1bGJPSGluZ280cGE4TzRwZHJvOTVBaWRhSHJra2F2NlBkVlFpRDhPMVI4amVZZ29HbEF1MEtHL0lGRElDS3Z1MnlyM3F2M0U5RFdxMk1CVUNQN1pURkZNdGxsUW5LZE5MV2pBVENwTjBFUXlwbjNuQ1BzbTZSd1ZFYklRek5IMkRxOGZRU014d2lMd1ZEUlFlenRGOTV2bWhWSW1wbktzN0M1dHBwVElscE82aUFzRG5hZ0JRbEtBNlZwMndkRm44ZDduVmVISWFKWmZsdnNVdDRsM25nMjhIa3VjVUZWSG4vNG8yRTlBUzB3PT0iCn0=",
+      "expected": {
+        "result": "rejected",
+        "reason": "malformed"
+      }
+    },
+    {
+      "name": "signature-with-spaces",
+      "description": "Spaces inserted into the Base64 signature; the license and its revocation identifier are unchanged.",
+      "derive": {
+        "from": "legacy-bound-perpetual",
+        "replace": "\"Signature\": \"m3Y0PGrq",
+        "with": "\"Signature\": \"m3Y0 PGrq"
+      },
+      "license": "ewogICJBcHBJZCI6ICJOb3J0aHN0YXItU3R1ZGlvIiwKICAiUmVnaXN0cmF0aW9uTmFtZSI6ICJBbGV4IE1vcmdhbiIsCiAgIkhhcmR3YXJlSWQiOiAiREVNTy1XT1JLU1RBVElPTi0wMDEiLAogICJFeHBpcmF0aW9uRGF0ZSI6IG51bGwsCiAgIlNpZ25hdHVyZSI6ICJtM1kwIFBHcnE3NnRQSHBKXHUwMDJCa1JoUHltbW91TmU0ZlVmbGtjNXB4SU5Nb3R0ZEpobk9vSVIzOHRWN0x1b0NnS0pUSjM5Nks5MFBFTnBUOExtXHUwMDJCQUw3YUQ0SDhuNy9vMkRiOHE5NEhuelFuU01rdWxiT0hpbmdvNHBhOE80cGRybzk1QWlkYUhya2thdjZQZFZRaUQ4TzFSOGplWWdvR2xBdTBLRy9JRkRJQ0t2dTJ5cjNxdjNFOURXcTJNQlVDUDdaVEZGTXRsbFFuS2ROTFdqQVRDcE4wRVF5cG4zbkNQc202UndWRWJJUXpOSDJEcThmUVNNeHdpTHdWRFJRZXp0Rjk1dm1oVkltcG5LczdDNXRwcFRJbHBPNmlBc0RuYWdCUWxLQTZWcDJ3ZEZuOGQ3blZlSElhSlpmbHZzVXQ0bDNuZzI4SGt1Y1VGVkhuLzRvMkU5QVMwdz09Igp9",
+      "expected": {
+        "result": "authenticated",
+        "valid": true,
+        "product": "match",
+        "hardware": "match",
+        "expiration": "never",
+        "formatVersion": 1,
+        "appId": "Northstar-Studio",
+        "registrationName": "Alex Morgan",
+        "hardwareId": "DEMO-WORKSTATION-001",
+        "expirationDate": null,
+        "userDefined": null,
+        "revocationId": "ab5962e8edab036c980ddff74426e4e194e8e4210b2bd8430fa1996f5d2f8076"
+      }
+    },
+    {
+      "name": "signature-with-no-break-space",
+      "description": "Only spaces, tabs, carriage returns and line feeds are ignored inside the Signature text; a no-break space is malformed.",
+      "derive": {
+        "from": "legacy-bound-perpetual",
+        "replace": "\"Signature\": \"m3Y0PGrq",
+        "with": "\"Signature\": \"m3Y0\\u00a0PGrq"
+      },
+      "license": "ewogICJBcHBJZCI6ICJOb3J0aHN0YXItU3R1ZGlvIiwKICAiUmVnaXN0cmF0aW9uTmFtZSI6ICJBbGV4IE1vcmdhbiIsCiAgIkhhcmR3YXJlSWQiOiAiREVNTy1XT1JLU1RBVElPTi0wMDEiLAogICJFeHBpcmF0aW9uRGF0ZSI6IG51bGwsCiAgIlNpZ25hdHVyZSI6ICJtM1kwXHUwMGEwUEdycTc2dFBIcEpcdTAwMkJrUmhQeW1tb3VOZTRmVWZsa2M1cHhJTk1vdHRkSmhuT29JUjM4dFY3THVvQ2dLSlRKMzk2SzkwUEVOcFQ4TG1cdTAwMkJBTDdhRDRIOG43L28yRGI4cTk0SG56UW5TTWt1bGJPSGluZ280cGE4TzRwZHJvOTVBaWRhSHJra2F2NlBkVlFpRDhPMVI4amVZZ29HbEF1MEtHL0lGRElDS3Z1MnlyM3F2M0U5RFdxMk1CVUNQN1pURkZNdGxsUW5LZE5MV2pBVENwTjBFUXlwbjNuQ1BzbTZSd1ZFYklRek5IMkRxOGZRU014d2lMd1ZEUlFlenRGOTV2bWhWSW1wbktzN0M1dHBwVElscE82aUFzRG5hZ0JRbEtBNlZwMndkRm44ZDduVmVISWFKWmZsdnNVdDRsM25nMjhIa3VjVUZWSG4vNG8yRTlBUzB3PT0iCn0=",
+      "expected": {
+        "result": "rejected",
+        "reason": "malformed"
+      }
+    },
+    {
+      "name": "signature-not-base64",
+      "description": "A Signature text that is not standard Base64 is malformed, not a signature mismatch.",
+      "derive": {
+        "from": "legacy-bound-perpetual",
+        "replace": "\"Signature\": \"m3Y0PGrq",
+        "with": "\"Signature\": \"@3Y0PGrq"
+      },
+      "license": "ewogICJBcHBJZCI6ICJOb3J0aHN0YXItU3R1ZGlvIiwKICAiUmVnaXN0cmF0aW9uTmFtZSI6ICJBbGV4IE1vcmdhbiIsCiAgIkhhcmR3YXJlSWQiOiAiREVNTy1XT1JLU1RBVElPTi0wMDEiLAogICJFeHBpcmF0aW9uRGF0ZSI6IG51bGwsCiAgIlNpZ25hdHVyZSI6ICJAM1kwUEdycTc2dFBIcEpcdTAwMkJrUmhQeW1tb3VOZTRmVWZsa2M1cHhJTk1vdHRkSmhuT29JUjM4dFY3THVvQ2dLSlRKMzk2SzkwUEVOcFQ4TG1cdTAwMkJBTDdhRDRIOG43L28yRGI4cTk0SG56UW5TTWt1bGJPSGluZ280cGE4TzRwZHJvOTVBaWRhSHJra2F2NlBkVlFpRDhPMVI4amVZZ29HbEF1MEtHL0lGRElDS3Z1MnlyM3F2M0U5RFdxMk1CVUNQN1pURkZNdGxsUW5LZE5MV2pBVENwTjBFUXlwbjNuQ1BzbTZSd1ZFYklRek5IMkRxOGZRU014d2lMd1ZEUlFlenRGOTV2bWhWSW1wbktzN0M1dHBwVElscE82aUFzRG5hZ0JRbEtBNlZwMndkRm44ZDduVmVISWFKWmZsdnNVdDRsM25nMjhIa3VjVUZWSG4vNG8yRTlBUzB3PT0iCn0=",
+      "expected": {
+        "result": "rejected",
+        "reason": "malformed"
+      }
+    },
+    {
+      "name": "missing-expiration-date",
+      "description": "The ExpirationDate property is absent, which reads as null.",
+      "derive": {
+        "from": "legacy-bound-perpetual",
+        "replace": "\"ExpirationDate\": null,\n  ",
+        "with": ""
+      },
+      "license": "ewogICJBcHBJZCI6ICJOb3J0aHN0YXItU3R1ZGlvIiwKICAiUmVnaXN0cmF0aW9uTmFtZSI6ICJBbGV4IE1vcmdhbiIsCiAgIkhhcmR3YXJlSWQiOiAiREVNTy1XT1JLU1RBVElPTi0wMDEiLAogICJTaWduYXR1cmUiOiAibTNZMFBHcnE3NnRQSHBKXHUwMDJCa1JoUHltbW91TmU0ZlVmbGtjNXB4SU5Nb3R0ZEpobk9vSVIzOHRWN0x1b0NnS0pUSjM5Nks5MFBFTnBUOExtXHUwMDJCQUw3YUQ0SDhuNy9vMkRiOHE5NEhuelFuU01rdWxiT0hpbmdvNHBhOE80cGRybzk1QWlkYUhya2thdjZQZFZRaUQ4TzFSOGplWWdvR2xBdTBLRy9JRkRJQ0t2dTJ5cjNxdjNFOURXcTJNQlVDUDdaVEZGTXRsbFFuS2ROTFdqQVRDcE4wRVF5cG4zbkNQc202UndWRWJJUXpOSDJEcThmUVNNeHdpTHdWRFJRZXp0Rjk1dm1oVkltcG5LczdDNXRwcFRJbHBPNmlBc0RuYWdCUWxLQTZWcDJ3ZEZuOGQ3blZlSElhSlpmbHZzVXQ0bDNuZzI4SGt1Y1VGVkhuLzRvMkU5QVMwdz09Igp9",
+      "expected": {
+        "result": "authenticated",
+        "valid": true,
+        "product": "match",
+        "hardware": "match",
+        "expiration": "never",
+        "formatVersion": 1,
+        "appId": "Northstar-Studio",
+        "registrationName": "Alex Morgan",
+        "hardwareId": "DEMO-WORKSTATION-001",
+        "expirationDate": null,
+        "userDefined": null,
+        "revocationId": "ab5962e8edab036c980ddff74426e4e194e8e4210b2bd8430fa1996f5d2f8076"
+      }
+    },
+    {
+      "name": "duplicate-property",
+      "description": "The root object repeats a property name.",
+      "derive": {
+        "from": "legacy-bound-perpetual",
+        "replace": "\"HardwareId\"",
+        "with": "\"AppId\": \"Northstar-Studio\",\n  \"HardwareId\""
+      },
+      "license": "ewogICJBcHBJZCI6ICJOb3J0aHN0YXItU3R1ZGlvIiwKICAiUmVnaXN0cmF0aW9uTmFtZSI6ICJBbGV4IE1vcmdhbiIsCiAgIkFwcElkIjogIk5vcnRoc3Rhci1TdHVkaW8iLAogICJIYXJkd2FyZUlkIjogIkRFTU8tV09SS1NUQVRJT04tMDAxIiwKICAiRXhwaXJhdGlvbkRhdGUiOiBudWxsLAogICJTaWduYXR1cmUiOiAibTNZMFBHcnE3NnRQSHBKXHUwMDJCa1JoUHltbW91TmU0ZlVmbGtjNXB4SU5Nb3R0ZEpobk9vSVIzOHRWN0x1b0NnS0pUSjM5Nks5MFBFTnBUOExtXHUwMDJCQUw3YUQ0SDhuNy9vMkRiOHE5NEhuelFuU01rdWxiT0hpbmdvNHBhOE80cGRybzk1QWlkYUhya2thdjZQZFZRaUQ4TzFSOGplWWdvR2xBdTBLRy9JRkRJQ0t2dTJ5cjNxdjNFOURXcTJNQlVDUDdaVEZGTXRsbFFuS2ROTFdqQVRDcE4wRVF5cG4zbkNQc202UndWRWJJUXpOSDJEcThmUVNNeHdpTHdWRFJRZXp0Rjk1dm1oVkltcG5LczdDNXRwcFRJbHBPNmlBc0RuYWdCUWxLQTZWcDJ3ZEZuOGQ3blZlSElhSlpmbHZzVXQ0bDNuZzI4SGt1Y1VGVkhuLzRvMkU5QVMwdz09Igp9",
+      "expected": {
+        "result": "rejected",
+        "reason": "malformed"
+      }
+    },
+    {
+      "name": "non-standard-constant",
+      "description": "An unsigned property holds NaN, which JSON does not allow.",
+      "derive": {
+        "from": "legacy-bound-perpetual",
+        "replace": "\"ExpirationDate\": null",
+        "with": "\"ExpirationDate\": null,\n  \"Notes\": NaN"
+      },
+      "license": "ewogICJBcHBJZCI6ICJOb3J0aHN0YXItU3R1ZGlvIiwKICAiUmVnaXN0cmF0aW9uTmFtZSI6ICJBbGV4IE1vcmdhbiIsCiAgIkhhcmR3YXJlSWQiOiAiREVNTy1XT1JLU1RBVElPTi0wMDEiLAogICJFeHBpcmF0aW9uRGF0ZSI6IG51bGwsCiAgIk5vdGVzIjogTmFOLAogICJTaWduYXR1cmUiOiAibTNZMFBHcnE3NnRQSHBKXHUwMDJCa1JoUHltbW91TmU0ZlVmbGtjNXB4SU5Nb3R0ZEpobk9vSVIzOHRWN0x1b0NnS0pUSjM5Nks5MFBFTnBUOExtXHUwMDJCQUw3YUQ0SDhuNy9vMkRiOHE5NEhuelFuU01rdWxiT0hpbmdvNHBhOE80cGRybzk1QWlkYUhya2thdjZQZFZRaUQ4TzFSOGplWWdvR2xBdTBLRy9JRkRJQ0t2dTJ5cjNxdjNFOURXcTJNQlVDUDdaVEZGTXRsbFFuS2ROTFdqQVRDcE4wRVF5cG4zbkNQc202UndWRWJJUXpOSDJEcThmUVNNeHdpTHdWRFJRZXp0Rjk1dm1oVkltcG5LczdDNXRwcFRJbHBPNmlBc0RuYWdCUWxLQTZWcDJ3ZEZuOGQ3blZlSElhSlpmbHZzVXQ0bDNuZzI4SGt1Y1VGVkhuLzRvMkU5QVMwdz09Igp9",
+      "expected": {
+        "result": "rejected",
+        "reason": "malformed"
+      }
+    },
+    {
+      "name": "trailing-comma",
+      "description": "The root object ends with a comma.",
+      "derive": {
+        "from": "legacy-bound-perpetual",
+        "replace": "\"\n}",
+        "with": "\",\n}"
+      },
+      "license": "ewogICJBcHBJZCI6ICJOb3J0aHN0YXItU3R1ZGlvIiwKICAiUmVnaXN0cmF0aW9uTmFtZSI6ICJBbGV4IE1vcmdhbiIsCiAgIkhhcmR3YXJlSWQiOiAiREVNTy1XT1JLU1RBVElPTi0wMDEiLAogICJFeHBpcmF0aW9uRGF0ZSI6IG51bGwsCiAgIlNpZ25hdHVyZSI6ICJtM1kwUEdycTc2dFBIcEpcdTAwMkJrUmhQeW1tb3VOZTRmVWZsa2M1cHhJTk1vdHRkSmhuT29JUjM4dFY3THVvQ2dLSlRKMzk2SzkwUEVOcFQ4TG1cdTAwMkJBTDdhRDRIOG43L28yRGI4cTk0SG56UW5TTWt1bGJPSGluZ280cGE4TzRwZHJvOTVBaWRhSHJra2F2NlBkVlFpRDhPMVI4amVZZ29HbEF1MEtHL0lGRElDS3Z1MnlyM3F2M0U5RFdxMk1CVUNQN1pURkZNdGxsUW5LZE5MV2pBVENwTjBFUXlwbjNuQ1BzbTZSd1ZFYklRek5IMkRxOGZRU014d2lMd1ZEUlFlenRGOTV2bWhWSW1wbktzN0M1dHBwVElscE82aUFzRG5hZ0JRbEtBNlZwMndkRm44ZDduVmVISWFKWmZsdnNVdDRsM25nMjhIa3VjVUZWSG4vNG8yRTlBUzB3PT0iLAp9",
+      "expected": {
+        "result": "rejected",
+        "reason": "malformed"
+      }
+    },
+    {
+      "name": "comment",
+      "description": "The JSON contains a comment.",
+      "derive": {
+        "from": "legacy-bound-perpetual",
+        "replace": "\"ExpirationDate\": null",
+        "with": "\"ExpirationDate\": null /* note */"
+      },
+      "license": "ewogICJBcHBJZCI6ICJOb3J0aHN0YXItU3R1ZGlvIiwKICAiUmVnaXN0cmF0aW9uTmFtZSI6ICJBbGV4IE1vcmdhbiIsCiAgIkhhcmR3YXJlSWQiOiAiREVNTy1XT1JLU1RBVElPTi0wMDEiLAogICJFeHBpcmF0aW9uRGF0ZSI6IG51bGwgLyogbm90ZSAqLywKICAiU2lnbmF0dXJlIjogIm0zWTBQR3JxNzZ0UEhwSlx1MDAyQmtSaFB5bW1vdU5lNGZVZmxrYzVweElOTW90dGRKaG5Pb0lSMzh0VjdMdW9DZ0tKVEozOTZLOTBQRU5wVDhMbVx1MDAyQkFMN2FENEg4bjcvbzJEYjhxOTRIbnpRblNNa3VsYk9IaW5nbzRwYThPNHBkcm85NUFpZGFIcmtrYXY2UGRWUWlEOE8xUjhqZVlnb0dsQXUwS0cvSUZESUNLdnUyeXIzcXYzRTlEV3EyTUJVQ1A3WlRGRk10bGxRbktkTkxXakFUQ3BOMEVReXBuM25DUHNtNlJ3VkViSVF6TkgyRHE4ZlFTTXh3aUx3VkRSUWV6dEY5NXZtaFZJbXBuS3M3QzV0cHBUSWxwTzZpQXNEbmFnQlFsS0E2VnAyd2RGbjhkN25WZUhJYUpaZmx2c1V0NGwzbmcyOEhrdWNVRlZIbi80bzJFOUFTMHc9PSIKfQ==",
+      "expected": {
+        "result": "rejected",
+        "reason": "malformed"
+      }
+    },
+    {
+      "name": "text-after-object",
+      "description": "Text follows the root object.",
+      "derive": {
+        "from": "legacy-bound-perpetual",
+        "replace": "\n}",
+        "with": "\n} {}"
+      },
+      "license": "ewogICJBcHBJZCI6ICJOb3J0aHN0YXItU3R1ZGlvIiwKICAiUmVnaXN0cmF0aW9uTmFtZSI6ICJBbGV4IE1vcmdhbiIsCiAgIkhhcmR3YXJlSWQiOiAiREVNTy1XT1JLU1RBVElPTi0wMDEiLAogICJFeHBpcmF0aW9uRGF0ZSI6IG51bGwsCiAgIlNpZ25hdHVyZSI6ICJtM1kwUEdycTc2dFBIcEpcdTAwMkJrUmhQeW1tb3VOZTRmVWZsa2M1cHhJTk1vdHRkSmhuT29JUjM4dFY3THVvQ2dLSlRKMzk2SzkwUEVOcFQ4TG1cdTAwMkJBTDdhRDRIOG43L28yRGI4cTk0SG56UW5TTWt1bGJPSGluZ280cGE4TzRwZHJvOTVBaWRhSHJra2F2NlBkVlFpRDhPMVI4amVZZ29HbEF1MEtHL0lGRElDS3Z1MnlyM3F2M0U5RFdxMk1CVUNQN1pURkZNdGxsUW5LZE5MV2pBVENwTjBFUXlwbjNuQ1BzbTZSd1ZFYklRek5IMkRxOGZRU014d2lMd1ZEUlFlenRGOTV2bWhWSW1wbktzN0M1dHBwVElscE82aUFzRG5hZ0JRbEtBNlZwMndkRm44ZDduVmVISWFKWmZsdnNVdDRsM25nMjhIa3VjVUZWSG4vNG8yRTlBUzB3PT0iCn0ge30=",
+      "expected": {
+        "result": "rejected",
+        "reason": "malformed"
+      }
+    },
+    {
+      "name": "lone-surrogate",
+      "description": "A signed field contains an unpaired surrogate escape.",
+      "derive": {
+        "from": "legacy-bound-perpetual",
+        "replace": "\"Alex Morgan\"",
+        "with": "\"Alex \\ud800Morgan\""
+      },
+      "license": "ewogICJBcHBJZCI6ICJOb3J0aHN0YXItU3R1ZGlvIiwKICAiUmVnaXN0cmF0aW9uTmFtZSI6ICJBbGV4IFx1ZDgwME1vcmdhbiIsCiAgIkhhcmR3YXJlSWQiOiAiREVNTy1XT1JLU1RBVElPTi0wMDEiLAogICJFeHBpcmF0aW9uRGF0ZSI6IG51bGwsCiAgIlNpZ25hdHVyZSI6ICJtM1kwUEdycTc2dFBIcEpcdTAwMkJrUmhQeW1tb3VOZTRmVWZsa2M1cHhJTk1vdHRkSmhuT29JUjM4dFY3THVvQ2dLSlRKMzk2SzkwUEVOcFQ4TG1cdTAwMkJBTDdhRDRIOG43L28yRGI4cTk0SG56UW5TTWt1bGJPSGluZ280cGE4TzRwZHJvOTVBaWRhSHJra2F2NlBkVlFpRDhPMVI4amVZZ29HbEF1MEtHL0lGRElDS3Z1MnlyM3F2M0U5RFdxMk1CVUNQN1pURkZNdGxsUW5LZE5MV2pBVENwTjBFUXlwbjNuQ1BzbTZSd1ZFYklRek5IMkRxOGZRU014d2lMd1ZEUlFlenRGOTV2bWhWSW1wbktzN0M1dHBwVElscE82aUFzRG5hZ0JRbEtBNlZwMndkRm44ZDduVmVISWFKWmZsdnNVdDRsM25nMjhIa3VjVUZWSG4vNG8yRTlBUzB3PT0iCn0=",
+      "expected": {
+        "result": "rejected",
+        "reason": "malformed"
+      }
+    },
+    {
+      "name": "unpaired-surrogate-in-property-name",
+      "description": "An unpaired surrogate escape in a property name of the root object is malformed, even in an unknown property.",
+      "derive": {
+        "from": "legacy-bound-perpetual",
+        "replace": "{\n  \"AppId\"",
+        "with": "{\n  \"No\\ud800tes\": \"unsigned\",\n  \"AppId\""
+      },
+      "license": "ewogICJOb1x1ZDgwMHRlcyI6ICJ1bnNpZ25lZCIsCiAgIkFwcElkIjogIk5vcnRoc3Rhci1TdHVkaW8iLAogICJSZWdpc3RyYXRpb25OYW1lIjogIkFsZXggTW9yZ2FuIiwKICAiSGFyZHdhcmVJZCI6ICJERU1PLVdPUktTVEFUSU9OLTAwMSIsCiAgIkV4cGlyYXRpb25EYXRlIjogbnVsbCwKICAiU2lnbmF0dXJlIjogIm0zWTBQR3JxNzZ0UEhwSlx1MDAyQmtSaFB5bW1vdU5lNGZVZmxrYzVweElOTW90dGRKaG5Pb0lSMzh0VjdMdW9DZ0tKVEozOTZLOTBQRU5wVDhMbVx1MDAyQkFMN2FENEg4bjcvbzJEYjhxOTRIbnpRblNNa3VsYk9IaW5nbzRwYThPNHBkcm85NUFpZGFIcmtrYXY2UGRWUWlEOE8xUjhqZVlnb0dsQXUwS0cvSUZESUNLdnUyeXIzcXYzRTlEV3EyTUJVQ1A3WlRGRk10bGxRbktkTkxXakFUQ3BOMEVReXBuM25DUHNtNlJ3VkViSVF6TkgyRHE4ZlFTTXh3aUx3VkRSUWV6dEY5NXZtaFZJbXBuS3M3QzV0cHBUSWxwTzZpQXNEbmFnQlFsS0E2VnAyd2RGbjhkN25WZUhJYUpaZmx2c1V0NGwzbmcyOEhrdWNVRlZIbi80bzJFOUFTMHc9PSIKfQ==",
+      "expected": {
+        "result": "rejected",
+        "reason": "malformed"
+      }
+    },
+    {
+      "name": "unsigned-property-with-unpaired-surrogate",
+      "description": "The value of an unknown property is not read: an unpaired surrogate escape in it leaves the license authentic.",
+      "derive": {
+        "from": "legacy-bound-perpetual",
+        "replace": "{\n  \"AppId\"",
+        "with": "{\n  \"Notes\": \"\\ud800\",\n  \"AppId\""
+      },
+      "license": "ewogICJOb3RlcyI6ICJcdWQ4MDAiLAogICJBcHBJZCI6ICJOb3J0aHN0YXItU3R1ZGlvIiwKICAiUmVnaXN0cmF0aW9uTmFtZSI6ICJBbGV4IE1vcmdhbiIsCiAgIkhhcmR3YXJlSWQiOiAiREVNTy1XT1JLU1RBVElPTi0wMDEiLAogICJFeHBpcmF0aW9uRGF0ZSI6IG51bGwsCiAgIlNpZ25hdHVyZSI6ICJtM1kwUEdycTc2dFBIcEpcdTAwMkJrUmhQeW1tb3VOZTRmVWZsa2M1cHhJTk1vdHRkSmhuT29JUjM4dFY3THVvQ2dLSlRKMzk2SzkwUEVOcFQ4TG1cdTAwMkJBTDdhRDRIOG43L28yRGI4cTk0SG56UW5TTWt1bGJPSGluZ280cGE4TzRwZHJvOTVBaWRhSHJra2F2NlBkVlFpRDhPMVI4amVZZ29HbEF1MEtHL0lGRElDS3Z1MnlyM3F2M0U5RFdxMk1CVUNQN1pURkZNdGxsUW5LZE5MV2pBVENwTjBFUXlwbjNuQ1BzbTZSd1ZFYklRek5IMkRxOGZRU014d2lMd1ZEUlFlenRGOTV2bWhWSW1wbktzN0M1dHBwVElscE82aUFzRG5hZ0JRbEtBNlZwMndkRm44ZDduVmVISWFKWmZsdnNVdDRsM25nMjhIa3VjVUZWSG4vNG8yRTlBUzB3PT0iCn0=",
+      "expected": {
+        "result": "authenticated",
+        "valid": true,
+        "product": "match",
+        "hardware": "match",
+        "expiration": "never",
+        "formatVersion": 1,
+        "appId": "Northstar-Studio",
+        "registrationName": "Alex Morgan",
+        "hardwareId": "DEMO-WORKSTATION-001",
+        "expirationDate": null,
+        "userDefined": null,
+        "revocationId": "ab5962e8edab036c980ddff74426e4e194e8e4210b2bd8430fa1996f5d2f8076"
+      }
+    },
+    {
+      "name": "blank-unicode-name",
+      "description": "The registration name is only an em space, which is blank.",
+      "derive": {
+        "from": "legacy-bound-perpetual",
+        "replace": "\"Alex Morgan\"",
+        "with": "\"\\u2003\""
+      },
+      "license": "ewogICJBcHBJZCI6ICJOb3J0aHN0YXItU3R1ZGlvIiwKICAiUmVnaXN0cmF0aW9uTmFtZSI6ICJcdTIwMDMiLAogICJIYXJkd2FyZUlkIjogIkRFTU8tV09SS1NUQVRJT04tMDAxIiwKICAiRXhwaXJhdGlvbkRhdGUiOiBudWxsLAogICJTaWduYXR1cmUiOiAibTNZMFBHcnE3NnRQSHBKXHUwMDJCa1JoUHltbW91TmU0ZlVmbGtjNXB4SU5Nb3R0ZEpobk9vSVIzOHRWN0x1b0NnS0pUSjM5Nks5MFBFTnBUOExtXHUwMDJCQUw3YUQ0SDhuNy9vMkRiOHE5NEhuelFuU01rdWxiT0hpbmdvNHBhOE80cGRybzk1QWlkYUhya2thdjZQZFZRaUQ4TzFSOGplWWdvR2xBdTBLRy9JRkRJQ0t2dTJ5cjNxdjNFOURXcTJNQlVDUDdaVEZGTXRsbFFuS2ROTFdqQVRDcE4wRVF5cG4zbkNQc202UndWRWJJUXpOSDJEcThmUVNNeHdpTHdWRFJRZXp0Rjk1dm1oVkltcG5LczdDNXRwcFRJbHBPNmlBc0RuYWdCUWxLQTZWcDJ3ZEZuOGQ3blZlSElhSlpmbHZzVXQ0bDNuZzI4SGt1Y1VGVkhuLzRvMkU5QVMwdz09Igp9",
+      "expected": {
+        "result": "rejected",
+        "reason": "malformed"
+      }
+    },
+    {
+      "name": "file-separator-name",
+      "description": "The registration name is U+001C, which .NET does not treat as whitespace: the name is not blank, so the changed claim fails the signature.",
+      "derive": {
+        "from": "legacy-bound-perpetual",
+        "replace": "\"Alex Morgan\"",
+        "with": "\"\\u001c\""
+      },
+      "license": "ewogICJBcHBJZCI6ICJOb3J0aHN0YXItU3R1ZGlvIiwKICAiUmVnaXN0cmF0aW9uTmFtZSI6ICJcdTAwMWMiLAogICJIYXJkd2FyZUlkIjogIkRFTU8tV09SS1NUQVRJT04tMDAxIiwKICAiRXhwaXJhdGlvbkRhdGUiOiBudWxsLAogICJTaWduYXR1cmUiOiAibTNZMFBHcnE3NnRQSHBKXHUwMDJCa1JoUHltbW91TmU0ZlVmbGtjNXB4SU5Nb3R0ZEpobk9vSVIzOHRWN0x1b0NnS0pUSjM5Nks5MFBFTnBUOExtXHUwMDJCQUw3YUQ0SDhuNy9vMkRiOHE5NEhuelFuU01rdWxiT0hpbmdvNHBhOE80cGRybzk1QWlkYUhya2thdjZQZFZRaUQ4TzFSOGplWWdvR2xBdTBLRy9JRkRJQ0t2dTJ5cjNxdjNFOURXcTJNQlVDUDdaVEZGTXRsbFFuS2ROTFdqQVRDcE4wRVF5cG4zbkNQc202UndWRWJJUXpOSDJEcThmUVNNeHdpTHdWRFJRZXp0Rjk1dm1oVkltcG5LczdDNXRwcFRJbHBPNmlBc0RuYWdCUWxLQTZWcDJ3ZEZuOGQ3blZlSElhSlpmbHZzVXQ0bDNuZzI4SGt1Y1VGVkhuLzRvMkU5QVMwdz09Igp9",
+      "expected": {
+        "result": "rejected",
+        "reason": "signature-mismatch"
+      }
+    },
+    {
+      "name": "app-id-too-long",
+      "description": "The product identifier exceeds 128 UTF-16 code units.",
+      "derive": {
+        "from": "legacy-bound-perpetual",
+        "replace": "\"Northstar-Studio\"",
+        "with": "\"NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN\""
+      },
+      "license": "ewogICJBcHBJZCI6ICJOTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk4iLAogICJSZWdpc3RyYXRpb25OYW1lIjogIkFsZXggTW9yZ2FuIiwKICAiSGFyZHdhcmVJZCI6ICJERU1PLVdPUktTVEFUSU9OLTAwMSIsCiAgIkV4cGlyYXRpb25EYXRlIjogbnVsbCwKICAiU2lnbmF0dXJlIjogIm0zWTBQR3JxNzZ0UEhwSlx1MDAyQmtSaFB5bW1vdU5lNGZVZmxrYzVweElOTW90dGRKaG5Pb0lSMzh0VjdMdW9DZ0tKVEozOTZLOTBQRU5wVDhMbVx1MDAyQkFMN2FENEg4bjcvbzJEYjhxOTRIbnpRblNNa3VsYk9IaW5nbzRwYThPNHBkcm85NUFpZGFIcmtrYXY2UGRWUWlEOE8xUjhqZVlnb0dsQXUwS0cvSUZESUNLdnUyeXIzcXYzRTlEV3EyTUJVQ1A3WlRGRk10bGxRbktkTkxXakFUQ3BOMEVReXBuM25DUHNtNlJ3VkViSVF6TkgyRHE4ZlFTTXh3aUx3VkRSUWV6dEY5NXZtaFZJbXBuS3M3QzV0cHBUSWxwTzZpQXNEbmFnQlFsS0E2VnAyd2RGbjhkN25WZUhJYUpaZmx2c1V0NGwzbmcyOEhrdWNVRlZIbi80bzJFOUFTMHc9PSIKfQ==",
+      "expected": {
+        "result": "rejected",
+        "reason": "malformed"
+      }
+    },
+    {
+      "name": "app-id-at-utf-8-byte-limit",
+      "description": "An AppId of 128 UTF-16 code units and 255 UTF-8 bytes is within the limits, so the changed claim fails only the signature.",
+      "derive": {
+        "from": "legacy-bound-perpetual",
+        "replace": "\"Northstar-Studio\"",
+        "with": "\"éééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééx\""
+      },
+      "license": "ewogICJBcHBJZCI6ICLDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqXgiLAogICJSZWdpc3RyYXRpb25OYW1lIjogIkFsZXggTW9yZ2FuIiwKICAiSGFyZHdhcmVJZCI6ICJERU1PLVdPUktTVEFUSU9OLTAwMSIsCiAgIkV4cGlyYXRpb25EYXRlIjogbnVsbCwKICAiU2lnbmF0dXJlIjogIm0zWTBQR3JxNzZ0UEhwSlx1MDAyQmtSaFB5bW1vdU5lNGZVZmxrYzVweElOTW90dGRKaG5Pb0lSMzh0VjdMdW9DZ0tKVEozOTZLOTBQRU5wVDhMbVx1MDAyQkFMN2FENEg4bjcvbzJEYjhxOTRIbnpRblNNa3VsYk9IaW5nbzRwYThPNHBkcm85NUFpZGFIcmtrYXY2UGRWUWlEOE8xUjhqZVlnb0dsQXUwS0cvSUZESUNLdnUyeXIzcXYzRTlEV3EyTUJVQ1A3WlRGRk10bGxRbktkTkxXakFUQ3BOMEVReXBuM25DUHNtNlJ3VkViSVF6TkgyRHE4ZlFTTXh3aUx3VkRSUWV6dEY5NXZtaFZJbXBuS3M3QzV0cHBUSWxwTzZpQXNEbmFnQlFsS0E2VnAyd2RGbjhkN25WZUhJYUpaZmx2c1V0NGwzbmcyOEhrdWNVRlZIbi80bzJFOUFTMHc9PSIKfQ==",
+      "expected": {
+        "result": "rejected",
+        "reason": "signature-mismatch"
+      }
+    },
+    {
+      "name": "app-id-beyond-utf-8-byte-limit",
+      "description": "An AppId of 128 UTF-16 code units and 256 UTF-8 bytes exceeds the byte limit.",
+      "derive": {
+        "from": "legacy-bound-perpetual",
+        "replace": "\"Northstar-Studio\"",
+        "with": "\"éééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééé\""
+      },
+      "license": "ewogICJBcHBJZCI6ICLDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpw6nDqcOpIiwKICAiUmVnaXN0cmF0aW9uTmFtZSI6ICJBbGV4IE1vcmdhbiIsCiAgIkhhcmR3YXJlSWQiOiAiREVNTy1XT1JLU1RBVElPTi0wMDEiLAogICJFeHBpcmF0aW9uRGF0ZSI6IG51bGwsCiAgIlNpZ25hdHVyZSI6ICJtM1kwUEdycTc2dFBIcEpcdTAwMkJrUmhQeW1tb3VOZTRmVWZsa2M1cHhJTk1vdHRkSmhuT29JUjM4dFY3THVvQ2dLSlRKMzk2SzkwUEVOcFQ4TG1cdTAwMkJBTDdhRDRIOG43L28yRGI4cTk0SG56UW5TTWt1bGJPSGluZ280cGE4TzRwZHJvOTVBaWRhSHJra2F2NlBkVlFpRDhPMVI4amVZZ29HbEF1MEtHL0lGRElDS3Z1MnlyM3F2M0U5RFdxMk1CVUNQN1pURkZNdGxsUW5LZE5MV2pBVENwTjBFUXlwbjNuQ1BzbTZSd1ZFYklRek5IMkRxOGZRU014d2lMd1ZEUlFlenRGOTV2bWhWSW1wbktzN0M1dHBwVElscE82aUFzRG5hZ0JRbEtBNlZwMndkRm44ZDduVmVISWFKWmZsdnNVdDRsM25nMjhIa3VjVUZWSG4vNG8yRTlBUzB3PT0iCn0=",
+      "expected": {
+        "result": "rejected",
+        "reason": "malformed"
+      }
+    },
+    {
+      "name": "registration-name-at-utf-16-limit",
+      "description": "A RegistrationName of 512 emoji is 1,024 UTF-16 code units, within the limit, so the changed claim fails only the signature.",
+      "derive": {
+        "from": "legacy-bound-perpetual",
+        "replace": "\"Alex Morgan\"",
+        "with": "\"😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀\""
+      },
+      "license": "ewogICJBcHBJZCI6ICJOb3J0aHN0YXItU3R1ZGlvIiwKICAiUmVnaXN0cmF0aW9uTmFtZSI6ICLwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgCIsCiAgIkhhcmR3YXJlSWQiOiAiREVNTy1XT1JLU1RBVElPTi0wMDEiLAogICJFeHBpcmF0aW9uRGF0ZSI6IG51bGwsCiAgIlNpZ25hdHVyZSI6ICJtM1kwUEdycTc2dFBIcEpcdTAwMkJrUmhQeW1tb3VOZTRmVWZsa2M1cHhJTk1vdHRkSmhuT29JUjM4dFY3THVvQ2dLSlRKMzk2SzkwUEVOcFQ4TG1cdTAwMkJBTDdhRDRIOG43L28yRGI4cTk0SG56UW5TTWt1bGJPSGluZ280cGE4TzRwZHJvOTVBaWRhSHJra2F2NlBkVlFpRDhPMVI4amVZZ29HbEF1MEtHL0lGRElDS3Z1MnlyM3F2M0U5RFdxMk1CVUNQN1pURkZNdGxsUW5LZE5MV2pBVENwTjBFUXlwbjNuQ1BzbTZSd1ZFYklRek5IMkRxOGZRU014d2lMd1ZEUlFlenRGOTV2bWhWSW1wbktzN0M1dHBwVElscE82aUFzRG5hZ0JRbEtBNlZwMndkRm44ZDduVmVISWFKWmZsdnNVdDRsM25nMjhIa3VjVUZWSG4vNG8yRTlBUzB3PT0iCn0=",
+      "expected": {
+        "result": "rejected",
+        "reason": "signature-mismatch"
+      }
+    },
+    {
+      "name": "registration-name-beyond-utf-16-limit",
+      "description": "One more character makes 1,025 UTF-16 code units: lengths count code units, not characters or bytes.",
+      "derive": {
+        "from": "legacy-bound-perpetual",
+        "replace": "\"Alex Morgan\"",
+        "with": "\"😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀x\""
+      },
+      "license": "ewogICJBcHBJZCI6ICJOb3J0aHN0YXItU3R1ZGlvIiwKICAiUmVnaXN0cmF0aW9uTmFtZSI6ICLwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgPCfmIDwn5iA8J+YgHgiLAogICJIYXJkd2FyZUlkIjogIkRFTU8tV09SS1NUQVRJT04tMDAxIiwKICAiRXhwaXJhdGlvbkRhdGUiOiBudWxsLAogICJTaWduYXR1cmUiOiAibTNZMFBHcnE3NnRQSHBKXHUwMDJCa1JoUHltbW91TmU0ZlVmbGtjNXB4SU5Nb3R0ZEpobk9vSVIzOHRWN0x1b0NnS0pUSjM5Nks5MFBFTnBUOExtXHUwMDJCQUw3YUQ0SDhuNy9vMkRiOHE5NEhuelFuU01rdWxiT0hpbmdvNHBhOE80cGRybzk1QWlkYUhya2thdjZQZFZRaUQ4TzFSOGplWWdvR2xBdTBLRy9JRkRJQ0t2dTJ5cjNxdjNFOURXcTJNQlVDUDdaVEZGTXRsbFFuS2ROTFdqQVRDcE4wRVF5cG4zbkNQc202UndWRWJJUXpOSDJEcThmUVNNeHdpTHdWRFJRZXp0Rjk1dm1oVkltcG5LczdDNXRwcFRJbHBPNmlBc0RuYWdCUWxLQTZWcDJ3ZEZuOGQ3blZlSElhSlpmbHZzVXQ0bDNuZzI4SGt1Y1VGVkhuLzRvMkU5QVMwdz09Igp9",
+      "expected": {
+        "result": "rejected",
+        "reason": "malformed"
+      }
+    },
+    {
+      "name": "fractional-format-version",
+      "description": "FormatVersion is written with a fraction.",
+      "derive": {
+        "from": "legacy-bound-perpetual",
+        "replace": "\"ExpirationDate\": null",
+        "with": "\"ExpirationDate\": null,\n  \"FormatVersion\": 1.0"
+      },
+      "license": "ewogICJBcHBJZCI6ICJOb3J0aHN0YXItU3R1ZGlvIiwKICAiUmVnaXN0cmF0aW9uTmFtZSI6ICJBbGV4IE1vcmdhbiIsCiAgIkhhcmR3YXJlSWQiOiAiREVNTy1XT1JLU1RBVElPTi0wMDEiLAogICJFeHBpcmF0aW9uRGF0ZSI6IG51bGwsCiAgIkZvcm1hdFZlcnNpb24iOiAxLjAsCiAgIlNpZ25hdHVyZSI6ICJtM1kwUEdycTc2dFBIcEpcdTAwMkJrUmhQeW1tb3VOZTRmVWZsa2M1cHhJTk1vdHRkSmhuT29JUjM4dFY3THVvQ2dLSlRKMzk2SzkwUEVOcFQ4TG1cdTAwMkJBTDdhRDRIOG43L28yRGI4cTk0SG56UW5TTWt1bGJPSGluZ280cGE4TzRwZHJvOTVBaWRhSHJra2F2NlBkVlFpRDhPMVI4amVZZ29HbEF1MEtHL0lGRElDS3Z1MnlyM3F2M0U5RFdxMk1CVUNQN1pURkZNdGxsUW5LZE5MV2pBVENwTjBFUXlwbjNuQ1BzbTZSd1ZFYklRek5IMkRxOGZRU014d2lMd1ZEUlFlenRGOTV2bWhWSW1wbktzN0M1dHBwVElscE82aUFzRG5hZ0JRbEtBNlZwMndkRm44ZDduVmVISWFKWmZsdnNVdDRsM25nMjhIa3VjVUZWSG4vNG8yRTlBUzB3PT0iCn0=",
+      "expected": {
+        "result": "rejected",
+        "reason": "malformed"
+      }
+    },
+    {
+      "name": "boolean-format-version",
+      "description": "FormatVersion is a boolean.",
+      "derive": {
+        "from": "legacy-bound-perpetual",
+        "replace": "\"ExpirationDate\": null",
+        "with": "\"ExpirationDate\": null,\n  \"FormatVersion\": true"
+      },
+      "license": "ewogICJBcHBJZCI6ICJOb3J0aHN0YXItU3R1ZGlvIiwKICAiUmVnaXN0cmF0aW9uTmFtZSI6ICJBbGV4IE1vcmdhbiIsCiAgIkhhcmR3YXJlSWQiOiAiREVNTy1XT1JLU1RBVElPTi0wMDEiLAogICJFeHBpcmF0aW9uRGF0ZSI6IG51bGwsCiAgIkZvcm1hdFZlcnNpb24iOiB0cnVlLAogICJTaWduYXR1cmUiOiAibTNZMFBHcnE3NnRQSHBKXHUwMDJCa1JoUHltbW91TmU0ZlVmbGtjNXB4SU5Nb3R0ZEpobk9vSVIzOHRWN0x1b0NnS0pUSjM5Nks5MFBFTnBUOExtXHUwMDJCQUw3YUQ0SDhuNy9vMkRiOHE5NEhuelFuU01rdWxiT0hpbmdvNHBhOE80cGRybzk1QWlkYUhya2thdjZQZFZRaUQ4TzFSOGplWWdvR2xBdTBLRy9JRkRJQ0t2dTJ5cjNxdjNFOURXcTJNQlVDUDdaVEZGTXRsbFFuS2ROTFdqQVRDcE4wRVF5cG4zbkNQc202UndWRWJJUXpOSDJEcThmUVNNeHdpTHdWRFJRZXp0Rjk1dm1oVkltcG5LczdDNXRwcFRJbHBPNmlBc0RuYWdCUWxLQTZWcDJ3ZEZuOGQ3blZlSElhSlpmbHZzVXQ0bDNuZzI4SGt1Y1VGVkhuLzRvMkU5QVMwdz09Igp9",
+      "expected": {
+        "result": "rejected",
+        "reason": "malformed"
+      }
+    },
+    {
+      "name": "numeric-expiration-date",
+      "description": "ExpirationDate is a number instead of a date text.",
+      "derive": {
+        "from": "legacy-bound-perpetual",
+        "replace": "\"ExpirationDate\": null",
+        "with": "\"ExpirationDate\": 20270316"
+      },
+      "license": "ewogICJBcHBJZCI6ICJOb3J0aHN0YXItU3R1ZGlvIiwKICAiUmVnaXN0cmF0aW9uTmFtZSI6ICJBbGV4IE1vcmdhbiIsCiAgIkhhcmR3YXJlSWQiOiAiREVNTy1XT1JLU1RBVElPTi0wMDEiLAogICJFeHBpcmF0aW9uRGF0ZSI6IDIwMjcwMzE2LAogICJTaWduYXR1cmUiOiAibTNZMFBHcnE3NnRQSHBKXHUwMDJCa1JoUHltbW91TmU0ZlVmbGtjNXB4SU5Nb3R0ZEpobk9vSVIzOHRWN0x1b0NnS0pUSjM5Nks5MFBFTnBUOExtXHUwMDJCQUw3YUQ0SDhuNy9vMkRiOHE5NEhuelFuU01rdWxiT0hpbmdvNHBhOE80cGRybzk1QWlkYUhya2thdjZQZFZRaUQ4TzFSOGplWWdvR2xBdTBLRy9JRkRJQ0t2dTJ5cjNxdjNFOURXcTJNQlVDUDdaVEZGTXRsbFFuS2ROTFdqQVRDcE4wRVF5cG4zbkNQc202UndWRWJJUXpOSDJEcThmUVNNeHdpTHdWRFJRZXp0Rjk1dm1oVkltcG5LczdDNXRwcFRJbHBPNmlBc0RuYWdCUWxLQTZWcDJ3ZEZuOGQ3blZlSElhSlpmbHZzVXQ0bDNuZzI4SGt1Y1VGVkhuLzRvMkU5QVMwdz09Igp9",
+      "expected": {
+        "result": "rejected",
+        "reason": "malformed"
+      }
+    },
+    {
+      "name": "format2-without-user-defined",
+      "description": "Format 2 with empty custom text.",
+      "derive": {
+        "from": "format2-user-defined",
+        "replace": "\"UserDefined\": \"features=reports,export;plan=professional\"",
+        "with": "\"UserDefined\": \"\""
+      },
+      "license": "ewogICJBcHBJZCI6ICJOb3J0aHN0YXItU3R1ZGlvIiwKICAiUmVnaXN0cmF0aW9uTmFtZSI6ICJBbGV4IE1vcmdhbiIsCiAgIkhhcmR3YXJlSWQiOiAiREVNTy1XT1JLU1RBVElPTi0wMDEiLAogICJFeHBpcmF0aW9uRGF0ZSI6IG51bGwsCiAgIlNpZ25hdHVyZSI6ICJrVTFxU2owYVBVbEw2ZkQybHJ4Rnh5cjlESlVcdTAwMkJWWEZjTmRheEd3UkpEU044WXJMeGxiaHYvSGdEU2RtU1VINXRvaFl1eTFWcU12SjVKNU1HUXl2Y25PdWxETEtuTm9PRjlxam5abWdBXHUwMDJCaTNId1R4NUF0U1F3S2s5ODVRU0JLSWtKbXlGUmRqQWYzYzNMRjRqUVcyMlBjRTZWSDdcdTAwMkJuZHBHM2o2UjBGQS9SY3gyNnBjUVlkTmVxMzMzSXg3aWFvMnJObG1acjhqcjE1eldWMDBUdmZrZjh6S3RqbGR3THpCRWRaaXUwdjdsaklCekZUcklcdTAwMkIwS05VZHk5eG0wdG9aa2ZpRW5CMEZwb3Y1VzNQeG4zZThSNWw3XHUwMDJCMTlyeGp4ZTlPV0dSaUoyZzlMTXpwU2Z6ZDBYWUM1WEdzb0ZcdTAwMkJCZjBjTWxLNGpHTlx1MDAyQmpiRmRrdDlmaTRYZVpMdz09IiwKICAiRm9ybWF0VmVyc2lvbiI6IDIsCiAgIlVzZXJEZWZpbmVkIjogIiIKfQ==",
+      "expected": {
+        "result": "rejected",
+        "reason": "malformed"
+      }
+    },
+    {
+      "name": "format2-downgraded",
+      "description": "The format 2 version was removed, leaving custom text in a legacy license.",
+      "derive": {
+        "from": "format2-user-defined",
+        "replace": "\"FormatVersion\": 2,\n  ",
+        "with": ""
+      },
+      "license": "ewogICJBcHBJZCI6ICJOb3J0aHN0YXItU3R1ZGlvIiwKICAiUmVnaXN0cmF0aW9uTmFtZSI6ICJBbGV4IE1vcmdhbiIsCiAgIkhhcmR3YXJlSWQiOiAiREVNTy1XT1JLU1RBVElPTi0wMDEiLAogICJFeHBpcmF0aW9uRGF0ZSI6IG51bGwsCiAgIlNpZ25hdHVyZSI6ICJrVTFxU2owYVBVbEw2ZkQybHJ4Rnh5cjlESlVcdTAwMkJWWEZjTmRheEd3UkpEU044WXJMeGxiaHYvSGdEU2RtU1VINXRvaFl1eTFWcU12SjVKNU1HUXl2Y25PdWxETEtuTm9PRjlxam5abWdBXHUwMDJCaTNId1R4NUF0U1F3S2s5ODVRU0JLSWtKbXlGUmRqQWYzYzNMRjRqUVcyMlBjRTZWSDdcdTAwMkJuZHBHM2o2UjBGQS9SY3gyNnBjUVlkTmVxMzMzSXg3aWFvMnJObG1acjhqcjE1eldWMDBUdmZrZjh6S3RqbGR3THpCRWRaaXUwdjdsaklCekZUcklcdTAwMkIwS05VZHk5eG0wdG9aa2ZpRW5CMEZwb3Y1VzNQeG4zZThSNWw3XHUwMDJCMTlyeGp4ZTlPV0dSaUoyZzlMTXpwU2Z6ZDBYWUM1WEdzb0ZcdTAwMkJCZjBjTWxLNGpHTlx1MDAyQmpiRmRrdDlmaTRYZVpMdz09IiwKICAiVXNlckRlZmluZWQiOiAiZmVhdHVyZXM9cmVwb3J0cyxleHBvcnQ7cGxhbj1wcm9mZXNzaW9uYWwiCn0=",
+      "expected": {
+        "result": "rejected",
+        "reason": "malformed"
+      }
+    },
+    {
+      "name": "format2-tampered-user-defined",
+      "description": "The custom text was changed after signing.",
+      "derive": {
+        "from": "format2-user-defined",
+        "replace": "plan=professional",
+        "with": "plan=enterprise"
+      },
+      "license": "ewogICJBcHBJZCI6ICJOb3J0aHN0YXItU3R1ZGlvIiwKICAiUmVnaXN0cmF0aW9uTmFtZSI6ICJBbGV4IE1vcmdhbiIsCiAgIkhhcmR3YXJlSWQiOiAiREVNTy1XT1JLU1RBVElPTi0wMDEiLAogICJFeHBpcmF0aW9uRGF0ZSI6IG51bGwsCiAgIlNpZ25hdHVyZSI6ICJrVTFxU2owYVBVbEw2ZkQybHJ4Rnh5cjlESlVcdTAwMkJWWEZjTmRheEd3UkpEU044WXJMeGxiaHYvSGdEU2RtU1VINXRvaFl1eTFWcU12SjVKNU1HUXl2Y25PdWxETEtuTm9PRjlxam5abWdBXHUwMDJCaTNId1R4NUF0U1F3S2s5ODVRU0JLSWtKbXlGUmRqQWYzYzNMRjRqUVcyMlBjRTZWSDdcdTAwMkJuZHBHM2o2UjBGQS9SY3gyNnBjUVlkTmVxMzMzSXg3aWFvMnJObG1acjhqcjE1eldWMDBUdmZrZjh6S3RqbGR3THpCRWRaaXUwdjdsaklCekZUcklcdTAwMkIwS05VZHk5eG0wdG9aa2ZpRW5CMEZwb3Y1VzNQeG4zZThSNWw3XHUwMDJCMTlyeGp4ZTlPV0dSaUoyZzlMTXpwU2Z6ZDBYWUM1WEdzb0ZcdTAwMkJCZjBjTWxLNGpHTlx1MDAyQmpiRmRrdDlmaTRYZVpMdz09IiwKICAiRm9ybWF0VmVyc2lvbiI6IDIsCiAgIlVzZXJEZWZpbmVkIjogImZlYXR1cmVzPXJlcG9ydHMsZXhwb3J0O3BsYW49ZW50ZXJwcmlzZSIKfQ==",
+      "expected": {
+        "result": "rejected",
+        "reason": "signature-mismatch"
+      }
+    },
+    {
+      "name": "legacy-empty-user-defined",
+      "description": "An empty UserDefined reads as null, so a legacy license that carries it is still authentic and has no custom data.",
+      "derive": {
+        "from": "legacy-bound-perpetual",
+        "replace": "\"ExpirationDate\": null",
+        "with": "\"ExpirationDate\": null,\n  \"UserDefined\": \"\""
+      },
+      "license": "ewogICJBcHBJZCI6ICJOb3J0aHN0YXItU3R1ZGlvIiwKICAiUmVnaXN0cmF0aW9uTmFtZSI6ICJBbGV4IE1vcmdhbiIsCiAgIkhhcmR3YXJlSWQiOiAiREVNTy1XT1JLU1RBVElPTi0wMDEiLAogICJFeHBpcmF0aW9uRGF0ZSI6IG51bGwsCiAgIlVzZXJEZWZpbmVkIjogIiIsCiAgIlNpZ25hdHVyZSI6ICJtM1kwUEdycTc2dFBIcEpcdTAwMkJrUmhQeW1tb3VOZTRmVWZsa2M1cHhJTk1vdHRkSmhuT29JUjM4dFY3THVvQ2dLSlRKMzk2SzkwUEVOcFQ4TG1cdTAwMkJBTDdhRDRIOG43L28yRGI4cTk0SG56UW5TTWt1bGJPSGluZ280cGE4TzRwZHJvOTVBaWRhSHJra2F2NlBkVlFpRDhPMVI4amVZZ29HbEF1MEtHL0lGRElDS3Z1MnlyM3F2M0U5RFdxMk1CVUNQN1pURkZNdGxsUW5LZE5MV2pBVENwTjBFUXlwbjNuQ1BzbTZSd1ZFYklRek5IMkRxOGZRU014d2lMd1ZEUlFlenRGOTV2bWhWSW1wbktzN0M1dHBwVElscE82aUFzRG5hZ0JRbEtBNlZwMndkRm44ZDduVmVISWFKWmZsdnNVdDRsM25nMjhIa3VjVUZWSG4vNG8yRTlBUzB3PT0iCn0=",
+      "expected": {
+        "result": "authenticated",
+        "valid": true,
+        "product": "match",
+        "hardware": "match",
+        "expiration": "never",
+        "formatVersion": 1,
+        "appId": "Northstar-Studio",
+        "registrationName": "Alex Morgan",
+        "hardwareId": "DEMO-WORKSTATION-001",
+        "expirationDate": null,
+        "userDefined": null,
+        "revocationId": "ab5962e8edab036c980ddff74426e4e194e8e4210b2bd8430fa1996f5d2f8076"
+      }
+    },
+    {
+      "name": "whitespace-user-defined-without-format-2",
+      "description": "A UserDefined of one space is not empty, so it requires FormatVersion 2.",
+      "derive": {
+        "from": "legacy-bound-perpetual",
+        "replace": "\"ExpirationDate\": null",
+        "with": "\"ExpirationDate\": null,\n  \"UserDefined\": \" \""
+      },
+      "license": "ewogICJBcHBJZCI6ICJOb3J0aHN0YXItU3R1ZGlvIiwKICAiUmVnaXN0cmF0aW9uTmFtZSI6ICJBbGV4IE1vcmdhbiIsCiAgIkhhcmR3YXJlSWQiOiAiREVNTy1XT1JLU1RBVElPTi0wMDEiLAogICJFeHBpcmF0aW9uRGF0ZSI6IG51bGwsCiAgIlVzZXJEZWZpbmVkIjogIiAiLAogICJTaWduYXR1cmUiOiAibTNZMFBHcnE3NnRQSHBKXHUwMDJCa1JoUHltbW91TmU0ZlVmbGtjNXB4SU5Nb3R0ZEpobk9vSVIzOHRWN0x1b0NnS0pUSjM5Nks5MFBFTnBUOExtXHUwMDJCQUw3YUQ0SDhuNy9vMkRiOHE5NEhuelFuU01rdWxiT0hpbmdvNHBhOE80cGRybzk1QWlkYUhya2thdjZQZFZRaUQ4TzFSOGplWWdvR2xBdTBLRy9JRkRJQ0t2dTJ5cjNxdjNFOURXcTJNQlVDUDdaVEZGTXRsbFFuS2ROTFdqQVRDcE4wRVF5cG4zbkNQc202UndWRWJJUXpOSDJEcThmUVNNeHdpTHdWRFJRZXp0Rjk1dm1oVkltcG5LczdDNXRwcFRJbHBPNmlBc0RuYWdCUWxLQTZWcDJ3ZEZuOGQ3blZlSElhSlpmbHZzVXQ0bDNuZzI4SGt1Y1VGVkhuLzRvMkU5QVMwdz09Igp9",
+      "expected": {
+        "result": "rejected",
+        "reason": "malformed"
+      }
+    },
+    {
+      "name": "format2-whitespace-user-defined",
+      "description": "Format 2 with a UserDefined of one space is well formed; the changed custom text fails only the signature.",
+      "derive": {
+        "from": "format2-user-defined",
+        "replace": "\"features=reports,export;plan=professional\"",
+        "with": "\" \""
+      },
+      "license": "ewogICJBcHBJZCI6ICJOb3J0aHN0YXItU3R1ZGlvIiwKICAiUmVnaXN0cmF0aW9uTmFtZSI6ICJBbGV4IE1vcmdhbiIsCiAgIkhhcmR3YXJlSWQiOiAiREVNTy1XT1JLU1RBVElPTi0wMDEiLAogICJFeHBpcmF0aW9uRGF0ZSI6IG51bGwsCiAgIlNpZ25hdHVyZSI6ICJrVTFxU2owYVBVbEw2ZkQybHJ4Rnh5cjlESlVcdTAwMkJWWEZjTmRheEd3UkpEU044WXJMeGxiaHYvSGdEU2RtU1VINXRvaFl1eTFWcU12SjVKNU1HUXl2Y25PdWxETEtuTm9PRjlxam5abWdBXHUwMDJCaTNId1R4NUF0U1F3S2s5ODVRU0JLSWtKbXlGUmRqQWYzYzNMRjRqUVcyMlBjRTZWSDdcdTAwMkJuZHBHM2o2UjBGQS9SY3gyNnBjUVlkTmVxMzMzSXg3aWFvMnJObG1acjhqcjE1eldWMDBUdmZrZjh6S3RqbGR3THpCRWRaaXUwdjdsaklCekZUcklcdTAwMkIwS05VZHk5eG0wdG9aa2ZpRW5CMEZwb3Y1VzNQeG4zZThSNWw3XHUwMDJCMTlyeGp4ZTlPV0dSaUoyZzlMTXpwU2Z6ZDBYWUM1WEdzb0ZcdTAwMkJCZjBjTWxLNGpHTlx1MDAyQmpiRmRrdDlmaTRYZVpMdz09IiwKICAiRm9ybWF0VmVyc2lvbiI6IDIsCiAgIlVzZXJEZWZpbmVkIjogIiAiCn0=",
+      "expected": {
+        "result": "rejected",
+        "reason": "signature-mismatch"
+      }
+    },
+    {
+      "name": "unsupported-format-before-date",
+      "description": "An unknown format version is reported before an invalid date is read.",
+      "derive": {
+        "from": "unsupported-format-version",
+        "replace": "\"ExpirationDate\": null",
+        "with": "\"ExpirationDate\": \"not a date\""
+      },
+      "license": "ewogICJBcHBJZCI6ICJOb3J0aHN0YXItU3R1ZGlvIiwKICAiUmVnaXN0cmF0aW9uTmFtZSI6ICJBbGV4IE1vcmdhbiIsCiAgIkhhcmR3YXJlSWQiOiAiREVNTy1XT1JLU1RBVElPTi0wMDEiLAogICJFeHBpcmF0aW9uRGF0ZSI6ICJub3QgYSBkYXRlIiwKICAiU2lnbmF0dXJlIjogImtVMXFTajBhUFVsTDZmRDJscnhGeHlyOURKVVx1MDAyQlZYRmNOZGF4R3dSSkRTTjhZckx4bGJodi9IZ0RTZG1TVUg1dG9oWXV5MVZxTXZKNUo1TUdReXZjbk91bERMS25Ob09GOXFqblptZ0FcdTAwMkJpM0h3VHg1QXRTUXdLazk4NVFTQktJa0pteUZSZGpBZjNjM0xGNGpRVzIyUGNFNlZIN1x1MDAyQm5kcEczajZSMEZBL1JjeDI2cGNRWWROZXEzMzNJeDdpYW8yck5sbVpyOGpyMTV6V1YwMFR2ZmtmOHpLdGpsZHdMekJFZFppdTB2N2xqSUJ6RlRySVx1MDAyQjBLTlVkeTl4bTB0b1prZmlFbkIwRnBvdjVXM1B4bjNlOFI1bDdcdTAwMkIxOXJ4anhlOU9XR1JpSjJnOUxNenBTZnpkMFhZQzVYR3NvRlx1MDAyQkJmMGNNbEs0akdOXHUwMDJCamJGZGt0OWZpNFhlWkx3PT0iLAogICJGb3JtYXRWZXJzaW9uIjogMywKICAiVXNlckRlZmluZWQiOiAiZmVhdHVyZXM9cmVwb3J0cyxleHBvcnQ7cGxhbj1wcm9mZXNzaW9uYWwiCn0=",
+      "expected": {
+        "result": "rejected",
+        "reason": "unsupported-format"
+      }
+    },
+    {
+      "name": "unsupported-format-after-unpaired-surrogate",
+      "description": "Claim texts are read before FormatVersion: an unpaired surrogate in a name is malformed even with an unknown version.",
+      "derive": {
+        "from": "unsupported-format-version",
+        "replace": "\"Alex Morgan\"",
+        "with": "\"Alex \\ud800Morgan\""
+      },
+      "license": "ewogICJBcHBJZCI6ICJOb3J0aHN0YXItU3R1ZGlvIiwKICAiUmVnaXN0cmF0aW9uTmFtZSI6ICJBbGV4IFx1ZDgwME1vcmdhbiIsCiAgIkhhcmR3YXJlSWQiOiAiREVNTy1XT1JLU1RBVElPTi0wMDEiLAogICJFeHBpcmF0aW9uRGF0ZSI6IG51bGwsCiAgIlNpZ25hdHVyZSI6ICJrVTFxU2owYVBVbEw2ZkQybHJ4Rnh5cjlESlVcdTAwMkJWWEZjTmRheEd3UkpEU044WXJMeGxiaHYvSGdEU2RtU1VINXRvaFl1eTFWcU12SjVKNU1HUXl2Y25PdWxETEtuTm9PRjlxam5abWdBXHUwMDJCaTNId1R4NUF0U1F3S2s5ODVRU0JLSWtKbXlGUmRqQWYzYzNMRjRqUVcyMlBjRTZWSDdcdTAwMkJuZHBHM2o2UjBGQS9SY3gyNnBjUVlkTmVxMzMzSXg3aWFvMnJObG1acjhqcjE1eldWMDBUdmZrZjh6S3RqbGR3THpCRWRaaXUwdjdsaklCekZUcklcdTAwMkIwS05VZHk5eG0wdG9aa2ZpRW5CMEZwb3Y1VzNQeG4zZThSNWw3XHUwMDJCMTlyeGp4ZTlPV0dSaUoyZzlMTXpwU2Z6ZDBYWUM1WEdzb0ZcdTAwMkJCZjBjTWxLNGpHTlx1MDAyQmpiRmRrdDlmaTRYZVpMdz09IiwKICAiRm9ybWF0VmVyc2lvbiI6IDMsCiAgIlVzZXJEZWZpbmVkIjogImZlYXR1cmVzPXJlcG9ydHMsZXhwb3J0O3BsYW49cHJvZmVzc2lvbmFsIgp9",
+      "expected": {
+        "result": "rejected",
+        "reason": "malformed"
+      }
+    },
+    {
+      "name": "unsupported-format-before-text-limit",
+      "description": "FormatVersion is read before the text limits: an unknown version with an AppId over 128 code units is an unsupported format.",
+      "derive": {
+        "from": "unsupported-format-version",
+        "replace": "\"Northstar-Studio\"",
+        "with": "\"NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN\""
+      },
+      "license": "ewogICJBcHBJZCI6ICJOTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk4iLAogICJSZWdpc3RyYXRpb25OYW1lIjogIkFsZXggTW9yZ2FuIiwKICAiSGFyZHdhcmVJZCI6ICJERU1PLVdPUktTVEFUSU9OLTAwMSIsCiAgIkV4cGlyYXRpb25EYXRlIjogbnVsbCwKICAiU2lnbmF0dXJlIjogImtVMXFTajBhUFVsTDZmRDJscnhGeHlyOURKVVx1MDAyQlZYRmNOZGF4R3dSSkRTTjhZckx4bGJodi9IZ0RTZG1TVUg1dG9oWXV5MVZxTXZKNUo1TUdReXZjbk91bERMS25Ob09GOXFqblptZ0FcdTAwMkJpM0h3VHg1QXRTUXdLazk4NVFTQktJa0pteUZSZGpBZjNjM0xGNGpRVzIyUGNFNlZIN1x1MDAyQm5kcEczajZSMEZBL1JjeDI2cGNRWWROZXEzMzNJeDdpYW8yck5sbVpyOGpyMTV6V1YwMFR2ZmtmOHpLdGpsZHdMekJFZFppdTB2N2xqSUJ6RlRySVx1MDAyQjBLTlVkeTl4bTB0b1prZmlFbkIwRnBvdjVXM1B4bjNlOFI1bDdcdTAwMkIxOXJ4anhlOU9XR1JpSjJnOUxNenBTZnpkMFhZQzVYR3NvRlx1MDAyQkJmMGNNbEs0akdOXHUwMDJCamJGZGt0OWZpNFhlWkx3PT0iLAogICJGb3JtYXRWZXJzaW9uIjogMywKICAiVXNlckRlZmluZWQiOiAiZmVhdHVyZXM9cmVwb3J0cyxleHBvcnQ7cGxhbj1wcm9mZXNzaW9uYWwiCn0=",
+      "expected": {
+        "result": "rejected",
+        "reason": "unsupported-format"
+      }
+    },
+    {
+      "name": "hardware-not-checked",
+      "description": "The application deliberately skips the hardware check of a bound license.",
+      "copy": "legacy-bound-perpetual",
+      "expectedHardwareId": null,
+      "license": "ewogICJBcHBJZCI6ICJOb3J0aHN0YXItU3R1ZGlvIiwKICAiUmVnaXN0cmF0aW9uTmFtZSI6ICJBbGV4IE1vcmdhbiIsCiAgIkhhcmR3YXJlSWQiOiAiREVNTy1XT1JLU1RBVElPTi0wMDEiLAogICJFeHBpcmF0aW9uRGF0ZSI6IG51bGwsCiAgIlNpZ25hdHVyZSI6ICJtM1kwUEdycTc2dFBIcEpcdTAwMkJrUmhQeW1tb3VOZTRmVWZsa2M1cHhJTk1vdHRkSmhuT29JUjM4dFY3THVvQ2dLSlRKMzk2SzkwUEVOcFQ4TG1cdTAwMkJBTDdhRDRIOG43L28yRGI4cTk0SG56UW5TTWt1bGJPSGluZ280cGE4TzRwZHJvOTVBaWRhSHJra2F2NlBkVlFpRDhPMVI4amVZZ29HbEF1MEtHL0lGRElDS3Z1MnlyM3F2M0U5RFdxMk1CVUNQN1pURkZNdGxsUW5LZE5MV2pBVENwTjBFUXlwbjNuQ1BzbTZSd1ZFYklRek5IMkRxOGZRU014d2lMd1ZEUlFlenRGOTV2bWhWSW1wbktzN0M1dHBwVElscE82aUFzRG5hZ0JRbEtBNlZwMndkRm44ZDduVmVISWFKWmZsdnNVdDRsM25nMjhIa3VjVUZWSG4vNG8yRTlBUzB3PT0iCn0=",
+      "expected": {
+        "result": "authenticated",
+        "valid": false,
+        "product": "match",
+        "hardware": "not-checked",
+        "expiration": "never",
+        "formatVersion": 1,
+        "appId": "Northstar-Studio",
+        "registrationName": "Alex Morgan",
+        "hardwareId": "DEMO-WORKSTATION-001",
+        "expirationDate": null,
+        "userDefined": null,
+        "revocationId": "ab5962e8edab036c980ddff74426e4e194e8e4210b2bd8430fa1996f5d2f8076"
+      }
+    },
+    {
+      "name": "unbound-without-hardware-check",
+      "description": "An unbound license inspected without an expected hardware ID is valid, but a verify function returns no license without one.",
+      "copy": "legacy-unbound-dated",
+      "expectedHardwareId": null,
+      "license": "ewogICJBcHBJZCI6ICJOb3J0aHN0YXItU3R1ZGlvIiwKICAiUmVnaXN0cmF0aW9uTmFtZSI6ICJKb3JkYW4gTGVlIiwKICAiSGFyZHdhcmVJZCI6ICIiLAogICJFeHBpcmF0aW9uRGF0ZSI6ICIyMDI3LTA2LTExVDAwOjAwOjAwIiwKICAiU2lnbmF0dXJlIjogImpGNjZiNmJyR1JTNkpPUDBkcGd1UFNOWWlDRFR0b2l6b3oxUVhraVx1MDAyQlFXTVx1MDAyQmFieHpmc3ZIQmFVcmF6ZEJueWFhZFVyTE9NQk5QM0d1TGVtd3NMR3MxNWtvY1Jlc3RXamdyTzNPM0EzYWVReU1IU1pvTmtOWS96TjRTTUVsbzk0T2tXRWVEcUswUzdGNVlaQm1UWkQzbXpFWjk3Q0FYSmovRTZBWmp6M1x1MDAyQnlvYUMvaVl1R3dEeWNOaHBhZXNjTEd6SU5lWlx1MDAyQlZPVlB5djdDcmVJTDlaM2FKLzJET0pKeE1SL1B2WG4ya1RUUE9FU2FYUkhwNS9yaDh0N09sOXRCeEd4bUw5WHZaSzlIMTQ5ODZBaVlOSnI0RkhrdmFRXHUwMDJCNFJYVlVtTmNQc0pTWVJsUVRYbFRJNzZLb1NvUjZLTnhnTmRlUlx1MDAyQmdrTmpuMHd3VWRvbnlxNi9xY3JtQT09Igp9",
+      "expected": {
+        "result": "authenticated",
+        "valid": true,
+        "product": "match",
+        "hardware": "not-bound",
+        "expiration": "current",
+        "formatVersion": 1,
+        "appId": "Northstar-Studio",
+        "registrationName": "Jordan Lee",
+        "hardwareId": "",
+        "expirationDate": "2027-06-11",
+        "userDefined": null,
+        "revocationId": "8da3349c434a9df9060b98f42a11c2d221b407d6825c503a0d1a12be8c71d886"
+      }
+    },
+    {
+      "name": "blank-expected-product",
+      "description": "The application passes a blank product identifier.",
+      "copy": "legacy-bound-perpetual",
+      "expectedAppId": " \t",
+      "license": "ewogICJBcHBJZCI6ICJOb3J0aHN0YXItU3R1ZGlvIiwKICAiUmVnaXN0cmF0aW9uTmFtZSI6ICJBbGV4IE1vcmdhbiIsCiAgIkhhcmR3YXJlSWQiOiAiREVNTy1XT1JLU1RBVElPTi0wMDEiLAogICJFeHBpcmF0aW9uRGF0ZSI6IG51bGwsCiAgIlNpZ25hdHVyZSI6ICJtM1kwUEdycTc2dFBIcEpcdTAwMkJrUmhQeW1tb3VOZTRmVWZsa2M1cHhJTk1vdHRkSmhuT29JUjM4dFY3THVvQ2dLSlRKMzk2SzkwUEVOcFQ4TG1cdTAwMkJBTDdhRDRIOG43L28yRGI4cTk0SG56UW5TTWt1bGJPSGluZ280cGE4TzRwZHJvOTVBaWRhSHJra2F2NlBkVlFpRDhPMVI4amVZZ29HbEF1MEtHL0lGRElDS3Z1MnlyM3F2M0U5RFdxMk1CVUNQN1pURkZNdGxsUW5LZE5MV2pBVENwTjBFUXlwbjNuQ1BzbTZSd1ZFYklRek5IMkRxOGZRU014d2lMd1ZEUlFlenRGOTV2bWhWSW1wbktzN0M1dHBwVElscE82aUFzRG5hZ0JRbEtBNlZwMndkRm44ZDduVmVISWFKWmZsdnNVdDRsM25nMjhIa3VjVUZWSG4vNG8yRTlBUzB3PT0iCn0=",
+      "expected": {
+        "result": "rejected",
+        "reason": "invalid-expected-product"
+      }
+    },
+    {
+      "name": "pkcs1-public-key",
+      "description": "The trusted key is the same RSA key in PKCS#1 form.",
+      "copy": "legacy-bound-perpetual",
+      "publicKey": "-----BEGIN RSA PUBLIC KEY-----\nMIIBCgKCAQEAoEcsx4YOhgvbwkuKQ7w3KPOsSdBMDeD8aoLRX5nKuYalhPqLjAVM\nzhi6iG+ENVUfMLRY2NhfTWqCUg9u6aeMp6io9/kvRNytD9/qQZHURUzjrFl46N+o\nYZaPPejRGiz999fgJclQyxIROF0AVHQkVk9gjlqCX4PmZ3ITeLq4Z+bZUzcQHqle\njxGGumIxIAw64VS5s25CWRtlVxSzv5KdnfKlohiNI6VRHzWBUrICQTF85k3nadxa\nWdGOHdXstWhFukV9hmLxctRjL7AtSxZ1pfZh0zQWePWi2juWA5YL5Lu3FsDTSoZ1\nU4xSltUxrpBJw27B1xBl4Eas0hLozfTM0QIDAQAB\n-----END RSA PUBLIC KEY-----\n",
+      "license": "ewogICJBcHBJZCI6ICJOb3J0aHN0YXItU3R1ZGlvIiwKICAiUmVnaXN0cmF0aW9uTmFtZSI6ICJBbGV4IE1vcmdhbiIsCiAgIkhhcmR3YXJlSWQiOiAiREVNTy1XT1JLU1RBVElPTi0wMDEiLAogICJFeHBpcmF0aW9uRGF0ZSI6IG51bGwsCiAgIlNpZ25hdHVyZSI6ICJtM1kwUEdycTc2dFBIcEpcdTAwMkJrUmhQeW1tb3VOZTRmVWZsa2M1cHhJTk1vdHRkSmhuT29JUjM4dFY3THVvQ2dLSlRKMzk2SzkwUEVOcFQ4TG1cdTAwMkJBTDdhRDRIOG43L28yRGI4cTk0SG56UW5TTWt1bGJPSGluZ280cGE4TzRwZHJvOTVBaWRhSHJra2F2NlBkVlFpRDhPMVI4amVZZ29HbEF1MEtHL0lGRElDS3Z1MnlyM3F2M0U5RFdxMk1CVUNQN1pURkZNdGxsUW5LZE5MV2pBVENwTjBFUXlwbjNuQ1BzbTZSd1ZFYklRek5IMkRxOGZRU014d2lMd1ZEUlFlenRGOTV2bWhWSW1wbktzN0M1dHBwVElscE82aUFzRG5hZ0JRbEtBNlZwMndkRm44ZDduVmVISWFKWmZsdnNVdDRsM25nMjhIa3VjVUZWSG4vNG8yRTlBUzB3PT0iCn0=",
+      "expected": {
+        "result": "authenticated",
+        "valid": true,
+        "product": "match",
+        "hardware": "match",
+        "expiration": "never",
+        "formatVersion": 1,
+        "appId": "Northstar-Studio",
+        "registrationName": "Alex Morgan",
+        "hardwareId": "DEMO-WORKSTATION-001",
+        "expirationDate": null,
+        "userDefined": null,
+        "revocationId": "ab5962e8edab036c980ddff74426e4e194e8e4210b2bd8430fa1996f5d2f8076"
+      }
+    },
+    {
+      "name": "public-key-with-trailing-text",
+      "description": "Text follows the PEM block.",
+      "copy": "legacy-bound-perpetual",
+      "publicKey": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoEcsx4YOhgvbwkuKQ7w3\nKPOsSdBMDeD8aoLRX5nKuYalhPqLjAVMzhi6iG+ENVUfMLRY2NhfTWqCUg9u6aeM\np6io9/kvRNytD9/qQZHURUzjrFl46N+oYZaPPejRGiz999fgJclQyxIROF0AVHQk\nVk9gjlqCX4PmZ3ITeLq4Z+bZUzcQHqlejxGGumIxIAw64VS5s25CWRtlVxSzv5Kd\nnfKlohiNI6VRHzWBUrICQTF85k3nadxaWdGOHdXstWhFukV9hmLxctRjL7AtSxZ1\npfZh0zQWePWi2juWA5YL5Lu3FsDTSoZ1U4xSltUxrpBJw27B1xBl4Eas0hLozfTM\n0QIDAQAB\n-----END PUBLIC KEY-----\ntrailing",
+      "license": "ewogICJBcHBJZCI6ICJOb3J0aHN0YXItU3R1ZGlvIiwKICAiUmVnaXN0cmF0aW9uTmFtZSI6ICJBbGV4IE1vcmdhbiIsCiAgIkhhcmR3YXJlSWQiOiAiREVNTy1XT1JLU1RBVElPTi0wMDEiLAogICJFeHBpcmF0aW9uRGF0ZSI6IG51bGwsCiAgIlNpZ25hdHVyZSI6ICJtM1kwUEdycTc2dFBIcEpcdTAwMkJrUmhQeW1tb3VOZTRmVWZsa2M1cHhJTk1vdHRkSmhuT29JUjM4dFY3THVvQ2dLSlRKMzk2SzkwUEVOcFQ4TG1cdTAwMkJBTDdhRDRIOG43L28yRGI4cTk0SG56UW5TTWt1bGJPSGluZ280cGE4TzRwZHJvOTVBaWRhSHJra2F2NlBkVlFpRDhPMVI4amVZZ29HbEF1MEtHL0lGRElDS3Z1MnlyM3F2M0U5RFdxMk1CVUNQN1pURkZNdGxsUW5LZE5MV2pBVENwTjBFUXlwbjNuQ1BzbTZSd1ZFYklRek5IMkRxOGZRU014d2lMd1ZEUlFlenRGOTV2bWhWSW1wbktzN0M1dHBwVElscE82aUFzRG5hZ0JRbEtBNlZwMndkRm44ZDduVmVISWFKWmZsdnNVdDRsM25nMjhIa3VjVUZWSG4vNG8yRTlBUzB3PT0iCn0=",
+      "expected": {
+        "result": "rejected",
+        "reason": "invalid-public-key"
+      }
+    },
+    {
+      "name": "public-key-with-trailing-bytes",
+      "description": "The DER encoding has a byte after the key.",
+      "copy": "legacy-bound-perpetual",
+      "publicKey": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoEcsx4YOhgvbwkuKQ7w3\nKPOsSdBMDeD8aoLRX5nKuYalhPqLjAVMzhi6iG+ENVUfMLRY2NhfTWqCUg9u6aeM\np6io9/kvRNytD9/qQZHURUzjrFl46N+oYZaPPejRGiz999fgJclQyxIROF0AVHQk\nVk9gjlqCX4PmZ3ITeLq4Z+bZUzcQHqlejxGGumIxIAw64VS5s25CWRtlVxSzv5Kd\nnfKlohiNI6VRHzWBUrICQTF85k3nadxaWdGOHdXstWhFukV9hmLxctRjL7AtSxZ1\npfZh0zQWePWi2juWA5YL5Lu3FsDTSoZ1U4xSltUxrpBJw27B1xBl4Eas0hLozfTM\n0QIDAQABAA==\n-----END PUBLIC KEY-----\n",
+      "license": "ewogICJBcHBJZCI6ICJOb3J0aHN0YXItU3R1ZGlvIiwKICAiUmVnaXN0cmF0aW9uTmFtZSI6ICJBbGV4IE1vcmdhbiIsCiAgIkhhcmR3YXJlSWQiOiAiREVNTy1XT1JLU1RBVElPTi0wMDEiLAogICJFeHBpcmF0aW9uRGF0ZSI6IG51bGwsCiAgIlNpZ25hdHVyZSI6ICJtM1kwUEdycTc2dFBIcEpcdTAwMkJrUmhQeW1tb3VOZTRmVWZsa2M1cHhJTk1vdHRkSmhuT29JUjM4dFY3THVvQ2dLSlRKMzk2SzkwUEVOcFQ4TG1cdTAwMkJBTDdhRDRIOG43L28yRGI4cTk0SG56UW5TTWt1bGJPSGluZ280cGE4TzRwZHJvOTVBaWRhSHJra2F2NlBkVlFpRDhPMVI4amVZZ29HbEF1MEtHL0lGRElDS3Z1MnlyM3F2M0U5RFdxMk1CVUNQN1pURkZNdGxsUW5LZE5MV2pBVENwTjBFUXlwbjNuQ1BzbTZSd1ZFYklRek5IMkRxOGZRU014d2lMd1ZEUlFlenRGOTV2bWhWSW1wbktzN0M1dHBwVElscE82aUFzRG5hZ0JRbEtBNlZwMndkRm44ZDduVmVISWFKWmZsdnNVdDRsM25nMjhIa3VjVUZWSG4vNG8yRTlBUzB3PT0iCn0=",
+      "expected": {
+        "result": "rejected",
+        "reason": "invalid-public-key"
+      }
+    },
+    {
+      "name": "pkcs1-body-under-public-key-label",
+      "description": "A PKCS#1 key labelled as SubjectPublicKeyInfo.",
+      "copy": "legacy-bound-perpetual",
+      "publicKey": "-----BEGIN PUBLIC KEY-----\nMIIBCgKCAQEAoEcsx4YOhgvbwkuKQ7w3KPOsSdBMDeD8aoLRX5nKuYalhPqLjAVM\nzhi6iG+ENVUfMLRY2NhfTWqCUg9u6aeMp6io9/kvRNytD9/qQZHURUzjrFl46N+o\nYZaPPejRGiz999fgJclQyxIROF0AVHQkVk9gjlqCX4PmZ3ITeLq4Z+bZUzcQHqle\njxGGumIxIAw64VS5s25CWRtlVxSzv5KdnfKlohiNI6VRHzWBUrICQTF85k3nadxa\nWdGOHdXstWhFukV9hmLxctRjL7AtSxZ1pfZh0zQWePWi2juWA5YL5Lu3FsDTSoZ1\nU4xSltUxrpBJw27B1xBl4Eas0hLozfTM0QIDAQAB\n-----END PUBLIC KEY-----\n",
+      "license": "ewogICJBcHBJZCI6ICJOb3J0aHN0YXItU3R1ZGlvIiwKICAiUmVnaXN0cmF0aW9uTmFtZSI6ICJBbGV4IE1vcmdhbiIsCiAgIkhhcmR3YXJlSWQiOiAiREVNTy1XT1JLU1RBVElPTi0wMDEiLAogICJFeHBpcmF0aW9uRGF0ZSI6IG51bGwsCiAgIlNpZ25hdHVyZSI6ICJtM1kwUEdycTc2dFBIcEpcdTAwMkJrUmhQeW1tb3VOZTRmVWZsa2M1cHhJTk1vdHRkSmhuT29JUjM4dFY3THVvQ2dLSlRKMzk2SzkwUEVOcFQ4TG1cdTAwMkJBTDdhRDRIOG43L28yRGI4cTk0SG56UW5TTWt1bGJPSGluZ280cGE4TzRwZHJvOTVBaWRhSHJra2F2NlBkVlFpRDhPMVI4amVZZ29HbEF1MEtHL0lGRElDS3Z1MnlyM3F2M0U5RFdxMk1CVUNQN1pURkZNdGxsUW5LZE5MV2pBVENwTjBFUXlwbjNuQ1BzbTZSd1ZFYklRek5IMkRxOGZRU014d2lMd1ZEUlFlenRGOTV2bWhWSW1wbktzN0M1dHBwVElscE82aUFzRG5hZ0JRbEtBNlZwMndkRm44ZDduVmVISWFKWmZsdnNVdDRsM25nMjhIa3VjVUZWSG4vNG8yRTlBUzB3PT0iCn0=",
+      "expected": {
+        "result": "rejected",
+        "reason": "invalid-public-key"
+      }
+    },
+    {
+      "name": "spki-body-under-rsa-public-key-label",
+      "description": "An RSA PUBLIC KEY label requires a PKCS#1 body; a SubjectPublicKeyInfo body under it is rejected.",
+      "copy": "legacy-bound-perpetual",
+      "publicKey": "-----BEGIN RSA PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoEcsx4YOhgvbwkuKQ7w3\nKPOsSdBMDeD8aoLRX5nKuYalhPqLjAVMzhi6iG+ENVUfMLRY2NhfTWqCUg9u6aeM\np6io9/kvRNytD9/qQZHURUzjrFl46N+oYZaPPejRGiz999fgJclQyxIROF0AVHQk\nVk9gjlqCX4PmZ3ITeLq4Z+bZUzcQHqlejxGGumIxIAw64VS5s25CWRtlVxSzv5Kd\nnfKlohiNI6VRHzWBUrICQTF85k3nadxaWdGOHdXstWhFukV9hmLxctRjL7AtSxZ1\npfZh0zQWePWi2juWA5YL5Lu3FsDTSoZ1U4xSltUxrpBJw27B1xBl4Eas0hLozfTM\n0QIDAQAB\n-----END RSA PUBLIC KEY-----\n",
+      "license": "ewogICJBcHBJZCI6ICJOb3J0aHN0YXItU3R1ZGlvIiwKICAiUmVnaXN0cmF0aW9uTmFtZSI6ICJBbGV4IE1vcmdhbiIsCiAgIkhhcmR3YXJlSWQiOiAiREVNTy1XT1JLU1RBVElPTi0wMDEiLAogICJFeHBpcmF0aW9uRGF0ZSI6IG51bGwsCiAgIlNpZ25hdHVyZSI6ICJtM1kwUEdycTc2dFBIcEpcdTAwMkJrUmhQeW1tb3VOZTRmVWZsa2M1cHhJTk1vdHRkSmhuT29JUjM4dFY3THVvQ2dLSlRKMzk2SzkwUEVOcFQ4TG1cdTAwMkJBTDdhRDRIOG43L28yRGI4cTk0SG56UW5TTWt1bGJPSGluZ280cGE4TzRwZHJvOTVBaWRhSHJra2F2NlBkVlFpRDhPMVI4amVZZ29HbEF1MEtHL0lGRElDS3Z1MnlyM3F2M0U5RFdxMk1CVUNQN1pURkZNdGxsUW5LZE5MV2pBVENwTjBFUXlwbjNuQ1BzbTZSd1ZFYklRek5IMkRxOGZRU014d2lMd1ZEUlFlenRGOTV2bWhWSW1wbktzN0M1dHBwVElscE82aUFzRG5hZ0JRbEtBNlZwMndkRm44ZDduVmVISWFKWmZsdnNVdDRsM25nMjhIa3VjVUZWSG4vNG8yRTlBUzB3PT0iCn0=",
+      "expected": {
+        "result": "rejected",
+        "reason": "invalid-public-key"
+      }
+    },
+    {
+      "name": "public-key-with-vertical-tab-inside",
+      "description": "Only spaces, tabs, carriage returns and line feeds may appear inside the PEM body; a vertical tab is rejected there.",
+      "copy": "legacy-bound-perpetual",
+      "publicKey": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoEcsx4YOhgvbwkuKQ7w3\u000b\nKPOsSdBMDeD8aoLRX5nKuYalhPqLjAVMzhi6iG+ENVUfMLRY2NhfTWqCUg9u6aeM\np6io9/kvRNytD9/qQZHURUzjrFl46N+oYZaPPejRGiz999fgJclQyxIROF0AVHQk\nVk9gjlqCX4PmZ3ITeLq4Z+bZUzcQHqlejxGGumIxIAw64VS5s25CWRtlVxSzv5Kd\nnfKlohiNI6VRHzWBUrICQTF85k3nadxaWdGOHdXstWhFukV9hmLxctRjL7AtSxZ1\npfZh0zQWePWi2juWA5YL5Lu3FsDTSoZ1U4xSltUxrpBJw27B1xBl4Eas0hLozfTM\n0QIDAQAB\n-----END PUBLIC KEY-----\n",
+      "license": "ewogICJBcHBJZCI6ICJOb3J0aHN0YXItU3R1ZGlvIiwKICAiUmVnaXN0cmF0aW9uTmFtZSI6ICJBbGV4IE1vcmdhbiIsCiAgIkhhcmR3YXJlSWQiOiAiREVNTy1XT1JLU1RBVElPTi0wMDEiLAogICJFeHBpcmF0aW9uRGF0ZSI6IG51bGwsCiAgIlNpZ25hdHVyZSI6ICJtM1kwUEdycTc2dFBIcEpcdTAwMkJrUmhQeW1tb3VOZTRmVWZsa2M1cHhJTk1vdHRkSmhuT29JUjM4dFY3THVvQ2dLSlRKMzk2SzkwUEVOcFQ4TG1cdTAwMkJBTDdhRDRIOG43L28yRGI4cTk0SG56UW5TTWt1bGJPSGluZ280cGE4TzRwZHJvOTVBaWRhSHJra2F2NlBkVlFpRDhPMVI4amVZZ29HbEF1MEtHL0lGRElDS3Z1MnlyM3F2M0U5RFdxMk1CVUNQN1pURkZNdGxsUW5LZE5MV2pBVENwTjBFUXlwbjNuQ1BzbTZSd1ZFYklRek5IMkRxOGZRU014d2lMd1ZEUlFlenRGOTV2bWhWSW1wbktzN0M1dHBwVElscE82aUFzRG5hZ0JRbEtBNlZwMndkRm44ZDduVmVISWFKWmZsdnNVdDRsM25nMjhIa3VjVUZWSG4vNG8yRTlBUzB3PT0iCn0=",
+      "expected": {
+        "result": "rejected",
+        "reason": "invalid-public-key"
+      }
+    },
+    {
+      "name": "public-key-with-unicode-whitespace-around",
+      "description": "Any whitespace of the contract may surround the PEM block, such as U+0085, a no-break space or U+2028.",
+      "copy": "legacy-bound-perpetual",
+      "publicKey": "\u0085\u00a0-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoEcsx4YOhgvbwkuKQ7w3\nKPOsSdBMDeD8aoLRX5nKuYalhPqLjAVMzhi6iG+ENVUfMLRY2NhfTWqCUg9u6aeM\np6io9/kvRNytD9/qQZHURUzjrFl46N+oYZaPPejRGiz999fgJclQyxIROF0AVHQk\nVk9gjlqCX4PmZ3ITeLq4Z+bZUzcQHqlejxGGumIxIAw64VS5s25CWRtlVxSzv5Kd\nnfKlohiNI6VRHzWBUrICQTF85k3nadxaWdGOHdXstWhFukV9hmLxctRjL7AtSxZ1\npfZh0zQWePWi2juWA5YL5Lu3FsDTSoZ1U4xSltUxrpBJw27B1xBl4Eas0hLozfTM\n0QIDAQAB\n-----END PUBLIC KEY-----\n\u2028",
+      "license": "ewogICJBcHBJZCI6ICJOb3J0aHN0YXItU3R1ZGlvIiwKICAiUmVnaXN0cmF0aW9uTmFtZSI6ICJBbGV4IE1vcmdhbiIsCiAgIkhhcmR3YXJlSWQiOiAiREVNTy1XT1JLU1RBVElPTi0wMDEiLAogICJFeHBpcmF0aW9uRGF0ZSI6IG51bGwsCiAgIlNpZ25hdHVyZSI6ICJtM1kwUEdycTc2dFBIcEpcdTAwMkJrUmhQeW1tb3VOZTRmVWZsa2M1cHhJTk1vdHRkSmhuT29JUjM4dFY3THVvQ2dLSlRKMzk2SzkwUEVOcFQ4TG1cdTAwMkJBTDdhRDRIOG43L28yRGI4cTk0SG56UW5TTWt1bGJPSGluZ280cGE4TzRwZHJvOTVBaWRhSHJra2F2NlBkVlFpRDhPMVI4amVZZ29HbEF1MEtHL0lGRElDS3Z1MnlyM3F2M0U5RFdxMk1CVUNQN1pURkZNdGxsUW5LZE5MV2pBVENwTjBFUXlwbjNuQ1BzbTZSd1ZFYklRek5IMkRxOGZRU014d2lMd1ZEUlFlenRGOTV2bWhWSW1wbktzN0M1dHBwVElscE82aUFzRG5hZ0JRbEtBNlZwMndkRm44ZDduVmVISWFKWmZsdnNVdDRsM25nMjhIa3VjVUZWSG4vNG8yRTlBUzB3PT0iCn0=",
+      "expected": {
+        "result": "authenticated",
+        "valid": true,
+        "product": "match",
+        "hardware": "match",
+        "expiration": "never",
+        "formatVersion": 1,
+        "appId": "Northstar-Studio",
+        "registrationName": "Alex Morgan",
+        "hardwareId": "DEMO-WORKSTATION-001",
+        "expirationDate": null,
+        "userDefined": null,
+        "revocationId": "ab5962e8edab036c980ddff74426e4e194e8e4210b2bd8430fa1996f5d2f8076"
+      }
+    },
+    {
+      "name": "public-key-too-small",
+      "description": "A 1024-bit RSA public key.",
+      "copy": "legacy-bound-perpetual",
+      "publicKey": "-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDGYpkZcdU4uQnJluPuqsbYQ3na\ni+167i3VJVAlTuId/U4EwjpHp8FEJXjapIUjIlj9d3OsWPZXoda0Yy5Tob0iz3Hi\n8gkYQKaB+++D9FeYJEyAnljZ2kv+oIYWEKTv1ExT451kxPDi0ecEHPAnYMf63PGE\n70QZKlqt6+keQw8R+QIDAQAB\n-----END PUBLIC KEY-----\n",
+      "license": "ewogICJBcHBJZCI6ICJOb3J0aHN0YXItU3R1ZGlvIiwKICAiUmVnaXN0cmF0aW9uTmFtZSI6ICJBbGV4IE1vcmdhbiIsCiAgIkhhcmR3YXJlSWQiOiAiREVNTy1XT1JLU1RBVElPTi0wMDEiLAogICJFeHBpcmF0aW9uRGF0ZSI6IG51bGwsCiAgIlNpZ25hdHVyZSI6ICJtM1kwUEdycTc2dFBIcEpcdTAwMkJrUmhQeW1tb3VOZTRmVWZsa2M1cHhJTk1vdHRkSmhuT29JUjM4dFY3THVvQ2dLSlRKMzk2SzkwUEVOcFQ4TG1cdTAwMkJBTDdhRDRIOG43L28yRGI4cTk0SG56UW5TTWt1bGJPSGluZ280cGE4TzRwZHJvOTVBaWRhSHJra2F2NlBkVlFpRDhPMVI4amVZZ29HbEF1MEtHL0lGRElDS3Z1MnlyM3F2M0U5RFdxMk1CVUNQN1pURkZNdGxsUW5LZE5MV2pBVENwTjBFUXlwbjNuQ1BzbTZSd1ZFYklRek5IMkRxOGZRU014d2lMd1ZEUlFlenRGOTV2bWhWSW1wbktzN0M1dHBwVElscE82aUFzRG5hZ0JRbEtBNlZwMndkRm44ZDduVmVISWFKWmZsdnNVdDRsM25nMjhIa3VjVUZWSG4vNG8yRTlBUzB3PT0iCn0=",
+      "expected": {
+        "result": "rejected",
+        "reason": "invalid-public-key"
+      }
+    },
+    {
+      "name": "not-a-license",
+      "description": "Text that is not Base64-encoded license JSON.",
+      "license": "This is not a license.",
+      "expected": {
+        "result": "rejected",
+        "reason": "malformed"
+      }
+    }
+  ],
+  "expirationTexts": {
+    "description": "Each text replaces the ExpirationDate value of the source license. Only the calendar date is signed, so an accepted text gives the source's published result and a rejected one is malformed. At the boundary, every accepted text is current at currentAt and expired at expiredAt: no time or offset moves the cutoff.",
+    "source": "legacy-expires-next-day",
+    "written": "2027-03-16T00:00:00",
+    "boundary": {
+      "currentAt": "2027-03-15T23:59:59Z",
+      "expiredAt": "2027-03-16T00:00:00Z"
+    },
+    "accepted": [
+      "2027-03-16",
+      "2027-03-16T08:00",
+      "2027-03-16T08:00:00",
+      "2027-03-16T08:00:00.1234567",
+      "2027-03-16T08:00:00.1234567890123456",
+      "2027-03-16T08:00Z",
+      "2027-03-16T23:59:59.5Z",
+      "2027-03-16T08:00+14:00",
+      "2027-03-16T08:00:00-14:00",
+      "2027-03-16T08:00:00+13:59",
+      "2027-03-16T08:00:00+02",
+      "2027-03-16T08:00:00-02:30",
+      "2027-03-16T08:00:00.0000000+00:00"
+    ],
+    "rejected": [
+      "2027-03-16Z",
+      "2027-03-16T08",
+      "2027-03-16t08:00:00",
+      "2027-03-16 08:00:00",
+      "2027-03-16T08:00:00z",
+      "2027-03-16T24:00:00",
+      "2027-03-16T23:60:00",
+      "2027-03-16T23:59:60",
+      "2027-03-16T08:00:00.",
+      "2027-03-16T08:00:00,5",
+      "2027-03-16T08:00:00.12345678901234567",
+      "2027-03-16T08:00:00+0200",
+      "2027-03-16T08:00+15:00",
+      "2027-03-16T08:00:00+14:01",
+      "2027-03-16T08:00:00+00:60",
+      "2027-03-16T08:00:00+24:00",
+      "2027-3-16",
+      "+2027-03-16",
+      "٢027-03-16",
+      "2027-02-30",
+      "0000-01-01",
+      "0001-01-01T00:00:00+01:00",
+      "9999-12-31T23:59:59-01:00",
+      "2027-03-16\n",
+      "2027-03-16T08:00:00Z\n"
+    ]
+  },
+  "hardwareIdExamples": [
+    {
+      "description": "The hardware ID that the integration guide derives: HMAC-SHA-256 keyed with the UTF-8 product ID over the UTF-8 machine identifier without the spaces, tabs, carriage returns and line feeds at its ends, as 64 uppercase hexadecimal characters. Here the identifier is a Linux machine-id with its final line break. It is a recommendation for applications, not part of the license contract.",
+      "productId": "Northstar-Studio",
+      "machineId": "4f1c0b7a9e5d3c2a8b6f0e1d2c3b4a59\n",
+      "hardwareId": "05A68D939433F5BABB1D30D04974999056C8AFAF60D867DA80241F9F99E5FA01"
+    },
+    {
+      "description": "The same derivation keeps every other character at the ends, here a no-break space and a byte order mark, which the trim functions of some languages remove.",
+      "productId": "Northstar-Studio",
+      "machineId": "\r\n\t \u00a04f1c0b7a9e5d3c2a8b6f0e1d2c3b4a59\ufeff \n",
+      "hardwareId": "C2ED486DF8090EDA098FD963B10940FAF234D83B655EED60EA21F7F9FB442C60"
+    }
+  ]
+}
