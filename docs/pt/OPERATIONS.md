@@ -11,11 +11,11 @@ exato da licença, do [contrato de formato e segurança](ARCHITECTURE.md).
 
 Crie um produto em **Aplicativos**. O gerador guarda um par de chaves RSA próprio para ele na sua pasta de dados. Seu aplicativo cliente precisa do `public.pem` do produto; nunca distribua `private.pem`.
 
-Para vincular a licença ao hardware, seu cliente calcula um identificador de hardware, mostra esse valor exato ao usuário, e você o digita no campo HWID do gerador. O gerador não escolhe o método de identificação do hardware; o [guia de integração](INTEGRATION.md#escolher-um-identificador-de-hardware) descreve o que um bom método precisa. Um HWID vazio de propósito gera uma licença sem vínculo ao hardware.
+Para vincular a licença ao hardware, seu cliente calcula um identificador de hardware, mostra esse valor exato ao usuário, e você o digita no campo **Código de Solicitação (ID da Máquina - Opcional)** do gerador. O gerador não escolhe o método de identificação do hardware; o [guia de integração](INTEGRATION.md#escolher-um-identificador-de-hardware) descreve o que um bom método exige. Um HWID vazio de propósito gera uma licença sem vínculo ao hardware.
 
-Selecione o produto, digite o nome de registro e o HWID opcional e, se quiser, escolha uma data de expiração. A licença expira às **00:00 UTC do início da data escolhida**. Para permitir todo o dia 10 de junho, escolha 11 de junho. Deixe a data vazia para uma licença perpétua.
+Selecione o produto, digite o nome de registro e o HWID opcional e, se quiser, escolha uma data de expiração. A licença expira às **00:00 UTC no início da data escolhida**. Para permitir todo o dia 10 de junho, escolha 11 de junho. Deixe a data vazia para uma licença perpétua.
 
-Gere e copie o código resultante para o cliente. O **Histórico** registra as licenças emitidas. Excluir uma entrada do histórico remove apenas o registro local; excluir um produto remove suas chaves e impede emitir novas licenças com elas. Nenhuma das duas operações revoga licenças já entregues. Faça backup das chaves antes de excluir.
+Gere a licença, copie o código resultante e entregue-o ao cliente. O **Histórico** registra as licenças emitidas. Excluir uma entrada do histórico remove apenas o registro local; excluir um produto remove suas chaves e impede emitir novas licenças com elas. Nenhuma das duas operações revoga licenças já entregues. Faça backup das chaves antes de excluir.
 
 ## Dados personalizados assinados: UserDefined
 
@@ -35,13 +35,13 @@ Qualquer texto personalizado não vazio usa o formato 2, que um cliente escrito 
 
 Abra **Inspecionar licença** e cole um código de licença completo, ou abra uma entrada salva no **Histórico**. A inspeção não altera o registro salvo. Escolha explicitamente a chave pública de um produto local ou cole uma chave pública PEM obtida de uma fonte confiável. O conteúdo da licença nunca escolhe a chave confiável. Esta tela rejeita chaves privadas PEM.
 
-Informe o ID de produto esperado e, opcionalmente, o ID de hardware exato do cliente. Um HWID esperado vazio significa **não verificado** para uma licença vinculada; não confirma que a licença possa ser usada neste dispositivo. Uma licença sem vínculo não precisa de verificação de hardware.
+Informe o ID do produto esperado e, opcionalmente, o ID de hardware exato do cliente. Um HWID esperado vazio significa **não verificado** para uma licença vinculada; não confirma que a licença possa ser usada neste dispositivo. Uma licença sem vínculo não precisa de verificação de hardware.
 
-A tela autentica a assinatura RSA antes de mostrar qualquer campo da licença e depois informa separadamente as verificações de produto, hardware e expiração. Licenças autênticas expiradas podem ser inspecionadas, mas continuam expiradas. Uma assinatura que não confere pode indicar outra chave ou dados da licença alterados; ela não distingue essas causas. O resultado mostra a hora UTC da verificação. Editar as entradas limpa o resultado; verifique de novo para outro momento. A inspeção não envia nem salva nada.
+A tela autentica a assinatura RSA antes de mostrar qualquer campo da licença e depois informa separadamente as verificações de produto, hardware e expiração. Licenças autênticas expiradas podem ser inspecionadas, mas continuam expiradas. Uma assinatura que não confere pode indicar outra chave ou dados da licença alterados; ela não distingue essas causas. O resultado mostra a hora UTC da verificação. Alterar os valores informados limpa o resultado; para saber a situação da licença em um momento posterior, verifique de novo. A inspeção não envia nem salva nada.
 
 ## Seus dados
 
-O aplicativo guarda as chaves de assinatura, o histórico de licenças, as configurações e um log de diagnóstico em uma pasta de dados que pertence ao seu usuário do sistema operacional, separada do executável. A [política de privacidade](https://gonzaloapps.es/apps/license-generator/legal/privacy-policy/) (em inglês) detalha o que cada arquivo contém e onde fica a pasta nas versões da Microsoft Store, portátil para Windows e Linux. Exporte um backup antes de desinstalar a versão da Microsoft Store: o Windows apaga a pasta de dados junto com ela.
+O aplicativo guarda as chaves de assinatura, o histórico de licenças, as configurações e um log de diagnóstico em uma pasta de dados que pertence ao seu usuário do sistema operacional, separada do executável. A [política de privacidade](https://gonzaloapps.es/apps/license-generator/legal/privacy-policy/) (em inglês) detalha o que cada arquivo contém e onde fica a pasta na versão da Microsoft Store, na versão portátil para Windows e na versão para Linux. Exporte um backup antes de desinstalar a versão da Microsoft Store: o Windows apaga a pasta de dados junto com ela.
 
 As chaves privadas e os backups **não são criptografados**. Quem obtiver uma chave privada pode emitir licenças que seus aplicativos aceitam.
 
@@ -49,18 +49,18 @@ As chaves privadas e os backups **não são criptografados**. Quem obtiver uma c
 
 Use **Configurações** para exportar um backup ZIP. Ele contém chaves privadas, histórico e configurações sem criptografia. Guarde-o em um armazenamento que você controla; criptografe-o com a solução de backup que preferir antes de compartilhá-lo ou enviá-lo.
 
-A importação combina produtos e histórico. As chaves e o histórico existentes são preservados. Se um produto importado tiver outras chaves ou um arquivo de histórico tiver outro conteúdo, a importação falha em vez de sobrescrevê-lo. As configurações importadas válidas substituem as atuais. A estrutura do arquivo, o tamanho e os pares de chaves RSA são validados antes da importação. Exporte antes um backup do perfil atual se quiser restaurar as configurações dele depois. Uma importação não revoga nem substitui licenças já entregues aos clientes.
+A importação combina produtos e histórico. As chaves e o histórico existentes são preservados. Se um produto importado tiver outras chaves ou se já existir um arquivo de histórico com o mesmo nome e outro conteúdo, a importação falha em vez de sobrescrevê-lo. As configurações importadas válidas substituem as atuais. A estrutura e o tamanho do arquivo ZIP e os pares de chaves RSA são validados antes da importação. Exporte antes um backup do perfil atual se quiser restaurar as configurações dele depois. Uma importação não revoga nem substitui licenças já entregues aos clientes.
 
-Copiar apenas o executável para outro computador não leva as chaves nem o histórico, e trocar entre a versão da Store e uma versão portátil começa de outra pasta: exporte um backup e importe-o na nova instalação.
+Copiar apenas o executável para outro computador não leva as chaves nem o histórico, e, ao trocar entre a versão da Store e uma versão portátil, o aplicativo passa a usar outra pasta: exporte um backup e importe-o na nova instalação.
 
 ## Solução de problemas
 
 | Sintoma | Verificação |
 | --- | --- |
-| Um cliente rejeita uma licença | Siga as verificações do cliente no [guia de integração](INTEGRATION.md#solução-de-problemas); inspecione a licença aqui com a mesma chave pública, produto e HWID. |
+| Um aplicativo cliente rejeita uma licença | Siga as verificações do cliente no [guia de integração](INTEGRATION.md#solução-de-problemas); inspecione a licença aqui com a mesma chave pública, produto e HWID. |
 | Expirou antes do esperado | A data escolhida é o limite exclusivo às 00:00 UTC; não é o último dia permitido. |
 | A importação informa um conflito | Mantenha os dados atuais e inspecione o backup; não substitua por acidente a chave privada de um produto. |
-| Faltam dados depois de mover o executável ou reinstalar | Os dados estão na pasta do usuário atual para essa versão; importe o backup na nova instalação. |
+| Faltam dados depois de mover o executável ou reinstalar | Os dados estão na pasta de dados do usuário atual para essa versão; importe o backup na nova instalação. |
 
 A emissão offline não oferece revogação remota, relógio confiável nem proteção contra código cliente modificado. Consulte os [limites de segurança](ARCHITECTURE.md#limites-de-segurança) antes de escolher uma política de integração.
 

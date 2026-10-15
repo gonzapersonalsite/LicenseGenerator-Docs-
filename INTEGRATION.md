@@ -49,7 +49,7 @@ a hardware ID. Your application passes those values in, which keeps every
 decision visible and testable.
 
 Another stack can verify licenses with its own RSA library. These standard APIs
-provide RSA PKCS#1 v1.5 signatures with SHA-256 over a SubjectPublicKeyInfo
+verify RSA PKCS#1 v1.5 signatures with SHA-256 using a SubjectPublicKeyInfo
 public key; they are pointers, not tested examples, so implement every rule of
 the contract and pass every test vector before release.
 

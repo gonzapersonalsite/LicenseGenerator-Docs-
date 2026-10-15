@@ -12,17 +12,17 @@ Ein Desktop-Werkzeug zum Ausstellen, Prüfen und Verwalten von Offline-Softwarel
 - Produkt, Kundenname, Hardwarekennung und optionales Ablaufdatum in jeder signierten Lizenz.
 - Optionaler signierter **UserDefined**-Text für Funktionen, Tarife oder anwendungsspezifische Metadaten.
 - Lokale Anwendungsverwaltung, durchsuchbarer Verlauf sowie ZIP-Sicherung und -Import.
-- Lokale Lizenzprüfung mit einem ausdrücklich vertrauenswürdigen öffentlichen Schlüssel und getrennten Ergebnissen für Signatur, Produkt, Hardware und Ablauf.
+- Lokale Lizenzprüfung mit einem ausdrücklich als vertrauenswürdig gewählten öffentlichen Schlüssel und getrennten Ergebnissen für Signatur, Produkt, Hardware und Ablauf.
 - Oberfläche auf Englisch, Spanisch, Deutsch, brasilianischem Portugiesisch und vereinfachtem Chinesisch.
 - Eigenständige Builds für Windows x64 und Linux x64; Endbenutzer müssen .NET nicht installieren. Linux benötigt weiterhin die Desktop-Systembibliotheken, die Avalonia voraussetzt.
 
 ## Erste Schritte
 
 1. Legen Sie unter **Anwendungen** ein Produkt an.
-2. Übernehmen Sie seine `public.pem` und fügen Sie Ihrer Client-Anwendung mit dem [Integrationsleitfaden](INTEGRATION.md) die Lizenzprüfung hinzu.
+2. Übernehmen Sie seine `public.pem` und fügen Sie Ihrer Client-Anwendung anhand des [Integrationsleitfadens](INTEGRATION.md) die Lizenzprüfung hinzu.
 3. Geben Sie den Kundennamen, die von Ihrem Client gelieferte Hardwarekennung und optional ein Ablaufdatum ein.
-4. Lassen Sie UserDefined für das bisherige Lizenzformat leer oder geben Sie benutzerdefinierten Text ein, nachdem Ihr Client Format 2 unterstützt.
-5. Generieren und übergeben Sie den Lizenzcode. Halten Sie den privaten Schlüssel und die Sicherungen privat.
+4. Lassen Sie UserDefined für das bisherige Lizenzformat leer oder geben Sie benutzerdefinierten Text ein, nachdem Sie Ihren Client so aktualisiert haben, dass er Format 2 unterstützt.
+5. Generieren und übergeben Sie den Lizenzcode. Halten Sie den privaten Schlüssel und die Sicherungen geheim.
 
 UserDefined ist signierter Text, keine ausführbare Regel und keine eingebaute Funktionsverwaltung. Ihre Anwendung entscheidet **nach** der Prüfung der Signatur, was sein Inhalt bedeutet.
 
@@ -38,8 +38,8 @@ Lizenzen sind Base64-kodiertes JSON, keine verschlüsselten Geheimnisse. Hardwar
 
 ## Daten und Lizenz
 
-Schlüssel, Verlauf, Einstellungen und ein Diagnoseprotokoll liegen in einem Datenordner Ihres Benutzers des Betriebssystems, getrennt von der ausführbaren Datei; die [Datenschutzerklärung](https://gonzaloapps.es/apps/license-generator/legal/privacy-policy/) (auf Englisch) nennt für jede Version, wo er liegt und was er enthält. Das Verschieben der ausführbaren Datei verschiebt die Daten nicht. Exportieren Sie eine Sicherung, bevor Sie den Computer wechseln, deinstallieren oder Schlüssel ändern.
+Schlüssel, Verlauf, Einstellungen und ein Diagnoseprotokoll liegen in einem Datenordner Ihres Benutzerkontos im Betriebssystem, getrennt von der ausführbaren Datei; die [Datenschutzerklärung](https://gonzaloapps.es/apps/license-generator/legal/privacy-policy/) (auf Englisch) nennt für jede Version, wo er liegt und was er enthält. Das Verschieben der ausführbaren Datei verschiebt die Daten nicht. Exportieren Sie eine Sicherung, bevor Sie den Computer wechseln, die Anwendung deinstallieren oder Schlüssel ändern.
 
-License Generator ist proprietäre Software gemäß der [EULA](../../LICENSE). Generierte Lizenzen und öffentliche Schlüssel dürfen unter diesen Bedingungen mit Ihren eigenen kommerziellen oder kostenlosen Anwendungen weitergegeben werden, und die Integrationsbeispiele unter `docs/examples` dürfen in sie kopiert werden.
+License Generator ist proprietäre Software gemäß der [EULA](../../LICENSE) (auf Englisch). Generierte Lizenzen und öffentliche Schlüssel dürfen unter diesen Bedingungen mit Ihren eigenen kommerziellen oder kostenlosen Anwendungen weitergegeben werden, und die Integrationsbeispiele unter `docs/examples` dürfen in sie kopiert werden.
 
 Entwickelt von Gonzalo Martínez García · gonzalo.dev

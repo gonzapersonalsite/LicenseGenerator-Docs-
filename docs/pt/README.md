@@ -14,14 +14,14 @@ Uma ferramenta de desktop para emitir, inspecionar e gerenciar licenças de soft
 - Gerenciamento local de aplicativos, histórico pesquisável e backup e importação em ZIP.
 - Inspeção local de licenças com uma chave pública explicitamente confiável e resultados separados de assinatura, produto, hardware e expiração.
 - Interface em inglês, espanhol, alemão, português do Brasil e chinês simplificado.
-- Compilações autônomas para Windows x64 e Linux x64; os usuários não precisam instalar o .NET. No Linux ainda são necessárias as bibliotecas de desktop do sistema exigidas pelo Avalonia.
+- Compilações autônomas para Windows x64 e Linux x64; os usuários finais não precisam instalar o .NET. No Linux ainda são necessárias as bibliotecas de desktop do sistema exigidas pelo Avalonia.
 
 ## Começar a usar
 
 1. Crie um produto em **Aplicativos**.
 2. Obtenha o `public.pem` dele e adicione a verificação de licenças ao seu aplicativo cliente com o [guia de integração](INTEGRATION.md).
-3. Digite o nome do cliente, o ID de hardware fornecido pelo seu cliente e uma data de expiração opcional.
-4. Deixe UserDefined vazio para o formato de licença existente, ou digite texto personalizado depois de atualizar seu cliente para suportar o formato 2.
+3. Digite o nome do cliente, o ID de hardware fornecido pelo seu aplicativo cliente e uma data de expiração opcional.
+4. Deixe UserDefined vazio para o formato de licença existente, ou digite texto personalizado depois de atualizar seu cliente para que seja compatível com o formato 2.
 5. Gere e entregue o código da licença. Mantenha em sigilo a chave privada e os backups.
 
 UserDefined é texto assinado, não uma regra executável nem um gerenciador de recursos integrado. Seu aplicativo decide o que o conteúdo significa **depois** de verificar a assinatura.
@@ -40,6 +40,6 @@ As licenças são JSON codificado em Base64, não segredos criptografados. O ví
 
 As chaves, o histórico, as configurações e um log de diagnóstico ficam em uma pasta de dados do seu usuário do sistema operacional, separada do executável; a [política de privacidade](https://gonzaloapps.es/apps/license-generator/legal/privacy-policy/) (em inglês) informa onde ela fica em cada versão e o que contém. Mover o executável não move os dados. Exporte um backup antes de trocar de computador, desinstalar ou modificar chaves.
 
-O License Generator é software proprietário sujeito ao [EULA](../../LICENSE). As licenças geradas e as chaves públicas podem ser distribuídas com seus próprios aplicativos comerciais ou gratuitos nessas condições, e os exemplos de integração de `docs/examples` podem ser copiados para eles.
+O License Generator é software proprietário sujeito ao [EULA](../../LICENSE) (em inglês). As licenças geradas e as chaves públicas podem ser distribuídas com seus próprios aplicativos comerciais ou gratuitos nessas condições, e os exemplos de integração de `docs/examples` podem ser copiados para eles.
 
 Desenvolvido por Gonzalo Martínez García · gonzalo.dev

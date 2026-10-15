@@ -24,7 +24,7 @@ sequenceDiagram
     You->>User: Le envías el código de licencia
     User->>App: Pega el código de licencia
     App->>App: Lo verifica y después guarda el código
-    App->>App: Verifica el código guardado en cada arranque y acción con licencia
+    App->>App: Verifica el código guardado en cada arranque y acción sujeta a licencia
 ```
 
 El generador firma cada licencia con la clave privada del producto, que nunca
@@ -41,7 +41,7 @@ publicado.
 
 | Tecnología | Copia en tu aplicación | Requisitos | Pruebas |
 | --- | --- | --- | --- |
-| C# | [LicenseVerifier.cs](../examples/LicenseVerifier.cs) y [LicenseProtocol.cs](../examples/LicenseProtocol.cs) | .NET 8 o posterior; sin paquetes | Comprobados con los vectores por la batería de regresión propia de la aplicación, que es privada |
+| C# | [LicenseVerifier.cs](../examples/LicenseVerifier.cs) y [LicenseProtocol.cs](../examples/LicenseProtocol.cs) | .NET 8 o posterior; sin paquetes | Comprobados con los vectores por la batería de pruebas de regresión propia de la aplicación, que es privada |
 | Python | [license_verifier.py](../examples/python/license_verifier.py) | Python 3.11 o posterior y el paquete [cryptography](https://pypi.org/project/cryptography/) | [test_license_verifier.py](../examples/python/test_license_verifier.py) |
 | Node.js | [license-verifier.mjs](../examples/node/license-verifier.mjs) | Node.js 20 o posterior; solo módulos integrados | [license-verifier.test.mjs](../examples/node/license-verifier.test.mjs) |
 
@@ -50,7 +50,7 @@ un ID de hardware. Tu aplicación les pasa esos valores, y así cada decisión q
 a la vista y se puede probar.
 
 Otra tecnología puede verificar licencias con su propia biblioteca RSA. Estas API
-estándar ofrecen firmas RSA PKCS#1 v1.5 con SHA-256 sobre una clave pública
+estándar verifican firmas RSA PKCS#1 v1.5 con SHA-256 mediante una clave pública
 SubjectPublicKeyInfo; son indicaciones, no ejemplos probados, así que implementa
 todas las reglas del contrato y supera todos los vectores de prueba antes de
 publicar.
@@ -78,13 +78,13 @@ valores por defecto:
 | Dónde | Qué ocurre | Qué hacer |
 | --- | --- | --- |
 | La mayoría de analizadores JSON | Se quedan con el último de dos nombres de propiedad iguales. | Rechaza un objeto raíz que repita un nombre antes de leer ningún dato. |
-| `encoding/json` de Go | Compara los nombres sin distinguir mayúsculas y sustituye el UTF-8 no válido y los sustitutos sin pareja por U+FFFD. | Lee el objeto raíz con `json.Decoder.Token` y compara los nombres exactamente. |
-| `java.util.Base64` de Java | `getDecoder()` rechaza los espacios en blanco, y `getMimeDecoder()` ignora cualquier carácter fuera del alfabeto. | Quita espacios, tabuladores y saltos de línea y decodifica con `getDecoder()`. |
+| `encoding/json` de Go | Compara los nombres sin distinguir mayúsculas de minúsculas y reemplaza el UTF-8 no válido y los sustitutos sin pareja por U+FFFD. | Lee el objeto raíz con `json.Decoder.Token` y compara los nombres exactamente. |
+| `java.util.Base64` de Java | `getDecoder()` rechaza los espacios en blanco, y `getMimeDecoder()` ignora cualquier carácter fuera del alfabeto. | Quita los espacios, tabuladores, retornos de carro y saltos de línea, y después decodifica con `getDecoder()`. |
 | `KeyFactory` de Java y Kotlin | `X509EncodedKeySpec` solo lee SubjectPublicKeyInfo. | Integra `public.pem` tal como lo escribe el generador, o convierte antes una clave PKCS#1. |
 | `SecKeyCreateWithData` de Swift | Espera una clave pública RSA en formato PKCS#1. | Quita antes la cabecera SubjectPublicKeyInfo, o integra la clave en formato PKCS#1. |
 | Longitudes de texto | Python cuenta puntos de código, y Go y Rust cuentan bytes. | Cuenta unidades de código UTF-16 para los límites del contrato. |
 | `cryptography` de Python | `load_pem_public_key` también lee un cuerpo SubjectPublicKeyInfo bajo una etiqueta `RSA PUBLIC KEY`, y `load_der_public_key` lee cualquiera de las dos formas. | Comprueba que el cuerpo tiene la forma que nombra su etiqueta. |
-| Expresiones regulares | En Python, Java y .NET, `$` también encaja antes de un salto de línea final, y en Python y .NET `\d` acepta dígitos de cualquier escritura. | Exige que encaje el texto entero (`re.fullmatch`, `Matcher.matches`, `\z` en .NET) y escribe `[0-9]`. |
+| Expresiones regulares | En Python, Java y .NET, `$` también encaja antes de un salto de línea final, y en Python y .NET `\d` acepta dígitos de cualquier sistema de escritura. | Exige que encaje el texto entero (`re.fullmatch`, `Matcher.matches`, `\z` en .NET) y escribe `[0-9]`. |
 | Funciones de recorte | `strip()` de Python, `trim()` de JavaScript y `Trim()` de .NET quitan caracteres distintos. | Quita exactamente los caracteres que nombran el contrato o esta guía. |
 
 ## Añadir el verificador a tu aplicación
@@ -151,9 +151,9 @@ mismos nombres en mayúsculas y con guiones bajos (`MALFORMED_LICENSE`,
 Una licencia emitida con un ID de hardware vacío no está vinculada: supera la
 comprobación de hardware sea cual sea el ID que espere tu aplicación. Para omitir
 la comprobación de hardware a propósito, pasa `null` (`None` en Python) a
-`inspect`; una licencia vinculada aparece entonces como no comprobada y nunca es
-válida. El verificador de Node.js rechaza un ID de hardware omitido (`undefined`),
-para que un argumento olvidado no pueda omitir la comprobación por accidente.
+`inspect`; una licencia vinculada queda entonces sin comprobar y nunca es válida.
+El verificador de Node.js no admite un ID de hardware omitido (`undefined`), para
+que un argumento olvidado no pueda omitir la comprobación por accidente.
 
 ## Crear una pantalla de activación
 
@@ -177,7 +177,7 @@ pegar un código de licencia y activarlo:
 ```
 
 Muestra el ID de hardware completo con un botón para copiarlo: la licencia se
-emite exactamente para ese texto. Cuando el usuario activa, inspecciona el
+emite exactamente para ese texto. Cuando el usuario la active, inspecciona el
 código, guárdalo si es válido y, si no, explica qué falla. Estas funciones dan
 por hecho que tu aplicación aporta `PUBLIC_KEY`, `PRODUCT_ID`, `hardware_id()` y
 `save_license_code()` (o sus equivalentes en C# y JavaScript). Los mensajes están
@@ -294,7 +294,7 @@ Qué significa cada resultado para el usuario:
 | `invalid-public-key`, `invalid-expected-product` | Tu aplicación pasó una clave inutilizable o un ID de producto en blanco. | Nada que pueda arreglar: regístralo y corrige la compilación. |
 | producto `mismatch` | Auténtica, pero emitida para otro de tus productos. | Que la licencia es para otro producto. |
 | hardware `mismatch` | Auténtica, pero emitida para otro ID de hardware. | Que la licencia es para otro equipo; muestra el ID de este equipo. |
-| caducidad `expired` | Auténtica, pero su fecha de caducidad ya ha empezado. | Que la licencia caducó en su fecha. |
+| caducidad `expired` | Auténtica, pero ya ha llegado su fecha de caducidad. | Que la licencia caducó en su fecha. |
 
 ## Conservar la licencia y volver a comprobarla
 
@@ -305,14 +305,15 @@ aplicación: por ejemplo `%LOCALAPPDATA%\YourApp` en Windows,
 (normalmente `~/.local/share/YourApp`) en Linux, el almacenamiento interno de la
 app (`Context.getFilesDir()`) en Android o la carpeta Application Support del
 contenedor de la app en iOS. Una copia de seguridad puede restaurar el código en
-otro dispositivo, donde la comprobación de hardware falla y el usuario vuelve a
-activar. El código está firmado, no cifrado: quien lo lea ve el nombre del cliente, el ID de hardware y los datos
-personalizados, pero no puede cambiarlos sin romper la firma.
+otro dispositivo, donde la comprobación de hardware falla y el usuario tiene que
+volver a activarla. El código está firmado, no cifrado: quien lo lea ve el nombre
+del cliente, el ID de hardware y los datos personalizados, pero no puede
+cambiarlos sin romper la firma.
 
 Vuelve a verificar el código guardado en cada arranque y antes de cada acción
-con licencia, con la hora actual. Un `true` en caché mantendría funcionando una
-licencia caducada. Cuando la verificación falle, muestra otra vez la pantalla de
-activación. Estas funciones dan por hecho que tu aplicación aporta
+sujeta a licencia, con la hora actual. Un `true` en caché mantendría funcionando
+una licencia caducada. Cuando la verificación falle, muestra otra vez la pantalla
+de activación. Estas funciones dan por hecho que tu aplicación aporta
 `load_license_code()`, que devuelve el código guardado o nada.
 
 <!-- excerpt: csharp-startup -->
@@ -354,11 +355,11 @@ calcularlo. El generador firma el texto que introduzcas. Un buen identificador e
 - **Exacto.** El texto que muestra la pantalla de activación es el que se verifica
   después. La comparación es ordinal: cuentan las mayúsculas, los espacios y los
   saltos de línea.
-- **Completo.** No lo recortes nunca; un ID corto hace que dos equipos compartan
+- **Completo.** No lo trunques nunca; un ID corto hace que dos equipos compartan
   una licencia.
 - **Honesto ante los fallos.** Si la fuente no está disponible, informa del error.
   Nunca recurras a un valor compartido como `UNKNOWN-HWID`, el nombre del equipo o
-  un texto vacío: un ID de hardware vacío significa una licencia sin vincular.
+  un texto vacío: un ID de hardware vacío significa una licencia no vinculada.
 
 Los sistemas operativos ofrecen un identificador de equipo del que partir:
 
@@ -367,8 +368,8 @@ Los sistemas operativos ofrecen un identificador de equipo del que partir:
 | Windows | `MachineGuid` en `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography` | Se reinstala Windows; equipos clonados de una misma imagen pueden compartirlo |
 | Linux | `/etc/machine-id` | Se reinstala el sistema; contenedores e imágenes clonadas pueden compartirlo o regenerarlo |
 | macOS | `IOPlatformUUID` de `IOPlatformExpertDevice` en el I/O Registry | Se sustituye la placa base |
-| Android | `Settings.Secure.ANDROID_ID` | Se restablece el dispositivo de fábrica; desde Android 8.0 además difiere por clave de firma de la app y por usuario |
-| iOS, iPadOS | Las apps no tienen acceso a ningún identificador de hardware: `identifierForVendor`, o un UUID que crees una vez y guardes en el llavero | `identifierForVendor` cambia cuando se eliminan del dispositivo todas tus apps; un elemento del llavero suele sobrevivir a una reinstalación |
+| Android | `Settings.Secure.ANDROID_ID` | Se restablecen los valores de fábrica del dispositivo; desde Android 8.0 además difiere por clave de firma de la app y por usuario |
+| iOS, iPadOS | Las apps no tienen acceso a ningún identificador de hardware; usa `identifierForVendor` o un UUID que crees una vez y guardes en el llavero | `identifierForVendor` cambia cuando se eliminan del dispositivo todas tus apps; un elemento del llavero suele sobrevivir a una reinstalación |
 
 Un proceso de 32 bits en Windows de 64 bits lee una vista redirigida del registro
 sin `MachineGuid`: abre la vista de 64 bits (`RegistryView.Registry64` en .NET,
@@ -428,16 +429,16 @@ un texto que tu versión no entienda y trata una licencia sin él como tu derech
 de uso básico. No pongas secretos en él: está codificado, no cifrado.
 
 Una licencia con UserDefined usa el formato 2. Un cliente anterior al formato 2
-la rechaza, así que actualiza todos los clientes que deban aceptar esas licencias
-antes de emitirlas.
+la rechaza, así que, antes de emitir esas licencias, actualiza todos los clientes
+que deban aceptarlas.
 
 ## Caducidad y reloj
 
 La fecha de caducidad se firma como fecha de calendario, y una licencia caduca a
 las **00:00 UTC del inicio de esa fecha**. Para permitir el uso hasta el final
-del 10 de junio, emite la licencia con el 11 de junio. Pasa la hora actual en
-UTC; los verificadores la comparan con ese instante sea cual sea la zona horaria
-del usuario.
+del 10 de junio, emite la licencia con fecha de caducidad 11 de junio. Pasa la
+hora actual en UTC; los verificadores la comparan con ese instante sea cual sea
+la zona horaria del usuario.
 
 Tu aplicación lee el reloj de un dispositivo que controla el usuario. Un usuario
 puede atrasarlo para que una licencia caducada siga funcionando. Donde eso
@@ -478,12 +479,12 @@ con el resultado que debe dar cada una:
   rechazo, o las comprobaciones `product`, `hardware` y `expiration` de la licencia
   autenticada, el `valid` global, los datos decodificados y el `revocationId`.
   `formatVersion` vale 1 en una licencia heredada, cuyo JSON lo omite. `issue`
-  registra cómo emitió el generador un caso, `derive` cómo se cambió un caso a
-  partir de otro después de firmarlo, y `copy` que reutiliza sin cambios la
+  registra cómo emitió el generador un caso, `derive` cómo se obtuvo un caso
+  alterando otro después de firmarlo, y `copy` que reutiliza sin cambios la
   licencia de otro caso. Un caso puede fijar su propio `publicKey`,
   `expectedAppId` o `expectedHardwareId`; un ID de hardware null significa que se
-  omite la comprobación. Una función verify devuelve la licencia exactamente en
-  los casos válidos que no omiten la comprobación de hardware.
+  omite la comprobación. Una función verify devuelve la licencia en los casos
+  válidos que no omiten la comprobación de hardware, y solo en ellos.
 - `expirationTexts` enumera textos de fecha de caducidad que un verificador debe
   leer como la fecha firmada o rechazar, y los instantes a ambos lados del límite
   en los que cada texto aceptado está vigente y después caducado.
@@ -492,7 +493,7 @@ con el resultado que debe dar cada una:
   conserva en sus extremos caracteres que algunas funciones de recorte quitan.
 
 Usa la hora de comprobación publicada, no la actual, al comparar resultados. Las
-baterías de referencia ejecutan todos los casos; la de Python necesita
+baterías de pruebas de referencia ejecutan todos los casos; la de Python necesita
 `cryptography` instalado como se indica arriba:
 
 ```text
@@ -502,7 +503,7 @@ cd ../node
 node --test license-verifier.test.mjs
 ```
 
-El CI del repositorio público ejecuta ambas baterías en cada push y pull request.
+La CI del repositorio público ejecuta ambas baterías en cada push y pull request.
 En un cliente C#, lee el mismo archivo en tus propias pruebas y compara
 `LicenseVerifier.Inspect` con cada resultado esperado.
 
@@ -514,15 +515,15 @@ En un cliente C#, lee el mismo archivo en tus propias pruebas y compara
 | `malformed` para un código que el generador inspecciona bien | El código se cortó o se alteró al copiarlo; se aceptan saltos de línea dentro de él, otros caracteres no. |
 | `unsupported-format` | Tu verificador es anterior al formato de la licencia; actualízalo. |
 | `mismatch` de hardware en el equipo correcto | Tu aplicación calcula el mismo ID que mostró; cuentan las mayúsculas y los espacios. Los contenedores y las máquinas virtuales pueden ver otro identificador de equipo. |
-| Caduca un día antes | El límite son las 00:00 UTC del inicio de la fecha de caducidad; emite la licencia con el día siguiente. |
-| Funciona en desarrollo y falla en producción | Producción integra otra clave pública u otro ID de producto, o calcula otro ID de hardware. |
+| Caduca un día antes | El límite son las 00:00 UTC del inicio de la fecha de caducidad; emite la licencia con fecha de caducidad del día siguiente. |
+| Funciona en desarrollo y falla en producción | La versión de producción integra otra clave pública u otro ID de producto, o calcula otro ID de hardware. |
 
 ## Licencia de los ejemplos
 
-La sección 2 del [EULA](../../LICENSE) te permite usar, copiar, modificar y
-distribuir los archivos de `docs/examples` como parte de tus aplicaciones
-comerciales o gratuitas que verifiquen licencias, conservando su aviso de
-copyright. No concede ningún derecho sobre la propia aplicación License
+La sección 2 del [EULA](../../LICENSE) (en inglés) te permite usar, copiar,
+modificar y distribuir los archivos de `docs/examples` como parte de tus
+aplicaciones comerciales o gratuitas que verifiquen licencias, conservando su
+aviso de copyright. No concede ningún derecho sobre la propia aplicación License
 Generator.
 
 [Comunicar un problema](https://github.com/gonzapersonalsite/LicenseGenerator-Docs-/issues) · [Apoyar el desarrollo](https://ko-fi.com/gonzaloapps)
