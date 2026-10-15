@@ -1,5 +1,21 @@
 # Changelog
 
+## Integration examples — 2026-10-15
+
+- Added the [integration guide](../INTEGRATION.md): an activation screen, a check
+  at every start, how to choose and derive a hardware identifier, revocation and
+  key changes, and pitfalls on other stacks, in all five languages.
+- Added Python and Node.js verifiers with their tests beside the C# pair, and
+  published test vectors that all three pass.
+- Every verifier now returns a revocation identifier. Revoke licenses by it, never
+  by their `Signature` text. In the C# example it is the new `RevocationId` of
+  `VerifiedLicense`; code that only reads the record keeps working.
+- The [contract](../ARCHITECTURE.md) now states the order of every check, which
+  whitespace each part of a license and of a key accepts, and that every length
+  counts UTF-16 code units, and the test vectors pin each of these rules.
+
+The application itself is unchanged since 1.2.3.
+
 ## 1.2.3 — 2026-10-15
 
 - Show the third-party notices in Settings and ship them beside the Windows and
@@ -40,10 +56,6 @@ C# integration example are the same as in 1.2.1.
   existing notification colors when the theme changes.
 - Use a stable application identity for shortcuts created by the packaged Windows
   app, and reduce repeated directory scans during backup validation.
-- Separate the pure Core from desktop/storage adapters, consolidate protocol
-  parsing and enforce architecture, test-harness and documentation boundaries.
-- Adopt the shared contribution scaffold and one local/CI verification workflow;
-  harden process/container cleanup and package the verified version/icon snapshot.
 
 Existing license formats and signing keys remain compatible. Update both
 `LicenseVerifier.cs` and `LicenseProtocol.cs` when replacing the C# integration
@@ -51,9 +63,7 @@ example; the existing `TryVerify` API remains available.
 
 ## 1.2.0 — 2026-10-14
 
-- Migrated to .NET 10 LTS with SDK 10.0.402, Avalonia 11.3.22 and DataGrid 11.3.13;
-  pinned the official SDK container by digest and refreshed the dependency locks.
-  Package archives, signatures and build imports were reviewed before compilation.
+- Moved to .NET 10 LTS, Avalonia 11.3.22 and DataGrid 11.3.13.
 - Added a local license inspector with an explicitly trusted public key, authenticated
   fields and separate product, hardware and expiration results. The desktop app and
   standalone client example share one verifier; existing `TryVerify` callers remain compatible.
@@ -69,13 +79,13 @@ example; the existing `TryVerify` API remains available.
   and signed formats remain compatible.
 - Kept initial required fields quiet until edited, localized date placeholders and
   corrected accessible application and settings labels.
-- Wait for startup and preference writes before closing, with bounded shutdown
-  handling that retains the profile lease while work is still active.
+- Wait for startup and preference writes to finish before the window closes, so
+  closing never interrupts them.
 
 ## 1.1.0 — 2026-10-14
 
 - Added optional signed `UserDefined` text for application-defined claims. Nonempty text uses format 2; empty text preserves the legacy JSON and signature format. Update client verification before enabling custom claims.
-- Added a dependency-free reference C# verifier and regression coverage for compatibility, tampering, Unicode, expiration, storage failures, backups and view-model behavior.
+- Added a dependency-free reference C# verifier.
 - Made product identifiers portable and bounded, rejected ambiguous legacy separators, and prevented rapid license generation from overwriting history.
 - Hardened backup validation and made imports preserve existing signing keys and history. Conflicting data is rejected before publication; settings are replaced atomically and applied without restarting.
 - Added atomic settings persistence, safe recovery of invalid settings, startup diagnostics and exclusion between instances using the same data directory.
@@ -84,7 +94,6 @@ example; the existing `TryVerify` API remains available.
 - Corrected the donation link to https://ko-fi.com/gonzaloapps and revised all five documentation languages.
 - Removed unsupported security claims and clarified that local private keys and ZIP backups are not encrypted.
 - Corrected Store icon packaging with transparent backgrounds and indexed taskbar resources for light and dark themes.
-- Replaced the obsolete release scripts and certificate setup with a pinned Docker/.NET toolchain, locked dependencies, bounded build processes, Windows/Linux CI and validated unsigned Store packaging.
 - Updated Tmds.DBus.Protocol to 0.21.3 for CVE-2026-39959. Removed unused SVG and obfuscation dependencies.
 
-Windows and Linux x64 downloads include the .NET runtime. Their data remains in the current user's application-data directory; transfer it using backup/import. Microsoft Store availability depends on certification of the submitted update.
+Windows and Linux x64 downloads include the .NET runtime. Their data remains in the current user's application-data directory; transfer it using backup/import.

@@ -1,12 +1,17 @@
-# Operations and integration guide
+# Operations guide
 
 [Español](docs/es/OPERATIONS.md) · **English** · [Deutsch](docs/de/OPERATIONS.md) · [Português](docs/pt/OPERATIONS.md) · [中文](docs/zh/OPERATIONS.md)
 
+This guide covers using the License Generator application: creating products,
+issuing and inspecting licenses, and keeping your data safe. Verifying licenses
+in your own application is covered by the [integration guide](INTEGRATION.md),
+and the exact license format by the [format and security contract](ARCHITECTURE.md).
+
 ## Create a product and issue a license
 
-Create a product in App Management. The generator stores a separate RSA key pair under `<LocalApplicationData>/LicenseGenerator/Keys/<AppId>/`. Your client application needs `public.pem`; never distribute `private.pem`.
+Create a product under **Applications**. The generator keeps a separate RSA key pair for it in its data folder. Your client application needs the product's `public.pem`; never distribute `private.pem`.
 
-For hardware binding, implement hardware identification in your client, show that exact value to its user, and accept it in the generator's HWID field. The generator does not choose the hardware-identification algorithm. Avoid truncated identifiers and shared values such as `UNKNOWN-HWID`; report identification failures instead of issuing a bound license for a generic value. An intentionally empty HWID produces a license without hardware binding.
+For hardware binding, your client computes a hardware identifier, shows that exact value to its user, and you enter it in the generator's HWID field. The generator does not choose the hardware-identification method; the [integration guide](INTEGRATION.md#choose-a-hardware-identifier) describes what a good one needs. An intentionally empty HWID produces a license without hardware binding.
 
 Select the product, enter the registration name and optional HWID, and optionally select an expiration date. Expiration occurs at **00:00 UTC at the start of the selected date**. To allow all of June 10, choose June 11. Leave the date empty for a perpetual license.
 
@@ -22,9 +27,9 @@ For a client that implements format 2, enter plain text such as:
 features=export,reports;plan=professional
 ```
 
-The exact text is included in the signature. The generator assigns no meaning to it. Your client can reject an unsupported schema, check a feature list or apply its own policy **after cryptographic verification**. Do not put secrets in this field: Base64 is encoding, not encryption.
+The exact text is included in the signature. The generator assigns no meaning to it; your client decides what it means **after cryptographic verification** ([integration guide](INTEGRATION.md#use-userdefined)). Do not put secrets in this field: Base64 is encoding, not encryption.
 
-Any nonempty custom text uses format 2 and requires updated client verification. Do not append it to the old signing string or use an unchecked JSON field. The [canonical contract](ARCHITECTURE.md) defines every signed byte and all compatibility rules.
+Any nonempty custom text uses format 2, which a client written for the legacy format rejects. Update every client that must accept the license first.
 
 ## Inspect a license
 
@@ -34,53 +39,28 @@ Provide the expected product ID and, optionally, the exact hardware ID from the 
 
 The screen authenticates the RSA signature before showing any license fields, then reports product, hardware and expiration checks separately. Authentic expired licenses can be inspected, but remain expired. A signature mismatch can mean a wrong key or changed license data; it cannot distinguish those causes. The result shows the UTC time of the check. Editing inputs clears the result; verify again for a later time. Nothing is uploaded or saved by inspection.
 
-## Client integration
+## Your data
 
-Copy both [LicenseVerifier.cs](docs/examples/LicenseVerifier.cs) and [LicenseProtocol.cs](docs/examples/LicenseProtocol.cs) into your client project. Together they form the dependency-free executable reference compiled into the regression suite. Its boundary has no disk, network, global clock or hardware lookup: your application supplies those values explicitly.
+The application keeps signing keys, license history, settings and a diagnostic log in a data folder that belongs to your operating-system user, separate from the executable. The [privacy policy](https://gonzaloapps.es/apps/license-generator/legal/privacy-policy/) lists what each file holds and where the folder is for the Microsoft Store, portable Windows and Linux versions. Export a backup before uninstalling the Microsoft Store version: Windows removes its data folder with it.
 
-The [EULA's integration example exception](LICENSE) permits using, copying, modifying and distributing these two source files in source or compiled form as part of commercial or free license-verifying clients, with the copyright notice retained. This permission does not extend to the License Generator application source.
-
-```csharp
-using LicenseGenerator.IntegrationExample;
-
-bool valid = LicenseVerifier.TryVerify(
-    encodedLicense: codeFromCustomer,
-    publicKeyPem: embeddedPublicKey,
-    expectedAppId: "MyProduct",
-    expectedHardwareId: hardwareIdFromYourApplication,
-    nowUtc: DateTimeOffset.UtcNow,
-    out var verified);
-
-if (valid)
-{
-    // Apply your own UserDefined policy using verified!.UserDefined.
-}
-```
-
-The snippet assumes your application supplies its code, public key and hardware ID. Failed verification returns false and a null result. Verify before persisting an activation, then verify again when loading it and when checking time-limited access. Store the original license code. Do not cache a boolean indefinitely.
-
-`TryVerify` keeps its existing acceptance contract. For diagnostics, `LicenseVerifier.Inspect` returns either `Rejected` with a reason and no claims, or `Authenticated` with signed fields and separate policy results. Pass `null` as the expected HWID only when deliberately skipping that check; a bound license then has `Hardware = NotChecked` and `IsValid = false`. `CheckFormat` only checks envelope syntax and limits before key access; success is not authentication. These APIs share one parser with the desktop inspector.
-
-For Python, JavaScript or another language, implement the same [transport and signing contract](ARCHITECTURE.md) using a maintained RSA library. Keep the signed date as the literal Gregorian calendar date; JavaScript's `new Date(...).toISOString()` can shift that date and is unsuitable for reconstructing it. Validate both legacy and format-2 fixtures, tampering, Unicode, separators, wrong products, wrong hardware IDs and the exact UTC expiration boundary before release.
+Private keys and backups are **not encrypted**. Anyone who obtains a private key can issue licenses that your applications accept.
 
 ## Back up or migrate
 
 Use Settings to export a ZIP backup. It contains private keys, history and settings without encryption. Keep it in storage you control; encrypt it with your chosen backup solution before sharing or uploading it.
 
-Import merges products and history. Existing keys/history are preserved. If an incoming product has different keys or a history filename has different contents, import fails instead of overwriting it. Valid imported settings replace the current settings. Archive structure, size and RSA key pairs are validated before importing. Export a backup of the current profile first if you want to restore its previous settings later.
+Import merges products and history. Existing keys/history are preserved. If an incoming product has different keys or a history filename has different contents, import fails instead of overwriting it. Valid imported settings replace the current settings. Archive structure, size and RSA key pairs are validated before importing. Export a backup of the current profile first if you want to restore its previous settings later. An import does not revoke or replace licenses already delivered to customers.
 
-Windows and Linux downloads are self-contained applications, not portable-data installations. The data directory belongs to the operating-system user. Copying only the executable to another machine does not move the keys or history; use backup/import.
+Copying only the executable to another machine does not move the keys or history, and switching between the Store and a portable version starts from a different folder: export a backup, then import it in the new installation.
 
 ## Troubleshooting
 
 | Symptom | Check |
 | --- | --- |
-| Signature rejected | Correct public key, exact field values, invariant date, supported format and PKCS#1 v1.5/SHA-256. |
-| Older client rejects a new license | Leave UserDefined empty until that client supports format 2. |
+| A client rejects a license | Follow the client checks in the [integration guide](INTEGRATION.md#troubleshooting); inspect the license here with the same public key, product and HWID. |
 | Expired unexpectedly | The selected date is the exclusive cutoff at 00:00 UTC; it is not the last permitted day. |
-| Wrong-machine rejection | Use the exact same deterministic HWID representation on generation and verification. |
 | Import reports a conflict | Keep the current data and inspect the backup; do not replace a product's private key accidentally. |
-| Data absent after moving the executable | Data is in the current user's application-data folder; import the backup on the new profile. |
+| Data absent after moving the executable or reinstalling | Data is in the current user's data folder for that version; import the backup in the new installation. |
 
 Offline issuance does not provide remote revocation, a trusted clock or protection against modified client code. See [security boundaries](ARCHITECTURE.md#security-boundaries) before choosing an integration policy.
 

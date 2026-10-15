@@ -1,3 +1,7 @@
+// Copyright (c) 2026 Gonzalo Martínez García.
+// License Generator integration example: you may use, copy, modify and distribute this file
+// under section 2 of the License Generator EULA, keeping this notice.
+
 using System;
 using System.Collections.Generic;
 using System.Globalization;
