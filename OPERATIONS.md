@@ -51,7 +51,7 @@ Use Settings to export a ZIP backup. It contains private keys, history and setti
 
 Import merges products and history. Existing keys/history are preserved. If an incoming product has different keys or a history filename has different contents, import fails instead of overwriting it. Valid imported settings replace the current settings. Archive structure, size and RSA key pairs are validated before importing. Export a backup of the current profile first if you want to restore its previous settings later. An import does not revoke or replace licenses already delivered to customers.
 
-Copying only the executable to another machine does not move the keys or history, and switching between the Store and a portable version starts from a different folder: export a backup, then import it in the new installation.
+Copying only the executable to another machine does not move the keys or history: export a backup, then import it in the new installation. On the same Windows account, the Microsoft Store version also uses a portable version's data folder. It shows that folder's products and history, and deleting one of them in the Store version deletes it from that folder; what the Store version creates stays in its own folder, which the portable version does not see. Before deleting the portable version's folder, export a backup in the Store version, and import it again afterwards to keep those products and history in the Store version.
 
 ## Troubleshooting
 
