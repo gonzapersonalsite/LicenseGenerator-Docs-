@@ -52,7 +52,7 @@ Exportieren Sie unter **Einstellungen** eine ZIP-Sicherung. Sie enthält private
 
 Der Import führt Produkte und Verlauf zusammen. Vorhandene Schlüssel und Verlaufsdaten bleiben erhalten. Hat ein importiertes Produkt andere Schlüssel oder eine gleichnamige Verlaufsdatei einen anderen Inhalt, schlägt der Import fehl, statt etwas zu überschreiben. Gültige importierte Einstellungen ersetzen die aktuellen. Aufbau, Größe und RSA-Schlüsselpaare des Archivs werden vor dem Import geprüft. Exportieren Sie vorher eine Sicherung des aktuellen Profils, wenn Sie dessen Einstellungen später wiederherstellen möchten. Ein Import widerruft oder ersetzt keine bereits an Kunden ausgelieferten Lizenzen.
 
-Das Kopieren nur der ausführbaren Datei auf einen anderen Computer verschiebt weder Schlüssel noch Verlauf, und ein Wechsel zwischen der Store-Version und einer portablen Version beginnt mit einem anderen Ordner: Exportieren Sie eine Sicherung und importieren Sie sie in der neuen Installation.
+Das Kopieren nur der ausführbaren Datei auf einen anderen Computer verschiebt weder Schlüssel noch Verlauf: Exportieren Sie eine Sicherung und importieren Sie sie in der neuen Installation. Im selben Windows-Konto verwendet die Microsoft-Store-Version auch den Datenordner einer portablen Version. Sie zeigt dessen Produkte und Verlauf an, und wenn Sie eines davon in der Store-Version löschen, wird es aus diesem Ordner gelöscht; was die Store-Version anlegt, bleibt in ihrem eigenen Ordner, den die portable Version nicht sieht. Exportieren Sie vor dem Löschen des Ordners der portablen Version eine Sicherung in der Store-Version und importieren Sie sie danach erneut, damit diese Produkte und ihr Verlauf in der Store-Version erhalten bleiben.
 
 ## Fehlerbehebung
 

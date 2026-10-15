@@ -51,7 +51,7 @@ Use **Configurações** para exportar um backup ZIP. Ele contém chaves privadas
 
 A importação combina produtos e histórico. As chaves e o histórico existentes são preservados. Se um produto importado tiver outras chaves ou se já existir um arquivo de histórico com o mesmo nome e outro conteúdo, a importação falha em vez de sobrescrevê-lo. As configurações importadas válidas substituem as atuais. A estrutura e o tamanho do arquivo ZIP e os pares de chaves RSA são validados antes da importação. Exporte antes um backup do perfil atual se quiser restaurar as configurações dele depois. Uma importação não revoga nem substitui licenças já entregues aos clientes.
 
-Copiar apenas o executável para outro computador não leva as chaves nem o histórico, e, ao trocar entre a versão da Store e uma versão portátil, o aplicativo passa a usar outra pasta: exporte um backup e importe-o na nova instalação.
+Copiar apenas o executável para outro computador não leva as chaves nem o histórico: exporte um backup e importe-o na nova instalação. Na mesma conta do Windows, a versão da Microsoft Store também usa a pasta de dados de uma versão portátil. Ela mostra os produtos e o histórico dessa pasta, e excluir um deles na versão da Store o exclui dessa pasta; o que a versão da Store cria fica na pasta dela, que a versão portátil não vê. Antes de excluir a pasta da versão portátil, exporte um backup na versão da Store e importe-o de novo depois, para manter esses produtos e o histórico na versão da Store.
 
 ## Solução de problemas
 

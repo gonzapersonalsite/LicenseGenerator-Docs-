@@ -51,7 +51,7 @@ Usa **Ajustes** para exportar una copia de seguridad ZIP. Contiene claves privad
 
 La importación combina productos e historial. Las claves y el historial existentes se conservan. Si un producto importado ya existe con otras claves, o un archivo de historial con el mismo nombre tiene otro contenido, la importación falla en lugar de sobrescribirlo. Los ajustes importados válidos sustituyen a los actuales. Antes de importar se validan la estructura del archivo, su tamaño y los pares de claves RSA. Exporta antes una copia del perfil actual si quieres recuperar después sus ajustes. Una importación no revoca ni sustituye licencias ya entregadas a clientes.
 
-Copiar solo el ejecutable a otro equipo no traslada las claves ni el historial, y la versión de Microsoft Store y la portable usan carpetas distintas: exporta una copia de seguridad e impórtala en la nueva instalación.
+Copiar solo el ejecutable a otro equipo no traslada las claves ni el historial: exporta una copia de seguridad e impórtala en la nueva instalación. En la misma cuenta de Windows, la versión de Microsoft Store también usa la carpeta de datos de una versión portable. Muestra los productos y el historial de esa carpeta, y borrar uno de ellos en la versión de Microsoft Store lo borra de esa carpeta; lo que crea la versión de Microsoft Store se queda en su propia carpeta, que la versión portable no ve. Antes de borrar la carpeta de la versión portable, exporta una copia de seguridad en la versión de Microsoft Store e impórtala de nuevo después para conservar en ella esos productos y su historial.
 
 ## Solución de problemas
 
