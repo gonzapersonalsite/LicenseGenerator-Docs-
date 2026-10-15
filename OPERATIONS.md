@@ -11,7 +11,7 @@ and the exact license format by the [format and security contract](ARCHITECTURE.
 
 Create a product under **Applications**. The generator keeps a separate RSA key pair for it in its data folder. Your client application needs the product's `public.pem`; never distribute `private.pem`.
 
-For hardware binding, your client computes a hardware identifier, shows that exact value to its user, and you enter it in the generator's **Request Code (Machine ID - Optional)** field. The generator does not choose the hardware-identification method; the [integration guide](INTEGRATION.md#choose-a-hardware-identifier) describes what a good one needs. An intentionally empty HWID produces a license without hardware binding.
+For hardware binding, your client computes a hardware identifier, shows that exact value to its user, and you enter it in the generator's **Hardware ID (Optional)** field. The generator does not choose the hardware-identification method; the [integration guide](INTEGRATION.md#choose-a-hardware-identifier) describes what a good one needs. An intentionally empty HWID produces a license without hardware binding.
 
 Select the product, enter the registration name and optional HWID, and optionally select an expiration date. Expiration occurs at **00:00 UTC at the start of the selected date**. To allow all of June 10, choose June 11. Leave the date empty for a perpetual license.
 
