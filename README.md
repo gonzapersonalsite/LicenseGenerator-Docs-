@@ -4,7 +4,7 @@
 
 A desktop tool for issuing, inspecting and managing offline software licenses. Create a separate RSA key pair for each product, sign licenses, inspect them locally with a trusted public key, and validate them in your own application.
 
-[Microsoft Store](https://apps.microsoft.com/detail/9NR38VBCF8JK) · [Downloads](https://github.com/gonzapersonalsite/LicenseGenerator-Docs-/releases) · [Report an issue](https://github.com/gonzapersonalsite/LicenseGenerator-Docs-/issues) · [Support development](https://ko-fi.com/gonzaloapps)
+[Microsoft Store](https://apps.microsoft.com/detail/9NR38VBCF8JK) · [Downloads](https://github.com/gonzapersonalsite/license-generator-docs/releases) · [Report an issue](https://github.com/gonzapersonalsite/license-generator-docs/issues) · [Support development](https://ko-fi.com/gonzaloapps)
 
 ## Features
 

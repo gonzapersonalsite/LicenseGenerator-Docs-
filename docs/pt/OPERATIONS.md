@@ -64,4 +64,4 @@ Copiar apenas o executável para outro computador não leva as chaves nem o hist
 
 A emissão offline não oferece revogação remota, relógio confiável nem proteção contra código cliente modificado. Consulte os [limites de segurança](ARCHITECTURE.md#limites-de-segurança) antes de escolher uma política de integração.
 
-[Relatar um problema](https://github.com/gonzapersonalsite/LicenseGenerator-Docs-/issues) · [Apoiar o desenvolvimento](https://ko-fi.com/gonzaloapps)
+[Relatar um problema](https://github.com/gonzapersonalsite/license-generator-docs/issues) · [Apoiar o desenvolvimento](https://ko-fi.com/gonzaloapps)

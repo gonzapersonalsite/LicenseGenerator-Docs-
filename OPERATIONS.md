@@ -64,4 +64,4 @@ Copying only the executable to another machine does not move the keys or history
 
 Offline issuance does not provide remote revocation, a trusted clock or protection against modified client code. See [security boundaries](ARCHITECTURE.md#security-boundaries) before choosing an integration policy.
 
-[Report a problem](https://github.com/gonzapersonalsite/LicenseGenerator-Docs-/issues) · [Support development](https://ko-fi.com/gonzaloapps)
+[Report a problem](https://github.com/gonzapersonalsite/license-generator-docs/issues) · [Support development](https://ko-fi.com/gonzaloapps)

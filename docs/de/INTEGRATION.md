@@ -542,4 +542,4 @@ Anwendungen, die Lizenzen prüfen, zu verwenden, zu kopieren, zu ändern und
 weiterzugeben, sofern ihr Urheberrechtshinweis erhalten bleibt. Sie gewährt
 keine Rechte an der Anwendung License Generator selbst.
 
-[Problem melden](https://github.com/gonzapersonalsite/LicenseGenerator-Docs-/issues) · [Entwicklung unterstützen](https://ko-fi.com/gonzaloapps)
+[Problem melden](https://github.com/gonzapersonalsite/license-generator-docs/issues) · [Entwicklung unterstützen](https://ko-fi.com/gonzaloapps)

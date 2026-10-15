@@ -526,4 +526,4 @@ aplicaciones comerciales o gratuitas que verifiquen licencias, conservando su
 aviso de copyright. No concede ningún derecho sobre la propia aplicación License
 Generator.
 
-[Comunicar un problema](https://github.com/gonzapersonalsite/LicenseGenerator-Docs-/issues) · [Apoyar el desarrollo](https://ko-fi.com/gonzaloapps)
+[Comunicar un problema](https://github.com/gonzapersonalsite/license-generator-docs/issues) · [Apoyar el desarrollo](https://ko-fi.com/gonzaloapps)
