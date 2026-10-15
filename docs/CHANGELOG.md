@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.2.2 — 2026-10-15
+
+- Fix the Microsoft Store app's taskbar icon, which Windows showed on a square in
+  the system accent colour. The package resource index now names the logos as the
+  manifest refers to them, so Windows finds their plate-free variants, and
+  packaging refuses an index that does not.
+
+Nothing else changes: keys, licenses, history, settings, license formats and the
+C# integration example are the same as in 1.2.1.
+
 ## 1.2.1 — 2026-10-14
 
 - Hardened public-key handling: malformed backups cannot substitute private key
