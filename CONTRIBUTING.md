@@ -7,7 +7,7 @@ source and build tooling are maintained in a separate private repository.
 
 ## Reports and suggestions
 
-Use [Issues](https://github.com/gonzapersonalsite/LicenseGenerator-Docs-/issues)
+Use [Issues](https://github.com/gonzapersonalsite/license-generator-docs/issues)
 for reproducible bugs, integration questions and feature suggestions. Include the
 application version, operating system, installation source, steps and expected
 result, and for an integration problem the verifier and stack you use. Use
