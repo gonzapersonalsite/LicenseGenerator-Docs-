@@ -38,7 +38,7 @@ Lizenzen sind Base64-kodiertes JSON, keine verschlüsselten Geheimnisse. Hardwar
 
 ## Daten und Lizenz
 
-Schlüssel, Verlauf, Einstellungen und ein Diagnoseprotokoll liegen in einem Datenordner Ihres Benutzerkontos im Betriebssystem, getrennt von der ausführbaren Datei; die [Datenschutzerklärung](https://gonzaloapps.es/apps/license-generator/legal/privacy-policy/) (auf Englisch) nennt für jede Version, wo er liegt und was er enthält. Das Verschieben der ausführbaren Datei verschiebt die Daten nicht. Exportieren Sie eine Sicherung, bevor Sie den Computer wechseln, die Anwendung deinstallieren oder Schlüssel ändern.
+Schlüssel, Verlauf, Einstellungen und ein Diagnoseprotokoll liegen in einem Datenordner Ihres Benutzerkontos im Betriebssystem, getrennt von der ausführbaren Datei; die [Datenschutzerklärung](https://gonzaloapps.es/en/apps/license-generator/legal/privacy-policy/) (auf Englisch) nennt für jede Version, wo er liegt und was er enthält. Das Verschieben der ausführbaren Datei verschiebt die Daten nicht. Exportieren Sie eine Sicherung, bevor Sie den Computer wechseln, die Anwendung deinstallieren oder Schlüssel ändern.
 
 License Generator ist proprietäre Software gemäß der [EULA](../../LICENSE) (auf Englisch). Generierte Lizenzen und öffentliche Schlüssel dürfen unter diesen Bedingungen mit Ihren eigenen kommerziellen oder kostenlosen Anwendungen weitergegeben werden, und die Integrationsbeispiele unter `docs/examples` dürfen in sie kopiert werden.
 

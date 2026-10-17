@@ -42,7 +42,7 @@ Der Bildschirm authentifiziert die RSA-Signatur, bevor er Felder der Lizenz anze
 
 ## Ihre Daten
 
-Die Anwendung bewahrt Signaturschlüssel, Lizenzverlauf, Einstellungen und ein Diagnoseprotokoll in einem Datenordner auf, der zu Ihrem Benutzerkonto im Betriebssystem gehört und von der ausführbaren Datei getrennt ist. Die [Datenschutzerklärung](https://gonzaloapps.es/apps/license-generator/legal/privacy-policy/) (auf Englisch) führt auf, was jede Datei enthält und wo sich der Ordner bei der Microsoft-Store-, der portablen Windows- und der Linux-Version befindet. Exportieren Sie eine Sicherung, bevor Sie die Microsoft-Store-Version deinstallieren: Windows entfernt ihren Datenordner mit ihr.
+Die Anwendung bewahrt Signaturschlüssel, Lizenzverlauf, Einstellungen und ein Diagnoseprotokoll in einem Datenordner auf, der zu Ihrem Benutzerkonto im Betriebssystem gehört und von der ausführbaren Datei getrennt ist. Die [Datenschutzerklärung](https://gonzaloapps.es/en/apps/license-generator/legal/privacy-policy/) (auf Englisch) führt auf, was jede Datei enthält und wo sich der Ordner bei der Microsoft-Store-, der portablen Windows- und der Linux-Version befindet. Exportieren Sie eine Sicherung, bevor Sie die Microsoft-Store-Version deinstallieren: Windows entfernt ihren Datenordner mit ihr.
 
 Private Schlüssel und Sicherungen sind **nicht verschlüsselt**. Wer einen privaten Schlüssel erhält, kann Lizenzen ausstellen, die Ihre Anwendungen annehmen.
 

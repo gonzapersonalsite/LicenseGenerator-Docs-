@@ -38,7 +38,7 @@ features=export,reports;plan=professional
 
 ## 您的数据
 
-应用会将签名密钥、许可证历史记录、设置和诊断日志保存在一个属于您的操作系统用户的数据文件夹中，与可执行文件分开存放。[隐私政策](https://gonzaloapps.es/apps/license-generator/legal/privacy-policy/)（英文）列出了每个文件包含的内容，以及 Microsoft Store 版、Windows 便携版和 Linux 版的文件夹位置。卸载 Microsoft Store 版之前请先导出备份：Windows 会随应用一起删除其数据文件夹。
+应用会将签名密钥、许可证历史记录、设置和诊断日志保存在一个属于您的操作系统用户的数据文件夹中，与可执行文件分开存放。[隐私政策](https://gonzaloapps.es/en/apps/license-generator/legal/privacy-policy/)（英文）列出了每个文件包含的内容，以及 Microsoft Store 版、Windows 便携版和 Linux 版的文件夹位置。卸载 Microsoft Store 版之前请先导出备份：Windows 会随应用一起删除其数据文件夹。
 
 私钥和备份**没有加密**。任何获得私钥的人都能签发您的应用会接受的许可证。
 

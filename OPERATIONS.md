@@ -41,7 +41,7 @@ The screen authenticates the RSA signature before showing any license fields, th
 
 ## Your data
 
-The application keeps signing keys, license history, settings and a diagnostic log in a data folder that belongs to your operating-system user, separate from the executable. The [privacy policy](https://gonzaloapps.es/apps/license-generator/legal/privacy-policy/) lists what each file holds and where the folder is for the Microsoft Store, portable Windows and Linux versions. Export a backup before uninstalling the Microsoft Store version: Windows removes its data folder with it.
+The application keeps signing keys, license history, settings and a diagnostic log in a data folder that belongs to your operating-system user, separate from the executable. The [privacy policy](https://gonzaloapps.es/en/apps/license-generator/legal/privacy-policy/) lists what each file holds and where the folder is for the Microsoft Store, portable Windows and Linux versions. Export a backup before uninstalling the Microsoft Store version: Windows removes its data folder with it.
 
 Private keys and backups are **not encrypted**. Anyone who obtains a private key can issue licenses that your applications accept.
 

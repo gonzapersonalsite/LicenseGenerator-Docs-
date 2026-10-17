@@ -41,7 +41,7 @@ A tela autentica a assinatura RSA antes de mostrar qualquer campo da licença e 
 
 ## Seus dados
 
-O aplicativo guarda as chaves de assinatura, o histórico de licenças, as configurações e um log de diagnóstico em uma pasta de dados que pertence ao seu usuário do sistema operacional, separada do executável. A [política de privacidade](https://gonzaloapps.es/apps/license-generator/legal/privacy-policy/) (em inglês) detalha o que cada arquivo contém e onde fica a pasta na versão da Microsoft Store, na versão portátil para Windows e na versão para Linux. Exporte um backup antes de desinstalar a versão da Microsoft Store: o Windows apaga a pasta de dados junto com ela.
+O aplicativo guarda as chaves de assinatura, o histórico de licenças, as configurações e um log de diagnóstico em uma pasta de dados que pertence ao seu usuário do sistema operacional, separada do executável. A [política de privacidade](https://gonzaloapps.es/en/apps/license-generator/legal/privacy-policy/) (em inglês) detalha o que cada arquivo contém e onde fica a pasta na versão da Microsoft Store, na versão portátil para Windows e na versão para Linux. Exporte um backup antes de desinstalar a versão da Microsoft Store: o Windows apaga a pasta de dados junto com ela.
 
 As chaves privadas e os backups **não são criptografados**. Quem obtiver uma chave privada pode emitir licenças que seus aplicativos aceitam.
 

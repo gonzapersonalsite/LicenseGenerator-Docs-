@@ -38,7 +38,7 @@ UserDefined 是已签名的文本，不是可执行的规则，也不是内置�
 
 ## 数据与许可
 
-密钥、历史记录、设置和诊断日志位于您的操作系统用户的数据文件夹中，与可执行文件分开；[隐私政策](https://gonzaloapps.es/apps/license-generator/legal/privacy-policy/)（英文）说明了每个版本中该文件夹的位置及其内容。移动可执行文件不会移动数据。更换计算机、卸载或修改密钥之前，请先导出备份。
+密钥、历史记录、设置和诊断日志位于您的操作系统用户的数据文件夹中，与可执行文件分开；[隐私政策](https://gonzaloapps.es/en/apps/license-generator/legal/privacy-policy/)（英文）说明了每个版本中该文件夹的位置及其内容。移动可执行文件不会移动数据。更换计算机、卸载或修改密钥之前，请先导出备份。
 
 License Generator 是依据 [EULA](../../LICENSE)（英文）授权的专有软件。在这些条款下，生成的许可证和公钥可以随您自己的商业或免费应用分发，`docs/examples` 下的集成示例也可以复制到这些应用中。
 
