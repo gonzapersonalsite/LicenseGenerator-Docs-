@@ -41,7 +41,7 @@ La pantalla autentica la firma RSA antes de mostrar ningún campo de la licencia
 
 ## Tus datos
 
-La aplicación guarda las claves de firma, el historial de licencias, los ajustes y un registro de diagnóstico en una carpeta de datos que pertenece a tu usuario del sistema operativo, separada del ejecutable. La [política de privacidad](https://gonzaloapps.es/es/apps/license-generator/legal/privacy-policy/) detalla qué contiene cada archivo y dónde está la carpeta en las versiones de Microsoft Store, Windows portable y Linux. Exporta una copia de seguridad antes de desinstalar la versión de Microsoft Store: Windows borra su carpeta de datos con ella.
+La aplicación guarda las claves de firma, el historial de licencias, los ajustes y un registro de diagnóstico en una carpeta de datos que pertenece a tu usuario del sistema operativo, separada del ejecutable. La [política de privacidad](https://gonzaloapps.es/apps/license-generator/legal/privacy-policy/) detalla qué contiene cada archivo y dónde está la carpeta en las versiones de Microsoft Store, Windows portable y Linux. Exporta una copia de seguridad antes de desinstalar la versión de Microsoft Store: Windows borra su carpeta de datos con ella.
 
 Las claves privadas y las copias de seguridad **no están cifradas**. Quien obtenga una clave privada puede emitir licencias que tus aplicaciones aceptan.
 

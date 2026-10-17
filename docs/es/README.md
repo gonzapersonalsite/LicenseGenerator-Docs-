@@ -38,7 +38,7 @@ Las licencias son JSON codificado en Base64, no secretos cifrados. La vinculaci�
 
 ## Datos y licencia
 
-Las claves, el historial, los ajustes y un registro de diagnóstico están en una carpeta de datos de tu usuario del sistema operativo, separada del ejecutable; la [política de privacidad](https://gonzaloapps.es/es/apps/license-generator/legal/privacy-policy/) indica dónde está en cada versión y qué contiene. Mover el ejecutable no mueve los datos. Exporta una copia de seguridad antes de cambiar de equipo, desinstalar o modificar claves.
+Las claves, el historial, los ajustes y un registro de diagnóstico están en una carpeta de datos de tu usuario del sistema operativo, separada del ejecutable; la [política de privacidad](https://gonzaloapps.es/apps/license-generator/legal/privacy-policy/) indica dónde está en cada versión y qué contiene. Mover el ejecutable no mueve los datos. Exporta una copia de seguridad antes de cambiar de equipo, desinstalar o modificar claves.
 
 License Generator es software propietario sujeto al [EULA](../../LICENSE) (en inglés). Las licencias generadas y las claves públicas pueden distribuirse con tus propias aplicaciones comerciales o gratuitas en esas condiciones, y los ejemplos de integración de `docs/examples` pueden copiarse en ellas.
 

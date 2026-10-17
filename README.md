@@ -38,7 +38,7 @@ Licenses are Base64-encoded JSON, not encrypted secrets. Hardware binding and ex
 
 ## Data and licensing
 
-Keys, history, settings and a diagnostic log live in a data folder of your operating-system user, separate from the executable; the [privacy policy](https://gonzaloapps.es/apps/license-generator/legal/privacy-policy/) says where it is for each version and what it holds. Moving the executable does not move the data. Export a backup before moving computers, uninstalling or modifying keys.
+Keys, history, settings and a diagnostic log live in a data folder of your operating-system user, separate from the executable; the [privacy policy](https://gonzaloapps.es/en/apps/license-generator/legal/privacy-policy/) says where it is for each version and what it holds. Moving the executable does not move the data. Export a backup before moving computers, uninstalling or modifying keys.
 
 License Generator is proprietary software under the [EULA](LICENSE). Generated licenses and public keys can be distributed with your own commercial or free applications under those terms, and the integration examples under `docs/examples` can be copied into them.
 

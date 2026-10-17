@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.2.5 — 2026-10-17
+
+- Open the license agreement and the privacy policy from Settings at their new
+  addresses on gonzaloapps.es: the Spanish pages at the root and the English
+  pages under `/en/` for English, German, Brazilian Portuguese and Simplified
+  Chinese.
+- Open the documentation from Settings at the renamed public documentation
+  repository (`license-generator-docs`).
+
+Nothing else changes: keys, licenses, history, settings, license formats and the
+integration examples are the same as in 1.2.4.
+
 ## 1.2.4 — 2026-10-15
 
 - Name every concept in the interface with the term the manuals use, in all five
